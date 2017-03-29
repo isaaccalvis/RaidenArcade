@@ -1,1 +1,0 @@
-Here goes the Visual Studio codes that are not releases.
