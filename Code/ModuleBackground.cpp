@@ -3,6 +3,8 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleBackground.h"
+#include "ModuleBackground2.h"
+#include "ModuleFadeToBlack.h"
 
 #define MAP_HEIGHT 3265
 
@@ -31,6 +33,7 @@ bool ModuleBackground::Start(){
 	LOG("Loading background assets");
 	bool ret = true;
 	graphics = App->textures->Load("Nivel_1_Tilemap.png");
+	App->background2->Disable();
 	return ret;
 }
 
@@ -40,4 +43,8 @@ update_status ModuleBackground::Update(){
 	App->render->Blit(graphics, 0, posBackGround + SCREEN_HEIGHT, &ground);
 	posBackGround += speedBackGround;
 	return UPDATE_CONTINUE;
+}
+
+bool CleanUp() {
+
 }

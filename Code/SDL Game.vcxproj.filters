@@ -12,6 +12,9 @@
     <Filter Include="Containers">
       <UniqueIdentifier>{78a7f487-1d77-4fdc-9f51-f067eccd6239}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\BackGrounds">
+      <UniqueIdentifier>{9a0c0913-8d52-495c-a578-822f8758eac1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -38,9 +41,6 @@
     <ClInclude Include="ModuleTextures.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleBackground.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModulePlayer.h">
       <Filter>Modules</Filter>
     </ClInclude>
@@ -55,6 +55,15 @@
     </ClInclude>
     <ClInclude Include="ModuleCollider.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleBackground.h">
+      <Filter>Modules\BackGrounds</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFadeToBlack.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleBackGround2.h">
+      <Filter>Modules\BackGrounds</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -79,9 +88,6 @@
     <ClCompile Include="Globals.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleBackground.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -90,6 +96,15 @@
     </ClCompile>
     <ClCompile Include="ModuleCollider.cpp">
       <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleBackground.cpp">
+      <Filter>Modules\BackGrounds</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFadeToBlack.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleBackGround2.cpp">
+      <Filter>Modules\BackGrounds</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

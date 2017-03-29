@@ -3,16 +3,18 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 8
+#define NUM_MODULES 10
 
 class ModuleWindow;
 class ModuleInput;
 class ModuleTextures;
 class ModuleRender;
 class ModuleBackground;
+class ModuleBackground2;
 class ModulePlayer;
 class ModuleMusic;
 class ModuleCollider;
+class ModuleFadeToBlack;
 class Module;
 
 class Application{
@@ -24,9 +26,11 @@ public:
 	ModuleInput* input;
 	ModuleTextures* textures;
 	ModuleBackground* background;
+	ModuleBackground2* background2;
 	ModulePlayer* player;
 	ModuleMusic* music;
 	ModuleCollider* collider;
+	ModuleFadeToBlack* fade;
 public:
 
 	Application();

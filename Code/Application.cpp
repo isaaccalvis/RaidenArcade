@@ -4,9 +4,11 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "ModuleBackground.h"
+#include "ModuleBackGround2.h"
 #include "ModulePlayer.h"
 #include "ModuleMusic.h"
 #include "ModuleCollider.h"
+#include "ModuleFadeToBlack.h"
 
 Application::Application(){
 	modules[0] = window = new ModuleWindow();
@@ -17,6 +19,8 @@ Application::Application(){
 	modules[5] = player = new ModulePlayer();
 	modules[6] = music = new ModuleMusic();
 	modules[7] = collider = new ModuleCollider();
+	modules[8] = fade = new ModuleFadeToBlack();
+	modules[9] = background2 = new ModuleBackground2();
 }
 
 Application::~Application(){

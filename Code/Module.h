@@ -2,6 +2,8 @@
 #define __MODULE_H__
 
 class Module{
+private:
+	bool enabled = true;
 public:
 	virtual ~Module() {}
 
@@ -11,6 +13,21 @@ public:
 	virtual update_status Update()		{ return update_status::UPDATE_CONTINUE; }
 	virtual update_status PostUpdate() 	{ return update_status::UPDATE_CONTINUE; }
 	virtual bool CleanUp()				{ return true; }
+
+	void Enable(){
+		if (enabled == false){
+			enabled = true;
+			Start();
+		}
+	}
+
+	void Disable(){
+		if (enabled == true){
+			enabled = false;
+			CleanUp();
+		}
+		Module::CleanUp();
+	}
 };
 
 #endif
