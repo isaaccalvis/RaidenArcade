@@ -3,9 +3,4 @@
 #include "ModuleBullet.h"
 
 
-ModuleBullet::ModuleBullet() {
-
-
-
-}
 
