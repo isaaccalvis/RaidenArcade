@@ -45,6 +45,8 @@ update_status ModuleBackground::Update(){
 	return UPDATE_CONTINUE;
 }
 
+/*
 bool CleanUp() {
 
 }
+*/
