@@ -14,10 +14,11 @@ public:
 
 	bool Start();
 	update_status Update();
+	bool CleanUp();
 
 public:
 
-	SDL_Texture* graphics = nullptr;
+	SDL_Texture* graphics2 = nullptr;
 	SDL_Rect ground;
 	SDL_Rect background;
 	Animation flag;

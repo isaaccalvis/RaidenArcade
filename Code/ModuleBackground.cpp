@@ -13,14 +13,14 @@ int speedBackGround = 2;
 
 ModuleBackground::ModuleBackground()
 {
-	ground.x = 351;
+	ground.x = 352;
 	ground.y = 0;
-	ground.w = 351;
+	ground.w = 352;
 	ground.h = 3265;
 
 	background.x = 0;
 	background.y = 0;
-	background.w = 351;
+	background.w = 352;
 	background.h = MAP_HEIGHT;
 
 	// Aqui van lo de les animations flag.pushBack({x,y,w,h})
@@ -31,9 +31,10 @@ ModuleBackground::~ModuleBackground(){}
 
 bool ModuleBackground::Start(){
 	LOG("Loading background assets");
+	App->background->Enable();
 	bool ret = true;
 	graphics = App->textures->Load("Nivel_1_Tilemap.png");
-	App->background2->Disable();
+	App->background->Disable();
 	return ret;
 }
 
