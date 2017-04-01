@@ -30,7 +30,7 @@ ModulePlayer::~ModulePlayer(){}
 bool ModulePlayer::Start(){
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("NauPlayer.png");
+	graphics = App->textures->Load("Players.png");
 	return ret;
 	App->player->Enable();
 }
