@@ -21,6 +21,10 @@ public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect ground;
 	SDL_Rect background;
+	SDL_Rect cow;
+
+	SDL_Texture* cows = nullptr;
+	Animation cows_1;
 	Animation flag;
 };
 

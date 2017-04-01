@@ -24,7 +24,18 @@ ModuleBackground::ModuleBackground()
 	background.w = 352;
 	background.h = MAP_HEIGHT;
 
-	// Aqui van lo de les animations flag.pushBack({x,y,w,h})
+
+	// Vacas en el mapa pastando felices
+
+	cow.x = 24;
+	cow.y = 26;
+	cow.w = 48;
+	cow.h = 25;
+
+	cows_1.PushBack({ 24,26,48,25 });
+	cows_1.PushBack({ 77,26,48,25 });
+	
+
 	
 }
 
@@ -36,7 +47,11 @@ bool ModuleBackground::Start(){
 	bool ret = true;
 	graphics = App->textures->Load("Nivel_1_Tilemap.png");
 	
+	cows = App->textures->Load("Cows.png");
+
+
 	App->background->Enable();
+	
 	return ret;
 }
 
@@ -45,6 +60,7 @@ update_status ModuleBackground::Update(){
 	App->render->Blit(graphics, 0, posBackGround + SCREEN_HEIGHT, &background);
 	App->render->Blit(graphics, 0, posBackGround + SCREEN_HEIGHT, &ground);
 	posBackGround += speedBackGround;
+	App->render->Blit(cows, 100, posBackGround + 2000, &cow);
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 		App->fade->FadeToBlack(this, App->background2, 1);
