@@ -14,6 +14,7 @@ public:
 	~ModulePlayer();
 	bool Start();
 	update_status Update();
+	bool CleanUp();
 
 public:
 	SDL_Texture* graphics = nullptr;

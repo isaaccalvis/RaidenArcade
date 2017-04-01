@@ -14,6 +14,8 @@ public:
 	virtual update_status PostUpdate() 	{ return update_status::UPDATE_CONTINUE; }
 	virtual bool CleanUp()				{ return true; }
 
+	bool IsEnabled() const { return enabled; }
+
 	void Enable(){
 		if (enabled == false){
 			enabled = true;
@@ -26,7 +28,6 @@ public:
 			enabled = false;
 			CleanUp();
 		}
-		Module::CleanUp();
 	}
 };
 

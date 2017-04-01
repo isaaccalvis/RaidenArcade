@@ -18,9 +18,9 @@ Application::Application(){
 	modules[4] = background = new ModuleBackground();
 	modules[5] = player = new ModulePlayer();
 	modules[6] = music = new ModuleMusic();
-	modules[7] = collider = new ModuleCollider();
-	modules[8] = fade = new ModuleFadeToBlack();
-	modules[9] = background2 = new ModuleBackground2();
+	modules[7] = collider = new ModuleCollider();	
+	modules[8] = background2 = new ModuleBackground2();
+	modules[9] = fade = new ModuleFadeToBlack();
 }
 
 Application::~Application(){
@@ -31,11 +31,14 @@ Application::~Application(){
 bool Application::Init(){
 	bool ret = true;
 
+	//We put here all the modules we don't want to inicialite first
+	background2->Disable();
+
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
-		ret = modules[i]->Start();
+		ret = modules[i]->IsEnabled() ? modules[i]->Start() : true;
 
 	return ret;
 }
@@ -44,13 +47,13 @@ update_status Application::Update(){
 	update_status ret = UPDATE_CONTINUE;
 
 	for(int i = 0; i < NUM_MODULES && ret == UPDATE_CONTINUE; ++i)
-		ret = modules[i]->PreUpdate();
+		ret = modules[i]->IsEnabled() ? modules[i]->PreUpdate() : UPDATE_CONTINUE;
 
 	for(int i = 0; i < NUM_MODULES && ret == UPDATE_CONTINUE; ++i)
-		ret = modules[i]->Update();
+		ret = modules[i]->IsEnabled() ? modules[i]->Update() : UPDATE_CONTINUE;
 
 	for(int i = 0; i < NUM_MODULES && ret == UPDATE_CONTINUE; ++i)
-		ret = modules[i]->PostUpdate();
+		ret = modules[i]->IsEnabled() ? modules[i]->PostUpdate() : UPDATE_CONTINUE;
 
 	return ret;
 }

@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
+#include "ModuleInput.h"
 #include "ModuleBackground.h"
 #include "ModuleBackground2.h"
 #include "ModuleFadeToBlack.h"
@@ -30,11 +31,12 @@ ModuleBackground2::ModuleBackground2()
 ModuleBackground2::~ModuleBackground2() {}
 
 bool ModuleBackground2::Start() {
-	App->background2->Enable();
+	
 	LOG("Loading background assets");
 	bool ret = true;
 	graphics2 = App->textures->Load("Nivel_2_Tilemap.png");
-	App->background2->Disable();
+	
+	App->background2->Enable();
 
 	return ret;
 }
@@ -44,10 +46,17 @@ update_status ModuleBackground2::Update() {
 	App->render->Blit(graphics2, 0, posBackGround2 + SCREEN_HEIGHT, &background);
 	App->render->Blit(graphics2, 0, posBackGround2 + SCREEN_HEIGHT, &ground);
 	posBackGround2 += speedBackGround2;
+
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
+		App->fade->FadeToBlack(this, App->background, 1);
+	}
+
 	return UPDATE_CONTINUE;
 }
 
 
 bool ModuleBackground2::CleanUp() {
+	
+	App->background2->Disable();
 	return true;
 }

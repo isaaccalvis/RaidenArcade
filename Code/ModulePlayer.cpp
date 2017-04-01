@@ -4,6 +4,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModuleFadeToBlack.h"
 #include <iostream>
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -31,6 +32,7 @@ bool ModulePlayer::Start(){
 	bool ret = true;
 	graphics = App->textures->Load("NauPlayer.png");
 	return ret;
+	App->player->Enable();
 }
 
 update_status ModulePlayer::Update(){
@@ -67,10 +69,21 @@ update_status ModulePlayer::Update(){
 	std::cout << App->render->camera.y  << " :: " << PROTA.y<< std::endl;
 	std::cout << App->render->camera.x << " :: " << PROTA.x << std::endl;
 
+	
+
 		// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	App->render->Blit(graphics, PROTA.x, PROTA.y - r.h, &r);
 	
 	return UPDATE_CONTINUE;
+}
+
+bool ModulePlayer::CleanUp()
+{
+	LOG("Unloading player");
+
+	App->textures->Unload(graphics);
+
+	return true;
 }
