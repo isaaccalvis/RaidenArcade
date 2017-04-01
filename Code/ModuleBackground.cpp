@@ -34,7 +34,7 @@ bool ModuleBackground::Start(){
 
 	LOG("Loading background assets");	
 	bool ret = true;
-	graphics = App->textures->Load("Nivel_1_Tilemap.png");
+	graphics = App->textures->Load("Sprites/TileMaps/Nivel_1_Tilemap.png");
 	
 	App->background->Enable();
 	return ret;
