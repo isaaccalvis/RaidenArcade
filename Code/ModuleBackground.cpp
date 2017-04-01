@@ -33,7 +33,7 @@ ModuleBackground::ModuleBackground()
 	cow.h = 25;
 
 	cows_1.PushBack({ 24,26,48,25 });
-	cow_1.PushBack({ 77,26,48,25 });
+	cows_1.PushBack({ 77,26,48,25 });
 	
 
 	
