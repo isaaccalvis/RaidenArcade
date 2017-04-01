@@ -33,7 +33,7 @@ ModuleBackground::ModuleBackground()
 	cow.h = 25;
 
 	cows_1.PushBack({ 24,26,48,25 });
-	cows_1.PushBack({ 77,26,48,25 });
+	cow_1.PushBack({ 77,26,48,25 });
 	
 
 	
@@ -45,7 +45,7 @@ bool ModuleBackground::Start(){
 
 	LOG("Loading background assets");	
 	bool ret = true;
-	graphics = App->textures->Load("Nivel_1_Tilemap.png");
+	graphics = App->textures->Load("Sprites/TileMaps/Nivel_1_Tilemap.png");
 	
 	cows = App->textures->Load("Cows.png");
 
