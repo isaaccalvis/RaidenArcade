@@ -47,10 +47,10 @@ bool ModuleWindow::Init(){
 
 bool ModuleWindow::CleanUp(){
 	LOG("Destroying SDL window and quitting all SDL systems");
-
+	bool ret = true;
 	if(window != NULL)
 		SDL_DestroyWindow(window);
 
 	SDL_Quit();
-	return true;
+	return ret;
 }

@@ -33,6 +33,7 @@ update_status ModuleInput::PreUpdate(){
 
 bool ModuleInput::CleanUp(){
 	LOG("Quitting SDL input event subsystem");
+	bool ret = true;
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
-	return true;
+	return ret;
 }

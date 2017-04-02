@@ -12,6 +12,7 @@
 int posBackGround = -MAP_HEIGHT;
 int speedBackGround = 2;
 
+
 ModuleBackground::ModuleBackground()
 {
 	ground.x = 352;
@@ -71,7 +72,7 @@ update_status ModuleBackground::Update(){
 
 
 bool ModuleBackground::CleanUp() {
-	
+	bool ret = true;
 	App->background->Disable();
-	return true;
+	return ret;
 }

@@ -12,6 +12,7 @@ bool gate = true;
 Module* module_offBo;
 Module* module_onBo;
 
+
 ModuleFadeToBlack::ModuleFadeToBlack()
 {
 	screen = { 0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE };
@@ -21,9 +22,10 @@ ModuleFadeToBlack::~ModuleFadeToBlack(){}
 
 // Load assets
 bool ModuleFadeToBlack::Start(){
+	bool ret = true;
 	LOG("Preparing Fade Screen");
 	SDL_SetRenderDrawBlendMode(App->render->renderer, SDL_BLENDMODE_BLEND);
-	return true;
+	return ret;
 }
 
 // Update: draw background

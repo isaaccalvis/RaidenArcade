@@ -54,12 +54,12 @@ update_status ModuleRender::PostUpdate(){
 bool ModuleRender::CleanUp()
 {
 	LOG("Destroying renderer");
-
+	bool ret = true;
 	if(renderer != NULL){
 		SDL_DestroyRenderer(renderer);
 	}
 
-	return true;
+	return ret;
 }
 
 bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed){
@@ -86,10 +86,8 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 }
 
 bool ModuleRender::CleanRender() {
+	bool ret = true;
 	SDL_RenderClear(App->render->renderer);
-	/*if (SDL_RenderClear(App->render->renderer) < 0) {
-		LOG("Cacatua");
-		return false;
-	}else*/
-		return true;
+
+	return ret;
 }

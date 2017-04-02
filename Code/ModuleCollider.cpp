@@ -6,8 +6,8 @@ ModuleCollider::ModuleCollider() {}
 ModuleCollider::~ModuleCollider() {}
 
 bool ModuleCollider::Start() {
-
-	return true;
+	bool ret = true;
+	return ret;
 }
 
 update_status ModuleCollider::Update() {
@@ -16,6 +16,6 @@ update_status ModuleCollider::Update() {
 }
 
 bool ModuleCollider::CleanUp() {
-
-	return true;
+	bool ret = true;
+	return ret;
 }

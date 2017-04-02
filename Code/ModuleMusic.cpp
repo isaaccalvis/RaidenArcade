@@ -7,6 +7,7 @@ ModuleMusic::ModuleMusic() {}
 ModuleMusic::~ModuleMusic() {}
 
 bool ModuleMusic::Init() {
+	bool ret = true;
 	Mix_Init(MIX_INIT_OGG);
 
 	for (int i = 0; i < MAX_MUSIC; i++)
@@ -22,9 +23,9 @@ bool ModuleMusic::Init() {
 
 	if (Mix_Init(MIX_INIT_OGG) < 0) {
 		LOG("Music Module can't Load");
-		return false;
+		ret = false;
 	}
-	return true;
+	return ret;
 }
 
 update_status ModuleMusic::Update() {
@@ -32,10 +33,11 @@ update_status ModuleMusic::Update() {
 }
 
 bool ModuleMusic::CleanUp() {
+	bool ret = true;
 	for (int i = 0; i < MAX_MUSIC; i++)
 		Mix_FreeMusic(MUSIC_IN_EXECUTION[i]);
 	for (int i = 0; i < MAX_FX; i++)
 		Mix_FreeChunk(FX_IN_EXECUTION[i]);
 	
-	return true;
+	return ret;
 }

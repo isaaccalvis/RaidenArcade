@@ -82,8 +82,8 @@ update_status ModulePlayer::Update(){
 bool ModulePlayer::CleanUp()
 {
 	LOG("Unloading player");
-
+	bool ret = true;
 	App->textures->Unload(graphics);
 
-	return true;
+	return ret;
 }
