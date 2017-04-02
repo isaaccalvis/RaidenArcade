@@ -10,7 +10,7 @@
 #define MAP_HEIGHT 3265
 
 int posBackGround = -MAP_HEIGHT;
-int speedBackGround = 2;
+int speedBackGround = 1;
 
 
 ModuleBackground::ModuleBackground()

@@ -1,5 +1,6 @@
 #include "Globals.h"
 #include "Application.h"
+#include "Animation.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
@@ -8,7 +9,7 @@
 #include <iostream>
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
-ModulePlayer::ModulePlayer(){
+ModulePlayer::ModulePlayer(){	
 	//position.x = 100;
 	//position.y = 220;
 	PROTA.x = SCREEN_WIDTH / 2;
@@ -18,10 +19,16 @@ ModulePlayer::ModulePlayer(){
 
 	idle.PushBack({83, 18, 26, 30});
 	idle.speed = 0.2f;
-	
+	//Moviment Dreta
 	rightMov.PushBack({ 115,18,24,30 });
+	rightMov.PushBack({ 148,18,24,30 });
+	rightMov.loop = false;
+	rightMov.speed = 0.1f;
 
 	leftMov.PushBack({ 52,18,24,30 });
+	leftMov.PushBack({ 16,18,24,30 });
+	leftMov.loop = false;
+	leftMov.speed = 0.1f;
 
 }
 
@@ -39,7 +46,7 @@ update_status ModulePlayer::Update(){
 	Animation* current_animation = &idle;
 	App->render->Blit(graphics, 0, -3265 + SCREEN_HEIGHT, &PROTA); // sea and sky
 
-	int speed = 5;
+	int speed = 2;
 
 	if(App->input->keyboard[SDL_SCANCODE_D] == 1 && PROTA.x < (SCREEN_WIDTH - PROTA.w)){
 		PROTA.x += speed;

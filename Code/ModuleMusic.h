@@ -8,22 +8,6 @@
 #define MAX_MUSIC 8
 #define MAX_FX 10
 
-// Enum que no se com implemetar
-/*
-enum MUSIC_NAME {
-	MUSIC_LV1 = 1,
-	MUSIC_LV2,
-	MUSIC_LV3,
-	MUSIC_LV4,
-	MUSIC_LV5,
-	MUSIC_LV6,
-	MUSIC_LV7,
-	MUSIC_LV8,
-	MUSIC_CONTINUE,
-	MUSIC_GAME_OVER
-};
-*/
-
 class ModuleMusic : public Module {
 public:
 	ModuleMusic();

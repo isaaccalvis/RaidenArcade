@@ -9,6 +9,8 @@
 #include "ModuleMusic.h"
 #include "ModuleCollider.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleMenuScreen.h"
+#include "ModuleParticles.h"
 
 Application::Application(){
 	modules[0] = window = new ModuleWindow();
@@ -20,7 +22,9 @@ Application::Application(){
 	modules[6] = player = new ModulePlayer();
 	modules[7] = music = new ModuleMusic();
 	modules[8] = collider = new ModuleCollider();	
-	modules[9] = fade = new ModuleFadeToBlack();
+	modules[9] = particles = new ModuleParticles();
+	modules[10] = fade = new ModuleFadeToBlack();
+	modules[11] = menuScreen = new ModuleMenuScreen();
 }
 
 Application::~Application(){

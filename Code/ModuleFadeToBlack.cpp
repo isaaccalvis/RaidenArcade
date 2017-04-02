@@ -42,8 +42,8 @@ update_status ModuleFadeToBlack::Update(){
 			App->player->Disable();
 			module_offBo->Disable();
 			module_onBo->Enable();
-
 			App->player->Enable();
+
 			total_time += total_time;
 			start_time = SDL_GetTicks();
 			current_step = fade_step::fade_from_black;

@@ -23,9 +23,6 @@
     <ClInclude Include="ModuleWindow.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="MemLeaks.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Globals.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -65,8 +62,14 @@
     <ClInclude Include="ModuleBackGround2.h">
       <Filter>Modules\BackGrounds</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleBullet.h">
+    <ClInclude Include="ModuleMenuScreen.h">
+      <Filter>Modules\BackGrounds</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleParticles.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="MemLeaks.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -109,7 +112,10 @@
     <ClCompile Include="ModuleBackGround2.cpp">
       <Filter>Modules\BackGrounds</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleBullet.cpp">
+    <ClCompile Include="ModuleMenuScreen.cpp">
+      <Filter>Modules\BackGrounds</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleParticles.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

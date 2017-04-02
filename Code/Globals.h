@@ -20,11 +20,8 @@ enum update_status{
 typedef unsigned int uint;
 
 // Configuration -----------
-
-
-// Tamaño real del juego: 224 x 256
 #define SCREEN_SIZE 3
-#define SCREEN_WIDTH 352
+#define SCREEN_WIDTH 352 // 224
 #define SCREEN_HEIGHT 256
 #define WIN_FULLSCREEN 0
 #define WIN_FULLSCREEN_DESKTOP 0
