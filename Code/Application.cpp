@@ -16,10 +16,10 @@ Application::Application(){
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = background = new ModuleBackground();
-	modules[5] = player = new ModulePlayer();
-	modules[6] = music = new ModuleMusic();
-	modules[7] = collider = new ModuleCollider();	
-	modules[8] = background2 = new ModuleBackground2();
+	modules[5] = background2 = new ModuleBackground2();
+	modules[6] = player = new ModulePlayer();
+	modules[7] = music = new ModuleMusic();
+	modules[8] = collider = new ModuleCollider();	
 	modules[9] = fade = new ModuleFadeToBlack();
 }
 
