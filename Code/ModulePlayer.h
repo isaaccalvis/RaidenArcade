@@ -18,12 +18,14 @@ public:
 
 public:
 	SDL_Texture* graphics = nullptr;
+	Animation* current_animation = nullptr;
 	Animation idle;	
 	Animation rightMov;
 	Animation leftMov;
-	Animation avançar;
 	//iPoint position;
 	SDL_Rect PROTA;
+
+	bool jugador2Activat;
 };
 
 #endif

@@ -6,17 +6,18 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleBackground.h"
+#include "ModuleBackGround2.h"
 #include "Animation.h"
-
 
 ModuleMenuScreen::ModuleMenuScreen() {
 	MenuScreenRect.x = 0;
 	MenuScreenRect.y = 0;
 	MenuScreenRect.w = 223;
 	MenuScreenRect.h = 255;
-	/*
+	
 	pantallaIniciAnimStatic.PushBack({ 0,0,223,255 });
-	pantallaIniciAnimStatic.speed = 0.5f;*/
+	pantallaIniciAnimStatic.speed = 0.5f;
+	pantallaIniciAnimStatic.loop = false;
 
 	pantallaIniciAnim.PushBack({0,0,223,255});
 	pantallaIniciAnim.PushBack({ 225,0,223,255 });
@@ -25,39 +26,44 @@ ModuleMenuScreen::ModuleMenuScreen() {
 	pantallaIniciAnim.PushBack({ 0,257,223,255 });
 	pantallaIniciAnim.PushBack({ 225,257,223,255 });
 	pantallaIniciAnim.PushBack({ 450,257,223,255 });
-	pantallaIniciAnim.speed = 0.1f;
+	pantallaIniciAnim.PushBack({ 675,257,223,255 });
+	pantallaIniciAnim.speed = 0.5f;
+	pantallaIniciAnim.loop = false;
 
 }
 ModuleMenuScreen::~ModuleMenuScreen() {}
 
 bool ModuleMenuScreen::Start() {
-	MenuScreenTexture = App->textures->Load("Loading_Screen.png");
+	MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Loading_Screen.png");
 	App->menuScreen->Enable();
+	current_animation = &pantallaIniciAnimStatic;
 	return true;
 }
 
 bool ModuleMenuScreen::selectorScreen(MenuScreenNames name) {
+	bool ret = true;
 	switch (name) {
 	case StartScreen:
-		MenuScreenTexture = App->textures->Load("Loading_Screen.png");
-		App->menuScreen->Enable();
+		MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Loading_Screen.png");
+		//App->menuScreen->Enable();
 	break;
 	case GameOverScreen:
-		//MenuScreenTexture = App->textures->Load("");
-		App->menuScreen->Enable();
+		MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Game_Over_Screen.png");
+		current_animation = &pantallaIniciAnimStatic;
+		//App->menuScreen->Enable();
 	break;
 	}
-	return true;
+	return ret;
 }
 
 update_status ModuleMenuScreen::Update() {
-	Animation* 	current_animation =/* &pantallaIniciAnimStatic*/ &pantallaIniciAnim;
 	App->render->CleanRender();
 	App->render->Blit(MenuScreenTexture, 0, 0, &MenuScreenRect);
 	MenuScreenRect = current_animation->GetCurrentFrame();
-	if (App->input->keyboard[SDL_SCANCODE_P] == 1) {
-		//current_animation = &pantallaIniciAnim;
-		App->fade->FadeToBlack(this, App->background, 1);
+
+	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN) {
+		current_animation = &pantallaIniciAnim;
+		App->fade->FadeToBlack(this, App->background, 0.5f);
 	}
 
 	return UPDATE_CONTINUE;

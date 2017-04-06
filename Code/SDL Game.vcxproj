@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{746CC4C3-787F-4B0E-AA66-E388FE3FF4F6}</ProjectGuid>
     <RootNamespace>SDLGame</RootNamespace>
-    <ProjectName>SDL Handout 4</ProjectName>
+    <ProjectName>Raiden</ProjectName>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -79,6 +79,7 @@
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleBackground.h" />
     <ClInclude Include="ModuleBackGround2.h" />
+    <ClInclude Include="ModuleBullets.h" />
     <ClInclude Include="ModuleCollider.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleInput.h" />
@@ -86,6 +87,7 @@
     <ClInclude Include="ModuleMusic.h" />
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModulePlayer.h" />
+    <ClInclude Include="ModulePlayer2.h" />
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleTextures.h" />
     <ClInclude Include="ModuleWindow.h" />
@@ -97,6 +99,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModuleBackground.cpp" />
     <ClCompile Include="ModuleBackGround2.cpp" />
+    <ClCompile Include="ModuleBullets.cpp" />
     <ClCompile Include="ModuleCollider.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
@@ -104,6 +107,7 @@
     <ClCompile Include="ModuleMusic.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
+    <ClCompile Include="ModulePlayer2.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleTextures.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />

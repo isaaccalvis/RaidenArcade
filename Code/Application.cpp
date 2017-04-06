@@ -6,11 +6,13 @@
 #include "ModuleBackground.h"
 #include "ModuleBackGround2.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleMusic.h"
 #include "ModuleCollider.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleMenuScreen.h"
 #include "ModuleParticles.h"
+#include "ModuleBullets.h"
 
 Application::Application(){
 	modules[0] = window = new ModuleWindow();
@@ -20,11 +22,13 @@ Application::Application(){
 	modules[4] = background = new ModuleBackground();
 	modules[5] = background2 = new ModuleBackground2();
 	modules[6] = player = new ModulePlayer();
-	modules[7] = music = new ModuleMusic();
-	modules[8] = collider = new ModuleCollider();	
-	modules[9] = particles = new ModuleParticles();
-	modules[10] = fade = new ModuleFadeToBlack();
-	modules[11] = menuScreen = new ModuleMenuScreen();
+	modules[7] = player2 = new ModulePlayer2();
+	modules[8] = music = new ModuleMusic();
+	modules[9] = collider = new ModuleCollider();	
+	modules[10] = particles = new ModuleParticles();
+	modules[11] = fade = new ModuleFadeToBlack();
+	modules[12] = menuScreen = new ModuleMenuScreen();
+	modules[13] = bullet = new ModuleBullets();
 }
 
 Application::~Application(){

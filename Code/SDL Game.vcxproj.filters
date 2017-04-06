@@ -71,6 +71,12 @@
     <ClInclude Include="MemLeaks.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleBullets.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePlayer2.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -116,6 +122,12 @@
       <Filter>Modules\BackGrounds</Filter>
     </ClCompile>
     <ClCompile Include="ModuleParticles.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleBullets.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePlayer2.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

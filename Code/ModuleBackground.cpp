@@ -6,11 +6,12 @@
 #include "ModuleBackground.h"
 #include "ModuleBackground2.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleMenuScreen.h"
 
 #define MAP_HEIGHT 3265
 
 int posBackGround = -MAP_HEIGHT;
-int speedBackGround = 1;
+int speedBackGround = 2;
 
 
 ModuleBackground::ModuleBackground()
@@ -44,12 +45,11 @@ ModuleBackground::~ModuleBackground(){}
 
 bool ModuleBackground::Start(){
 
-	LOG("Loading background assets");	
+	LOG("Loading background assets");
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/TileMaps/Nivel_1_Tilemap.png");
 	
-	cows = App->textures->Load("Cows.png");
-
+	cows = App->textures->Load("Sprites/Extras/Cows.png");
 
 	App->background->Enable();
 	
@@ -63,8 +63,17 @@ update_status ModuleBackground::Update(){
 	posBackGround += speedBackGround;
 	App->render->Blit(cows, 100, posBackGround + 2000, &cow);
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
+	if (App->input->keyboard[SDL_SCANCODE_9] == KEY_STATE::KEY_DOWN) {
 		App->fade->FadeToBlack(this, App->background2, 1);
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_0] == KEY_STATE::KEY_DOWN) {
+		App->background->Disable();
+		App->background2->Disable();
+		App->menuScreen->Enable();
+		App->menuScreen->selectorScreen(GameOverScreen);
+		//App->menuScreen->current_animation = App->menuScreen->;
+		//&pantallaIniciAnimStatic
 	}
 
 	return UPDATE_CONTINUE;

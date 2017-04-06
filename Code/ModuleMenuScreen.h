@@ -25,6 +25,7 @@ public:
 public:
 
 	SDL_Texture* MenuScreenTexture = nullptr;
+	Animation* 	current_animation;// &pantallaIniciAnim;
 	SDL_Rect MenuScreenRect;
 	Animation pantallaIniciAnimStatic;
 	Animation pantallaIniciAnim;

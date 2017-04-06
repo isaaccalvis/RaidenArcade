@@ -7,46 +7,29 @@
 
 #include "SDL/include/SDL_timer.h"
 
-ModuleParticles::ModuleParticles()
-{
+ModuleParticles::ModuleParticles(){
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		active[i] = nullptr;
 }
 
-ModuleParticles::~ModuleParticles()
-{}
+ModuleParticles::~ModuleParticles(){}
 
-// Load assets
-bool ModuleParticles::Start()
-{
+bool ModuleParticles::Start(){
 	LOG("Loading particles");
-	graphics = App->textures->Load("rtype/particles.png");
-
-	// Explosion particle
-	explosion.anim.PushBack({ 274, 296, 33, 30 });
-	explosion.anim.PushBack({ 313, 296, 33, 30 });
-	explosion.anim.PushBack({ 346, 296, 33, 30 });
-	explosion.anim.PushBack({ 382, 296, 33, 30 });
-	explosion.anim.PushBack({ 419, 296, 33, 30 });
-	explosion.anim.PushBack({ 457, 296, 33, 30 });
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.3f;
-
-	// TODO 2: Create the template for a new particle "laser"
-
+	graphics = App->textures->Load("Sprites/Player/Player_Bullets.png");
+	bullet.anim.PushBack({ 138,288,6,7 });
+	bullet.anim.loop = true;
+	bullet.anim.speed = 1;
 	return true;
 }
 
 // Unload assets
-bool ModuleParticles::CleanUp()
-{
+bool ModuleParticles::CleanUp(){
 	LOG("Unloading particles");
 	App->textures->Unload(graphics);
 
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
-	{
-		if (active[i] != nullptr)
-		{
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i){
+		if (active[i] != nullptr){
 			delete active[i];
 			active[i] = nullptr;
 		}
@@ -56,36 +39,29 @@ bool ModuleParticles::CleanUp()
 }
 
 // Update: draw background
-update_status ModuleParticles::Update()
-{
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
-	{
+update_status ModuleParticles::Update(){
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i){
 		Particle* p = active[i];
 
 		if (p == nullptr)
 			continue;
 
-		if (p->Update() == false)
-		{
+		if (p->Update() == false){
 			delete p;
 			active[i] = nullptr;
 		}
-		else if (SDL_GetTicks() >= p->born)
-		{
+		else if (SDL_GetTicks() >= p->born){
 			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
-			if (p->fx_played == false)
-			{
+			if (p->fx_played == false){
 				p->fx_played = true;
 				// Play particle fx here
 			}
 		}
 	}
-
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32 delay)
-{
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32 delay){
 	Particle* p = new Particle(particle);
 	p->born = SDL_GetTicks() + delay;
 	p->position.x = x;
@@ -97,8 +73,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32
 // -------------------------------------------------------------
 // -------------------------------------------------------------
 
-Particle::Particle()
-{
+Particle::Particle(){
 	position.SetToZero();
 	speed.SetToZero();
 }

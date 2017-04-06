@@ -5,11 +5,13 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include <iostream>
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
-ModulePlayer::ModulePlayer(){	
+ModulePlayer::ModulePlayer(){
+	current_animation = NULL;
 	//position.x = 100;
 	//position.y = 220;
 	PROTA.x = SCREEN_WIDTH / 2;
@@ -18,7 +20,7 @@ ModulePlayer::ModulePlayer(){
 	PROTA.h = 30;
 
 	idle.PushBack({83, 18, 26, 30});
-	idle.speed = 0.2f;
+
 	//Moviment Dreta
 	rightMov.PushBack({ 115,18,24,30 });
 	rightMov.PushBack({ 148,18,24,30 });
@@ -38,28 +40,31 @@ bool ModulePlayer::Start(){
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/Player/Players.png");
-	return ret;
 	App->player->Enable();
+	return ret;
 }
 
 update_status ModulePlayer::Update(){
-	Animation* current_animation = &idle;
-	App->render->Blit(graphics, 0, -3265 + SCREEN_HEIGHT, &PROTA); // sea and sky
+	int speed = 1;
 
-	int speed = 2;
-
-	if(App->input->keyboard[SDL_SCANCODE_D] == 1 && PROTA.x < (SCREEN_WIDTH - PROTA.w)){
+	if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && PROTA.x < (SCREEN_WIDTH - PROTA.w)){
 		PROTA.x += speed;
-		current_animation = &rightMov;
+		if (current_animation != &rightMov){
+			rightMov.Reset();
+			current_animation = &rightMov;
+		}
 	}
-	if (App->input->keyboard[SDL_SCANCODE_A] == 1 && PROTA.x > 0) {
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && PROTA.x > 0) {
 		PROTA.x -= speed;
-		current_animation = &leftMov;
+		if (current_animation != &leftMov){
+			leftMov.Reset();
+			current_animation = &leftMov;
+		}
 	}
-	if (App->input->keyboard[SDL_SCANCODE_W] == 1 && PROTA.y > PROTA.h) {
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && PROTA.y > PROTA.h) {
 		PROTA.y -= speed;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_S] == 1 && PROTA.y < SCREEN_HEIGHT) {
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT && PROTA.y < SCREEN_HEIGHT) {
 		PROTA.y += speed;
 	}
 
@@ -76,13 +81,30 @@ update_status ModulePlayer::Update(){
 	std::cout << App->render->camera.y  << " :: " << PROTA.y<< std::endl;
 	std::cout << App->render->camera.x << " :: " << PROTA.x << std::endl;
 
-	
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
+		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
+		current_animation = &idle;
+	else if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT
+		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+		current_animation = &idle;
 
 		// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	App->render->Blit(graphics, PROTA.x, PROTA.y - r.h, &r);
 	
+
+	// APAREIX / DESAPAREIX JUGADOR 2 (ES FA DESDE AQUI PERQUE SI FAS DISABLE DEL JUGADOR 2 NO ES POT FER SERVIR)
+	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN)
+		if (jugador2Activat == true)
+			jugador2Activat = false;
+		else
+			jugador2Activat = true;
+	if (jugador2Activat == true)
+		App->player2->Enable();
+	else
+		App->player2->Disable();
+
 	return UPDATE_CONTINUE;
 }
 

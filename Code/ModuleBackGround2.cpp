@@ -6,11 +6,12 @@
 #include "ModuleBackground.h"
 #include "ModuleBackground2.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleMenuScreen.h"
 
 #define MAP_HEIGHT 4998
 
 int posBackGround2 = -MAP_HEIGHT;
-int speedBackGround2 = 1;
+int speedBackGround2 = 2;
 
 ModuleBackground2::ModuleBackground2()
 {
@@ -47,8 +48,17 @@ update_status ModuleBackground2::Update() {
 	App->render->Blit(graphics2, 0, posBackGround2 + SCREEN_HEIGHT, &ground);
 	posBackGround2 += speedBackGround2;
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
+	if (App->input->keyboard[SDL_SCANCODE_9] == 1) {
 		App->fade->FadeToBlack(this, App->background, 1);
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_0] == KEY_STATE::KEY_DOWN) {
+		App->background->Disable();
+		App->background2->Disable();
+		App->menuScreen->Enable();
+		App->menuScreen->selectorScreen(GameOverScreen);
+		//App->menuScreen->current_animation = App->menuScreen->;
+		//&pantallaIniciAnimStatic
 	}
 
 	return UPDATE_CONTINUE;

@@ -7,6 +7,14 @@
 #pragma comment( lib, "SDL/libx86/SDL2.lib" )
 #pragma comment( lib, "SDL/libx86/SDL2main.lib" )
 
+// Animacio de Inici Implementada
+// Sistema de keys del sdl_handout6 implementat
+// La pantalla de Game Over ja funciona
+// La nau ja dispara
+// La nau ja fa be la animacio
+// Ja hi ha jugador 2
+// Ja hi ha 3 nivells de powerUp vermell (Nomes imatge)
+
 enum main_states{
 	MAIN_CREATION,
 	MAIN_START,
