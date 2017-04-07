@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
+#include "p2Point.h"
 
 struct SDL_Texture;
 
@@ -21,11 +22,10 @@ public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect ground;
 	SDL_Rect background;
-	SDL_Rect cow;
+	iPoint PosCow1, PosCow2, PosCow3, PosCow4;
 
 	SDL_Texture* cows = nullptr;
-	Animation cows_1;
-	Animation flag;
+	Animation cow1, cow2, cow3, cow4;
 };
 
 #endif
