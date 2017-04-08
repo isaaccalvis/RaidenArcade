@@ -51,8 +51,7 @@ update_status ModuleRender::PostUpdate(){
 	return update_status::UPDATE_CONTINUE;
 }
 
-bool ModuleRender::CleanUp()
-{
+bool ModuleRender::CleanUp(){
 	LOG("Destroying renderer");
 	bool ret = true;
 	if(renderer != NULL){
@@ -88,6 +87,27 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 bool ModuleRender::CleanRender() {
 	bool ret = true;
 	SDL_RenderClear(App->render->renderer);
+
+	return ret;
+}
+bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, bool use_camera){
+	bool ret = true;
+
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+	SDL_SetRenderDrawColor(renderer, r, g, b, a);
+
+	SDL_Rect rec(rect);
+	if (use_camera){
+		rec.x = (int)(-camera.x + rect.x * SCREEN_SIZE);
+		rec.y = (int)(-camera.y + rect.y * SCREEN_SIZE);
+		rec.w *= SCREEN_SIZE;
+		rec.h *= SCREEN_SIZE;
+	}
+
+	if (SDL_RenderFillRect(renderer, &rec) != 0){
+		LOG("Cannot draw quad to screen. SDL_RenderFillRect error: %s", SDL_GetError());
+		ret = false;
+	}
 
 	return ret;
 }

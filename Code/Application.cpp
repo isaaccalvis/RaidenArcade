@@ -8,27 +8,30 @@
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModuleMusic.h"
-#include "ModuleCollider.h"
+#include "ModuleCollision.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleMenuScreen.h"
 #include "ModuleParticles.h"
 #include "ModuleBullets.h"
+#include "ModuleEnemies.h"
 
 Application::Application(){
-	modules[0] = window = new ModuleWindow();
-	modules[1] = render = new ModuleRender();
-	modules[2] = input = new ModuleInput();
-	modules[3] = textures = new ModuleTextures();
-	modules[4] = background = new ModuleBackground();
-	modules[5] = background2 = new ModuleBackground2();
-	modules[6] = player = new ModulePlayer();
-	modules[7] = player2 = new ModulePlayer2();
-	modules[8] = music = new ModuleMusic();
-	modules[9] = collider = new ModuleCollider();	
-	modules[10] = particles = new ModuleParticles();
-	modules[11] = fade = new ModuleFadeToBlack();
-	modules[12] = menuScreen = new ModuleMenuScreen();
-	modules[13] = bullet = new ModuleBullets();
+	int i = 0;
+	modules[i++] = window = new ModuleWindow();
+	modules[i++] = render = new ModuleRender();
+	modules[i++] = input = new ModuleInput();
+	modules[i++] = textures = new ModuleTextures();
+	modules[i++] = background = new ModuleBackground();
+	modules[i++] = background2 = new ModuleBackground2();
+	modules[i++] = enemies = new ModuleEnemies();
+	modules[i++] = player = new ModulePlayer();
+	modules[i++] = player2 = new ModulePlayer2();
+	modules[i++] = music = new ModuleMusic();
+	modules[i++] = collision = new ModuleCollision();
+	modules[i++] = particles = new ModuleParticles();
+	modules[i++] = fade = new ModuleFadeToBlack();
+	modules[i++] = menuScreen = new ModuleMenuScreen();
+	modules[i++] = bullet = new ModuleBullets();
 }
 
 Application::~Application(){
