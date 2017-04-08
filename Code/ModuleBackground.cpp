@@ -7,6 +7,7 @@
 #include "ModuleBackground2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleMenuScreen.h"
+#include "p2Point.h"
 
 #define MAP_HEIGHT 3265
 
@@ -17,28 +18,62 @@ int speedBackGround = 2;
 ModuleBackground::ModuleBackground()
 {
 	ground.x = 352;
-	ground.y = 0;
+	ground.y = 5;
 	ground.w = 352;
 	ground.h = 3265;
 
-	background.x = 0;
-	background.y = 0;
+	background.x = 2;
+	background.y = -1;
 	background.w = 352;
 	background.h = MAP_HEIGHT;
 
 
+
+	
+	//**********************************//
+	//****NO TOQUEIS MIS PUTAS VACAS****//
+	//**********************************//
+	
+
+
 	// Vacas en el mapa pastando felices
+	//------------------------------------------------------------
+	PosCow1.x = 100;
+	PosCow1.y = 2210;
 
-	cow.x = 24;
-	cow.y = 26;
-	cow.w = 48;
-	cow.h = 25;
+	cow1.PushBack({ 24,26,48,25 });
+	cow1.PushBack({ 77,26,48,25 });
+	cow1.speed = 0.02;
 
-	cows_1.PushBack({ 24,26,48,25 });
-	cows_1.PushBack({ 77,26,48,25 });
-	
+	//------------------------------------------------------------
+	PosCow2.x = 250;
+	PosCow2.y = 2223;
 
-	
+	cow2.PushBack({ 24, 68, 25, 35 });
+	cow2.PushBack({ 56, 68, 25, 35 });
+	cow2.PushBack({ 89, 68, 25, 35 });
+	cow2.speed = 0.03;
+
+	//------------------------------------------------------------
+	PosCow3.x = 270;
+	PosCow3.y = 2223;
+
+	cow3.PushBack({ 24, 114, 36, 32 });
+	cow3.PushBack({ 69, 114, 36, 32 });
+	cow3.speed = 0.04;
+
+	//------------------------------------------------------------
+
+	PosCow4.x = 100;
+	PosCow4.y = 2139;
+
+	cow4.PushBack({ 22, 160, 70, 52 });
+	cow4.PushBack({ 106, 160, 68, 52 });
+	cow4.speed = 0.02;
+
+	//------------------------------------------------------------
+
+
 }
 
 ModuleBackground::~ModuleBackground(){}
@@ -61,7 +96,30 @@ update_status ModuleBackground::Update(){
 	App->render->Blit(graphics, 0, posBackGround + SCREEN_HEIGHT, &background);
 	App->render->Blit(graphics, 0, posBackGround + SCREEN_HEIGHT, &ground);
 	posBackGround += speedBackGround;
-	App->render->Blit(cows, 100, posBackGround + 2000, &cow);
+
+	//Update de las vacas
+	//------------------------------------------------------------
+	Animation* current_animation = &cow1;
+	SDL_Rect r = current_animation->GetCurrentFrame();
+	App->render->Blit(cows, PosCow1.x, posBackGround + PosCow1.y, &r);
+
+	//------------------------------------------------------------
+	Animation* current_animation2 = &cow2;
+	SDL_Rect r2 = current_animation2->GetCurrentFrame();
+	App->render->Blit(cows, PosCow2.x, posBackGround + PosCow2.y, &r2);
+
+	//------------------------------------------------------------
+	Animation* current_animation3 = &cow3;
+	SDL_Rect r3 = current_animation3->GetCurrentFrame();
+	App->render->Blit(cows, PosCow3.x, posBackGround + PosCow3.y, &r3);
+
+	//------------------------------------------------------------
+	Animation* current_animation4 = &cow4;
+	SDL_Rect r4 = current_animation4->GetCurrentFrame();
+	App->render->Blit(cows, PosCow4.x, posBackGround + PosCow4.y, &r4);
+
+	//------------------------------------------------------------
+
 
 	if (App->input->keyboard[SDL_SCANCODE_9] == KEY_STATE::KEY_DOWN) {
 		App->fade->FadeToBlack(this, App->background2, 1);
