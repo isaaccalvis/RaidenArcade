@@ -67,6 +67,7 @@ update_status ModuleBackground2::Update() {
 
 bool ModuleBackground2::CleanUp() {
 	bool ret = true;
+	App->textures->Unload(graphics2);
 	App->background2->Disable();
 	return ret;
 }

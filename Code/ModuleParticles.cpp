@@ -20,6 +20,7 @@ bool ModuleParticles::Start(){
 	bullet.anim.PushBack({ 138,288,6,7 });
 	bullet.anim.loop = true;
 	bullet.anim.speed = 1;
+	App->particles->Enable();
 	return true;
 }
 
@@ -34,6 +35,8 @@ bool ModuleParticles::CleanUp(){
 			active[i] = nullptr;
 		}
 	}
+
+	App->particles->Disable();
 
 	return true;
 }

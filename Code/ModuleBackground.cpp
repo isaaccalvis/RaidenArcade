@@ -140,6 +140,8 @@ update_status ModuleBackground::Update(){
 
 bool ModuleBackground::CleanUp() {
 	bool ret = true;
+	App->textures->Unload(graphics);
+	App->textures->Unload(cows);
 	App->background->Disable();
 	return ret;
 }

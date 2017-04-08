@@ -70,6 +70,8 @@ update_status ModuleMenuScreen::Update() {
 }
 
 bool ModuleMenuScreen::CleanUp() {
+	bool ret = true;
+	App->textures->Unload(MenuScreenTexture);
 	App->menuScreen->Disable();
-	return true;
+	return ret;
 }
