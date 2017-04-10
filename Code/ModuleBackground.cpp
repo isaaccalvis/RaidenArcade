@@ -89,7 +89,7 @@ bool ModuleBackground::Start(){
 
 	App->background->Enable();
 
-	App->music->CargarMusica(MUSICA_NIVEL_1);
+	//App->music->CargarMusica(MUSICA_NIVEL_1);
 	
 	return ret;
 }
