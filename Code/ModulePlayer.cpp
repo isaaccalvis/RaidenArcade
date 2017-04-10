@@ -34,8 +34,9 @@ ModulePlayer::ModulePlayer(){
 ModulePlayer::~ModulePlayer(){}
 
 bool ModulePlayer::Start(){
+	App->player->Enable();
 	if (App->player2->jugador2Activat == false) {
-		PROTA.x = SCREEN_WIDTH / 2;
+		PROTA.x = SCREEN_WIDTH / 2 - PROTA.w / 2;
 		PROTA.y = SCREEN_HEIGHT / 2;
 	}
 	else {
@@ -45,7 +46,6 @@ bool ModulePlayer::Start(){
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/Player/Players.png");
-	App->player->Enable();
 	colPlayer1 = App->collision->AddCollider({ PROTA.x,PROTA.y, PROTA.w, PROTA.h }, COLLIDER_PLAYER, this);
 	return ret;
 }

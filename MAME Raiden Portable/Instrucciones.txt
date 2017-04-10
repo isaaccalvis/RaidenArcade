@@ -1,6 +1,0 @@
-1. Descomprimir el zip "mame-0-182"
-2. Meter los rar "MAMEBIOS" y "raiden" dentro de la carpeta "roms", SIN DESCOMPRIMIR
-
-3. Dar click a "MAME64.exe"
-
-4. Profit

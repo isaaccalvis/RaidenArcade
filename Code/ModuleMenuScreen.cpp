@@ -59,7 +59,7 @@ bool ModuleMenuScreen::selectorScreen(MenuScreenNames name) {
 
 update_status ModuleMenuScreen::Update() {
 	App->render->CleanRender();
-	App->render->Blit(MenuScreenTexture, 0, 0, &MenuScreenRect);
+	App->render->Blit(MenuScreenTexture,59/*Aquest 59 s'ha de canviar per una funcio*/, 0, &MenuScreenRect);
 	MenuScreenRect = current_animation->GetCurrentFrame();
 
 	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN) {

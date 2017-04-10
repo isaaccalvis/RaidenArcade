@@ -8,11 +8,12 @@ private:
 	float wave = -1.0f;
 	bool going_down = true;
 	bool going_up = false;
-	int original_x = 0;
+	int original_y = 0;
 	Animation lightShooterAnim;
 
 public:
 	Enemy_LightShooter(int x, int y);
 	void Move();
+	SDL_Texture* sprite;
 };
 #endif

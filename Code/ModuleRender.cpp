@@ -5,12 +5,13 @@
 #include "ModuleInput.h"
 #include "SDL/include/SDL.h"
 #include "ModulePlayer.h"
+#include <stdio.h>
 
 ModuleRender::ModuleRender() : Module(){
-	camera.x = 0;
+	camera.x =-(SCREEN_WIDTH / 2);
 	camera.y = 0;
-	camera.w = SCREEN_WIDTH;
-	camera.h = SCREEN_HEIGHT;
+	camera.w = 192;
+	camera.h = 255;
 }
 
 ModuleRender::~ModuleRender(){}
@@ -40,9 +41,18 @@ update_status ModuleRender::PreUpdate(){
 }
 
 update_status ModuleRender::Update(){
-	/*int speed = 3;
-		camera.y += speed / 2;*/
-
+	printf("%i", camera.x);
+	int speed = 2;
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+		if (camera.x < 0)
+			camera.x += speed;
+		else if (camera.x > 0)
+			camera.x = 0;
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+		if ((camera.x - camera.w) < SCREEN_WIDTH)
+			camera.x -= speed;
+		else if ((camera.x - camera.w) > SCREEN_WIDTH)
+			camera.x = SCREEN_WIDTH;
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -100,8 +110,8 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 	if (use_camera){
 		rec.x = (int)(-camera.x + rect.x * SCREEN_SIZE);
 		rec.y = (int)(-camera.y + rect.y * SCREEN_SIZE);
-		rec.w *= SCREEN_SIZE;
-		rec.h *= SCREEN_SIZE;
+		rec.w *= 192;//SCREEN_SIZE;
+		rec.h *= 255;//SCREEN_SIZE;
 	}
 
 	if (SDL_RenderFillRect(renderer, &rec) != 0){
