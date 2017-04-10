@@ -2,29 +2,24 @@
 #include "Enemy_LightShooter.h"
 #include "ModuleCollision.h"
 
-Enemy_LightShooter::Enemy_LightShooter(int x, int y) : Enemy(x, y)
-{
+Enemy_LightShooter::Enemy_LightShooter(int x, int y) : Enemy(x, y){
 	lightShooterAnim.PushBack({ 5,6,24,24 });
 	lightShooterAnim.speed = 0.2f;
 	lightShooterAnim.loop = false;
-
 	animation = &lightShooterAnim;
 
 	collider = App->collision->AddCollider({ 0, 0, 24, 24 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
-
 	original_x = x;
 }
 
 void Enemy_LightShooter::Move(){
-	if (going_up)
-	{
+	if (going_up){
 		if (wave > 1.0f)
 			going_up = false;
 		else
 			wave += 0.05f;
 	}
-	else
-	{
+	else{
 		if (wave < -1.0f)
 			going_up = true;
 		else

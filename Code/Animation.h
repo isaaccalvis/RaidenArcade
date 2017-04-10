@@ -37,6 +37,10 @@ public:
 	void Reset() {
 		current_frame = 0;
 	}
+
+	int IntCurrentFrame() {
+		return last_frame;
+	}
 };
 
 #endif

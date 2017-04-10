@@ -3,8 +3,7 @@
 
 #include "Enemy.h"
 
-class Enemy_LightShooter : public Enemy
-{
+class Enemy_LightShooter : public Enemy{
 private:
 	float wave = -1.0f;
 	bool going_down = true;
@@ -13,10 +12,7 @@ private:
 	Animation lightShooterAnim;
 
 public:
-
 	Enemy_LightShooter(int x, int y);
-
 	void Move();
 };
-
 #endif

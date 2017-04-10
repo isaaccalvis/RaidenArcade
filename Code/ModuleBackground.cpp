@@ -14,9 +14,7 @@
 int posBackGround = -MAP_HEIGHT;
 int speedBackGround = 2;
 
-
-ModuleBackground::ModuleBackground()
-{
+ModuleBackground::ModuleBackground(){
 	ground.x = 352;
 	ground.y = 5;
 	ground.w = 352;
@@ -27,17 +25,6 @@ ModuleBackground::ModuleBackground()
 	background.w = 352;
 	background.h = MAP_HEIGHT;
 
-
-
-	
-	//**********************************//
-	//****NO TOQUEIS MIS PUTAS VACAS****//
-	//**********************************//
-	
-
-
-	// Vacas en el mapa pastando felices
-	//------------------------------------------------------------
 	PosCow1.x = 100;
 	PosCow1.y = 2210;
 
@@ -45,7 +32,6 @@ ModuleBackground::ModuleBackground()
 	cow1.PushBack({ 77,26,48,25 });
 	cow1.speed = 0.02;
 
-	//------------------------------------------------------------
 	PosCow2.x = 250;
 	PosCow2.y = 2223;
 
@@ -54,7 +40,6 @@ ModuleBackground::ModuleBackground()
 	cow2.PushBack({ 89, 68, 25, 35 });
 	cow2.speed = 0.03;
 
-	//------------------------------------------------------------
 	PosCow3.x = 270;
 	PosCow3.y = 2223;
 
@@ -62,18 +47,12 @@ ModuleBackground::ModuleBackground()
 	cow3.PushBack({ 69, 114, 36, 32 });
 	cow3.speed = 0.04;
 
-	//------------------------------------------------------------
-
 	PosCow4.x = 100;
 	PosCow4.y = 2139;
 
 	cow4.PushBack({ 22, 160, 70, 52 });
 	cow4.PushBack({ 106, 160, 68, 52 });
 	cow4.speed = 0.02;
-
-	//------------------------------------------------------------
-
-
 }
 
 ModuleBackground::~ModuleBackground(){}
@@ -87,7 +66,6 @@ bool ModuleBackground::Start(){
 	cows = App->textures->Load("Sprites/Extras/Cows.png");
 
 	App->background->Enable();
-	
 	return ret;
 }
 

@@ -9,12 +9,9 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleCollision.h"
 #include <iostream>
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModulePlayer::ModulePlayer(){
 	current_animation = NULL;
-	//position.x = 100;
-	//position.y = 220;
 	PROTA.x = SCREEN_WIDTH / 2;
 	PROTA.y = SCREEN_HEIGHT / 2;
 	PROTA.w = 24;
@@ -22,7 +19,6 @@ ModulePlayer::ModulePlayer(){
 
 	idle.PushBack({84, 19, 24, 29});
 
-	//Moviment Dreta
 	rightMov.PushBack({ 117,19,21,29 });
 	rightMov.PushBack({ 151,19,16,30 });
 	rightMov.loop = false;
@@ -38,11 +34,19 @@ ModulePlayer::ModulePlayer(){
 ModulePlayer::~ModulePlayer(){}
 
 bool ModulePlayer::Start(){
+	if (App->player2->jugador2Activat == false) {
+		PROTA.x = SCREEN_WIDTH / 2;
+		PROTA.y = SCREEN_HEIGHT / 2;
+	}
+	else {
+		PROTA.x = 50;
+		PROTA.y = SCREEN_HEIGHT / 2;
+	}
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/Player/Players.png");
 	App->player->Enable();
-	col = App->collision->AddCollider({ PROTA.x, PROTA.y, PROTA.w, PROTA.h }, COLLIDER_PLAYER, this);
+	colPlayer1 = App->collision->AddCollider({ PROTA.x,PROTA.y, PROTA.w, PROTA.h }, COLLIDER_PLAYER, this);
 	return ret;
 }
 
@@ -55,6 +59,8 @@ update_status ModulePlayer::Update(){
 			rightMov.Reset();
 			current_animation = &rightMov;
 		}
+		// COMENTADO EN MAYUSCULAS PARA QUE LA SONIA LO LEA
+		//std::cout << current_animation->IntCurrentFrame() << std::endl;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && PROTA.x > 0) {
 		PROTA.x -= speed;
@@ -90,7 +96,7 @@ update_status ModulePlayer::Update(){
 		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 		current_animation = &idle;
 
-	col->SetPos(PROTA.x, PROTA.y - PROTA.h);
+	colPlayer1->SetPos(PROTA.x, PROTA.y - PROTA.h);
 
 		// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
@@ -100,8 +106,7 @@ update_status ModulePlayer::Update(){
 	return UPDATE_CONTINUE;
 }
 
-bool ModulePlayer::CleanUp()
-{
+bool ModulePlayer::CleanUp(){
 	LOG("Unloading player");
 	bool ret = true;
 	
@@ -113,5 +118,4 @@ bool ModulePlayer::CleanUp()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	App->fade->FadeToBlack((Module*)App->background, (Module*)App->background2);
-
 }

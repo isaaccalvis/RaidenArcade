@@ -25,7 +25,7 @@ public:
 	Animation leftMov;
 	//iPoint position;
 	SDL_Rect PROTA;
-	Collider* col;
+	Collider* colPlayer1;
 	bool destroyed = false;
 };
 
