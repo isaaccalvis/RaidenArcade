@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleInput.h"
+#include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleBackground.h"
 #include "ModuleBackGround2.h"
@@ -64,6 +65,14 @@ update_status ModuleMenuScreen::Update() {
 	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN) {
 		current_animation = &pantallaIniciAnim;
 		App->fade->FadeToBlack(this, App->background, 0.5f);
+		App->player2->Disable();
+		App->player2->jugador2Activat = false;
+	}
+	else if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN) {
+		current_animation = &pantallaIniciAnim;
+		App->fade->FadeToBlack(this, App->background, 0.5f);
+		App->player2->Enable();
+		App->player2->jugador2Activat = true;
 	}
 
 	return UPDATE_CONTINUE;

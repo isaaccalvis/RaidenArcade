@@ -7,6 +7,7 @@
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleCollision.h"
 #include <iostream>
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -16,14 +17,14 @@ ModulePlayer::ModulePlayer(){
 	//position.y = 220;
 	PROTA.x = SCREEN_WIDTH / 2;
 	PROTA.y = SCREEN_HEIGHT / 2;
-	PROTA.w = 26;
-	PROTA.h = 30;
+	PROTA.w = 24;
+	PROTA.h = 29;
 
-	idle.PushBack({83, 18, 26, 30});
+	idle.PushBack({84, 19, 24, 29});
 
 	//Moviment Dreta
-	rightMov.PushBack({ 115,18,24,30 });
-	rightMov.PushBack({ 148,18,24,30 });
+	rightMov.PushBack({ 117,19,21,29 });
+	rightMov.PushBack({ 151,19,16,30 });
 	rightMov.loop = false;
 	rightMov.speed = 0.1f;
 
@@ -41,6 +42,7 @@ bool ModulePlayer::Start(){
 	bool ret = true;
 	graphics = App->textures->Load("Sprites/Player/Players.png");
 	App->player->Enable();
+	col = App->collision->AddCollider({ PROTA.x, PROTA.y, PROTA.w, PROTA.h }, COLLIDER_PLAYER, this);
 	return ret;
 }
 
@@ -88,23 +90,13 @@ update_status ModulePlayer::Update(){
 		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 		current_animation = &idle;
 
+	col->SetPos(PROTA.x, PROTA.y - PROTA.h);
+
 		// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	App->render->Blit(graphics, PROTA.x, PROTA.y - r.h, &r);
 	
-
-	// APAREIX / DESAPAREIX JUGADOR 2 (ES FA DESDE AQUI PERQUE SI FAS DISABLE DEL JUGADOR 2 NO ES POT FER SERVIR)
-	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN)
-		if (jugador2Activat == true)
-			jugador2Activat = false;
-		else
-			jugador2Activat = true;
-	if (jugador2Activat == true)
-		App->player2->Enable();
-	else
-		App->player2->Disable();
-
 	return UPDATE_CONTINUE;
 }
 
@@ -117,4 +109,9 @@ bool ModulePlayer::CleanUp()
 	App->player->Disable();
 
 	return ret;
+}
+
+void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
+	App->fade->FadeToBlack((Module*)App->background, (Module*)App->background2);
+
 }

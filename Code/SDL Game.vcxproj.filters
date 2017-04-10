@@ -89,6 +89,9 @@
     <ClInclude Include="Enemy.h">
       <Filter>Modules\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy_LightShooter.h">
+      <Filter>Modules\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -146,6 +149,9 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
+      <Filter>Modules\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_LightShooter.cpp">
       <Filter>Modules\Enemy</Filter>
     </ClCompile>
   </ItemGroup>

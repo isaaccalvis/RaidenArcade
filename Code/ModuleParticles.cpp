@@ -17,7 +17,7 @@ ModuleParticles::~ModuleParticles(){}
 bool ModuleParticles::Start(){
 	LOG("Loading particles");
 	graphics = App->textures->Load("Sprites/Player/Player_Bullets.png");
-	bullet.anim.PushBack({ 138,288,6,7 });
+	bullet.anim.PushBack({ 138,288, 6,7 });
 	bullet.anim.loop = true;
 	bullet.anim.speed = 1;
 	App->particles->Enable();

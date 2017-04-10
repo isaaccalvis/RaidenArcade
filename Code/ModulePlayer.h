@@ -15,6 +15,7 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
+	void OnCollision(Collider* c1, Collider* c2);
 
 public:
 	SDL_Texture* graphics = nullptr;
@@ -24,8 +25,8 @@ public:
 	Animation leftMov;
 	//iPoint position;
 	SDL_Rect PROTA;
-
-	bool jugador2Activat;
+	Collider* col;
+	bool destroyed = false;
 };
 
 #endif
