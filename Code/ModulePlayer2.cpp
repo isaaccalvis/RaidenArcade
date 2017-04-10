@@ -13,8 +13,8 @@ ModulePlayer2::ModulePlayer2() {
 	current_animation = NULL;
 	//position.x = 100;
 	//position.y = 220;
-	PROTA2.x = SCREEN_WIDTH / 2;
-	PROTA2.y = SCREEN_HEIGHT / 2;
+	PROTA2.x = 200;
+	PROTA2.y = 220;
 	PROTA2.w = 26;
 	PROTA2.h = 30;
 

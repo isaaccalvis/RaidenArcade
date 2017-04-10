@@ -40,6 +40,16 @@ ModulePlayer::~ModulePlayer(){}
 bool ModulePlayer::Start(){
 	LOG("Loading player textures");
 	bool ret = true;
+
+	if (App->player2->jugador2Activat == false) {
+		PROTA.x = 163;
+		PROTA.y = 160;
+	}
+	else {
+		PROTA.x = 120;
+		PROTA.y = 220;
+	}
+
 	graphics = App->textures->Load("Sprites/Player/Players.png");
 	App->player->Enable();
 	col = App->collision->AddCollider({ PROTA.x, PROTA.y, PROTA.w, PROTA.h }, COLLIDER_PLAYER, this);
