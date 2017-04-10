@@ -7,6 +7,7 @@
 #include "ModuleBackground2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleMenuScreen.h"
+#include "ModuleMusic.h"
 #include "p2Point.h"
 
 #define MAP_HEIGHT 3265
@@ -87,6 +88,8 @@ bool ModuleBackground::Start(){
 	cows = App->textures->Load("Sprites/Extras/Cows.png");
 
 	App->background->Enable();
+
+	App->music->CargarMusica(MUSICA_NIVEL_1);
 	
 	return ret;
 }
@@ -142,6 +145,7 @@ bool ModuleBackground::CleanUp() {
 	bool ret = true;
 	App->textures->Unload(graphics);
 	App->textures->Unload(cows);
+	
 	App->background->Disable();
 	return ret;
 }

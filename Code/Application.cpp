@@ -43,6 +43,7 @@ bool Application::Init(){
 	bool ret = true;
 
 	//We put here all the modules we don't want to inicialite first
+	background->Disable();
 	background2->Disable();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)

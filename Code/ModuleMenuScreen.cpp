@@ -8,6 +8,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleBackground.h"
 #include "ModuleBackGround2.h"
+#include "ModuleMusic.h"
 #include "Animation.h"
 
 ModuleMenuScreen::ModuleMenuScreen() {
@@ -49,8 +50,10 @@ bool ModuleMenuScreen::selectorScreen(MenuScreenNames name) {
 		//App->menuScreen->Enable();
 	break;
 	case GameOverScreen:
-		MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Game_Over_Screen.png");
+		MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Continue_Screen.png");
 		current_animation = &pantallaIniciAnimStatic;
+		App->music->CargarMusica(MUSICA_GAME_CONTINUE);
+
 		//App->menuScreen->Enable();
 	break;
 	}

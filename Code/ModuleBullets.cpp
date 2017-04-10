@@ -6,6 +6,7 @@
 #include "ModulePlayer2.h"
 #include "ModuleParticles.h"
 #include "ModuleRender.h"
+#include "ModuleMusic.h"
 #include <iostream>
 
 ModuleBullets::ModuleBullets() {}
@@ -23,6 +24,7 @@ update_status ModuleBullets::Update() {
 		powerUpLevelPlayer1--;
 	// BULLETS DEL JUGADOR 1
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
+		App->music->CargarFX(FX_DISPARAR);
 		if (powerUpLevelPlayer1 == 0) {
 			App->particles->bullet.life = 1000;
 			iPoint vel(0, -4);
