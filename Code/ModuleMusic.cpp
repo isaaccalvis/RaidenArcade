@@ -45,7 +45,12 @@ bool ModuleMusic::CargarMusica(nombreMusica nombreMusica) {
 		Mix_PlayMusic(MUSIC_IN_EXECUTION[nombreMusica], -1);
 		break;
 	case MUSICA_NIVEL_2:
-		
+		MUSIC_IN_EXECUTION[nombreMusica] = Mix_LoadMUS("Audio/Music/Stage_2-7.ogg");
+		Mix_PlayMusic(MUSIC_IN_EXECUTION[nombreMusica], -1);
+		break;
+	case MUSICA_GAME_CONTINUE:
+		MUSIC_IN_EXECUTION[nombreMusica] = Mix_LoadMUS("Audio/Music/Continue.ogg");
+		Mix_PlayMusic(MUSIC_IN_EXECUTION[nombreMusica], -1);
 		break;
 	}
 	return ret;
@@ -53,8 +58,8 @@ bool ModuleMusic::CargarMusica(nombreMusica nombreMusica) {
 bool ModuleMusic::CargarFX(nombreFX nombreFX) {
 	switch (nombreFX) {
 	case FX_DISPARAR:
-		FX_IN_EXECUTION[nombreFX] = Mix_LoadWAV("Audio/Fx/Shot 1(bullet).wav");
-		//Mix_PlayMusic(FX_IN_EXECUTION[nombreFX], -1);
+		FX_IN_EXECUTION[nombreFX] = Mix_LoadWAV("Audio/Fx/Shot_1(bullet).wav");
+		Mix_PlayChannel(0, FX_IN_EXECUTION[nombreFX], -1);
 		break;
 	case FX_INTRODUCIR_MONEDA:
 

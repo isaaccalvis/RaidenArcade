@@ -7,6 +7,7 @@
 #include "ModuleBackground2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleMenuScreen.h"
+#include "ModuleMusic.h"
 
 #define MAP_HEIGHT 4998
 
@@ -38,6 +39,8 @@ bool ModuleBackground2::Start() {
 	graphics2 = App->textures->Load("Sprites/TileMaps/Nivel_2_Tilemap.png");
 	
 	App->background2->Enable();
+
+	App->music->CargarMusica(MUSICA_NIVEL_2);
 
 	return ret;
 }
