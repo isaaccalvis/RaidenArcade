@@ -80,7 +80,7 @@ update_status ModulePlayer::Update(){
 			current_animation = &rightMov;
 		}
 		// COMENTADO EN MAYUSCULAS PARA QUE LA SONIA LO LEA // GRACIAS ISAAC ERES UN AMOR
-		std::cout << current_animation->IntCurrentFrame() << std::endl;
+		std::cout << "Current Frame: " << current_animation->IntCurrentFrame() << std::endl;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && PROTA.x > 0) {
 		PROTA.x -= speed;
