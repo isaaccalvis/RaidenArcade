@@ -17,17 +17,27 @@ ModulePlayer::ModulePlayer(){
 	PROTA.w = 24;
 	PROTA.h = 29;
 
-	idle.PushBack({84, 19, 24, 29});
 
-	rightMov.PushBack({ 117,19,21,29 });
-	rightMov.PushBack({ 151,19,16,30 });
+	idle.PushBack({ 84, 19, 24, 34 });
+	idle.PushBack({ 84, 61, 24, 34 });
+	idle.speed = 0.4;
+
+	rightMov.PushBack({ 117,19,21,34 });
+	rightMov.PushBack({ 117,61,21,34 });
+	rightMov.PushBack({ 151,19,16,34 });
+	rightMov.PushBack({ 151,61,16,34 });
+
 	rightMov.loop = false;
-	rightMov.speed = 0.1f;
+	rightMov.speed = 0.4;
 
-	leftMov.PushBack({ 52,18,24,30 });
-	leftMov.PushBack({ 16,18,24,30 });
+	leftMov.PushBack({ 52,19,24,34 });
+	leftMov.PushBack({ 52,61,24,34 });
+	leftMov.PushBack({ 18,19,24,34 });
+	leftMov.PushBack({ 18,61,24,34 });
+
+
 	leftMov.loop = false;
-	leftMov.speed = 0.1f;
+	leftMov.speed = 0.4;
 
 }
 
@@ -69,8 +79,8 @@ update_status ModulePlayer::Update(){
 			rightMov.Reset();
 			current_animation = &rightMov;
 		}
-		// COMENTADO EN MAYUSCULAS PARA QUE LA SONIA LO LEA
-		//std::cout << current_animation->IntCurrentFrame() << std::endl;
+		// COMENTADO EN MAYUSCULAS PARA QUE LA SONIA LO LEA // GRACIAS ISAAC ERES UN AMOR
+		std::cout << current_animation->IntCurrentFrame() << std::endl;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && PROTA.x > 0) {
 		PROTA.x -= speed;
