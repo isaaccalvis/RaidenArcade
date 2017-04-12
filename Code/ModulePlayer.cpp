@@ -8,6 +8,7 @@
 #include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleCollision.h"
+#include <iostream>
 
 ModulePlayer::ModulePlayer(){
 	current_animation = NULL;
@@ -78,11 +79,10 @@ update_status ModulePlayer::Update(){
 			rightMov.Reset();
 			current_animation = &rightMov;
 		}
-<<<<<<< HEAD
-=======
+
 		// COMENTADO EN MAYUSCULAS PARA QUE LA SONIA LO LEA // GRACIAS ISAAC ERES UN AMOR
-		std::cout << "Current Frame: " << current_animation->IntCurrentFrame() << std::endl;
->>>>>>> origin/Raiden
+		std::cout<< "Current Frame: " << current_animation->IntCurrentFrame() << std::endl;
+
 	}
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && PROTA.x > 0) {
 		PROTA.x -= speed;
