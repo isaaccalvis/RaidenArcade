@@ -59,7 +59,7 @@ bool ModuleMusic::CargarFX(nombreFX nombreFX) {
 	switch (nombreFX) {
 	case FX_DISPARAR:
 		FX_IN_EXECUTION[nombreFX] = Mix_LoadWAV("Audio/Fx/Shot_1(bullet).wav");
-		Mix_PlayChannel(0, FX_IN_EXECUTION[nombreFX], -1);
+		Mix_PlayChannel(0, FX_IN_EXECUTION[nombreFX], 0);
 		break;
 	case FX_INTRODUCIR_MONEDA:
 
@@ -68,10 +68,30 @@ bool ModuleMusic::CargarFX(nombreFX nombreFX) {
 	return true;
 }
 bool ModuleMusic::DescargarMusica(nombreMusica nombreMusica) {
-	Mix_FreeMusic(MUSIC_IN_EXECUTION[nombreMusica]);
+	switch (nombreMusica) {
+	case MUSICA_NIVEL_1:
+		MUSIC_IN_EXECUTION[nombreMusica] = Mix_LoadMUS("Audio/Music/Stage_1-4.ogg");
+		Mix_FreeMusic( MUSIC_IN_EXECUTION[nombreMusica] );
+		MUSIC_IN_EXECUTION[nombreMusica] = NULL;
+		break;
+	case MUSICA_NIVEL_2:
+		MUSIC_IN_EXECUTION[nombreMusica] = Mix_LoadMUS("Audio/Music/Stage_2-7.ogg");
+		Mix_FreeMusic(MUSIC_IN_EXECUTION[nombreMusica]);
+		MUSIC_IN_EXECUTION[nombreMusica] = NULL;
+		break;
+	}
 	return true;
 }
 bool ModuleMusic::DescargarFX(nombreFX nombreFX) {
-	Mix_FreeChunk(FX_IN_EXECUTION[nombreFX]);
+	switch (nombreFX) {
+	case FX_DISPARAR:
+		FX_IN_EXECUTION[nombreFX] = Mix_LoadWAV("Audio/Fx/Shot_1(bullet).wav");
+		Mix_FreeChunk(FX_IN_EXECUTION[nombreFX]);
+		FX_IN_EXECUTION[nombreFX] = NULL;
+		break;
+	case FX_INTRODUCIR_MONEDA:
+
+		break;
+	}	
 	return true;
 }

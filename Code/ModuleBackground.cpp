@@ -114,5 +114,7 @@ bool ModuleBackground::CleanUp() {
 	App->textures->Unload(graphics);
 	App->textures->Unload(cows);
 	App->background->Disable();
+	App->music->DescargarMusica(MUSICA_NIVEL_1);
+	
 	return ret;
 }

@@ -72,5 +72,6 @@ bool ModuleBackground2::CleanUp() {
 	bool ret = true;
 	App->textures->Unload(graphics2);
 	App->background2->Disable();
+	App->music->DescargarMusica(MUSICA_NIVEL_2);
 	return ret;
 }
