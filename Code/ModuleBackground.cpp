@@ -17,10 +17,10 @@ int speedBackGround = 2;
 ModuleBackground::ModuleBackground(){
 	ground.x = 352;
 	ground.y = 5;
-	ground.w = 352;
+	ground.w = 353;
 	ground.h = 3265;
 
-	background.x = 2;
+	background.x = 0;
 	background.y = -1;
 	background.w = 352;
 	background.h = MAP_HEIGHT;
@@ -75,29 +75,21 @@ update_status ModuleBackground::Update(){
 	App->render->Blit(graphics, 0, posBackGround + SCREEN_HEIGHT, &ground);
 	posBackGround += speedBackGround;
 
-	//Update de las vacas
-	//------------------------------------------------------------
 	Animation* current_animation = &cow1;
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	App->render->Blit(cows, PosCow1.x, posBackGround + PosCow1.y, &r);
 
-	//------------------------------------------------------------
 	Animation* current_animation2 = &cow2;
 	SDL_Rect r2 = current_animation2->GetCurrentFrame();
 	App->render->Blit(cows, PosCow2.x, posBackGround + PosCow2.y, &r2);
 
-	//------------------------------------------------------------
 	Animation* current_animation3 = &cow3;
 	SDL_Rect r3 = current_animation3->GetCurrentFrame();
 	App->render->Blit(cows, PosCow3.x, posBackGround + PosCow3.y, &r3);
 
-	//------------------------------------------------------------
 	Animation* current_animation4 = &cow4;
 	SDL_Rect r4 = current_animation4->GetCurrentFrame();
 	App->render->Blit(cows, PosCow4.x, posBackGround + PosCow4.y, &r4);
-
-	//------------------------------------------------------------
-
 
 	if (App->input->keyboard[SDL_SCANCODE_9] == KEY_STATE::KEY_DOWN) {
 		App->fade->FadeToBlack(this, App->background2, 1);
@@ -108,8 +100,6 @@ update_status ModuleBackground::Update(){
 		App->background2->Disable();
 		App->menuScreen->Enable();
 		App->menuScreen->selectorScreen(GameOverScreen);
-		//App->menuScreen->current_animation = App->menuScreen->;
-		//&pantallaIniciAnimStatic
 	}
 
 	return UPDATE_CONTINUE;

@@ -8,7 +8,6 @@
 #include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleCollision.h"
-#include <iostream>
 
 ModulePlayer::ModulePlayer(){
 	current_animation = NULL;
@@ -61,7 +60,7 @@ bool ModulePlayer::Start(){
 }
 
 update_status ModulePlayer::Update(){
-	int speed = 1;
+	int speed = 2;
 
 	if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && PROTA.x < (SCREEN_WIDTH - PROTA.w)){
 		PROTA.x += speed;
@@ -69,8 +68,6 @@ update_status ModulePlayer::Update(){
 			rightMov.Reset();
 			current_animation = &rightMov;
 		}
-		// COMENTADO EN MAYUSCULAS PARA QUE LA SONIA LO LEA
-		//std::cout << current_animation->IntCurrentFrame() << std::endl;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && PROTA.x > 0) {
 		PROTA.x -= speed;
@@ -96,9 +93,6 @@ update_status ModulePlayer::Update(){
 	if (PROTA.y > SCREEN_HEIGHT)
 		PROTA.y = SCREEN_HEIGHT;
 
-	std::cout << App->render->camera.y  << " :: " << PROTA.y<< std::endl;
-	std::cout << App->render->camera.x << " :: " << PROTA.x << std::endl;
-
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
 		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
 		current_animation = &idle;
@@ -106,7 +100,7 @@ update_status ModulePlayer::Update(){
 		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 		current_animation = &idle;
 
-	colPlayer1->SetPos(PROTA.x, PROTA.y - PROTA.h);
+	colPlayer1->SetPos(PROTA.x, PROTA.y);
 
 		// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();

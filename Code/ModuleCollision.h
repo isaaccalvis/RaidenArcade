@@ -56,4 +56,4 @@ private:
 	bool debug = false;
 };
 
-#endif // __ModuleCollision_H__
+#endif
