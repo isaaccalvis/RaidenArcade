@@ -61,7 +61,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32
 	p->position.x = x;
 	p->position.y = y;
 
-	active[last_particle++] = p;
+  	active[last_particle++] = p;
 }
 
 void ModuleParticles::loadParticlesTextures() {

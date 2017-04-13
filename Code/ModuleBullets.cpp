@@ -15,6 +15,7 @@ ModuleBullets::~ModuleBullets(){}
 bool ModuleBullets::Init() {
 	powerUpLevelPlayer1 = 0;
 	powerUpLevelPlayer2 = 0;
+	App->bullet->Enable();
 	return true;
 }
 update_status ModuleBullets::Update() {
@@ -25,6 +26,7 @@ update_status ModuleBullets::Update() {
 	// BULLETS DEL JUGADOR 1
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 		App->music->CargarFX(FX_DISPARAR);
+		//App->music->DescargarFX(FX_DISPARAR);
 		if (powerUpLevelPlayer1 == 0) {
 			App->particles->bullet.life = 1000;
 			iPoint vel(0, -4);
