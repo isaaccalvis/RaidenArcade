@@ -15,18 +15,12 @@ ModuleParticles::ModuleParticles(){
 ModuleParticles::~ModuleParticles(){}
 
 bool ModuleParticles::Start(){
-	LOG("Loading particles");
-	graphics = App->textures->Load("Sprites/Player/Player_Bullets.png");
-	bullet.anim.PushBack({ 138,288, 6,7 });
-	bullet.anim.loop = true;
-	bullet.anim.speed = 1;
 	App->particles->Enable();
+	loadParticlesTextures();
 	return true;
 }
 
-// Unload assets
 bool ModuleParticles::CleanUp(){
-	LOG("Unloading particles");
 	App->textures->Unload(graphics);
 
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i){
@@ -35,13 +29,10 @@ bool ModuleParticles::CleanUp(){
 			active[i] = nullptr;
 		}
 	}
-
 	App->particles->Disable();
-
 	return true;
 }
 
-// Update: draw background
 update_status ModuleParticles::Update(){
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i){
 		Particle* p = active[i];
@@ -73,8 +64,12 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32
 	active[last_particle++] = p;
 }
 
-// -------------------------------------------------------------
-// -------------------------------------------------------------
+void ModuleParticles::loadParticlesTextures() {
+	graphics = App->textures->Load("Sprites/Player/Player_Bullets.png");
+	bullet.anim.PushBack({ 138,288, 6,7 });
+	bullet.anim.loop = true;
+	bullet.anim.speed = 1;
+}
 
 Particle::Particle(){
 	position.SetToZero();
@@ -86,8 +81,7 @@ Particle::Particle(const Particle& p) :
 	fx(p.fx), born(p.born), life(p.life)
 {}
 
-bool Particle::Update()
-{
+bool Particle::Update(){
 	bool ret = true;
 
 	if (life > 0)

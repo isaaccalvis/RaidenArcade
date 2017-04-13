@@ -8,6 +8,7 @@
 #include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleCollision.h"
+#include "ModuleBullets.h"
 
 ModulePlayer::ModulePlayer(){
 	current_animation = NULL;
@@ -15,7 +16,6 @@ ModulePlayer::ModulePlayer(){
 	PROTA.y = SCREEN_HEIGHT / 2;
 	PROTA.w = 24;
 	PROTA.h = 29;
-
 
 	idle.PushBack({ 84, 19, 24, 34 });
 	idle.PushBack({ 84, 61, 24, 34 });
@@ -34,7 +34,6 @@ ModulePlayer::ModulePlayer(){
 	leftMov.PushBack({ 18,19,24,34 });
 	leftMov.PushBack({ 18,61,24,34 });
 
-
 	leftMov.loop = false;
 	leftMov.speed = 0.4;
 
@@ -44,6 +43,7 @@ ModulePlayer::~ModulePlayer(){}
 
 bool ModulePlayer::Start(){
 	App->player->Enable();
+	App->bullet->Enable();
 	if (App->player2->jugador2Activat == false) {
 		PROTA.x = SCREEN_WIDTH / 2 - PROTA.w / 2;
 		PROTA.y = SCREEN_HEIGHT / 2;
@@ -78,11 +78,9 @@ update_status ModulePlayer::Update(){
 			rightMov.Reset();
 			current_animation = &rightMov;
 		}
-<<<<<<< HEAD
-=======
-		// COMENTADO EN MAYUSCULAS PARA QUE LA SONIA LO LEA // GRACIAS ISAAC ERES UN AMOR
-		std::cout << "Current Frame: " << current_animation->IntCurrentFrame() << std::endl;
->>>>>>> origin/Raiden
+
+		/// COMENTADO EN MAYUSCULAS PARA QUE LA SONIA LO LEA // GRACIAS ISAAC ERES UN AMOR
+	///	std::cout << "Current Frame: " << current_animation->IntCurrentFrame() << std::endl;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && PROTA.x > 0) {
 		PROTA.x -= speed;
@@ -98,7 +96,7 @@ update_status ModulePlayer::Update(){
 		PROTA.y += speed;
 	}
 
-	// CORRECTOR DE LIMITS
+	/// CORRECTOR DE LIMITS
 	if (PROTA.x < 0)
 		PROTA.x = 0;
 	if (PROTA.x > (SCREEN_WIDTH - PROTA.w))
@@ -115,9 +113,9 @@ update_status ModulePlayer::Update(){
 		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 		current_animation = &idle;
 
-	colPlayer1->SetPos(PROTA.x, PROTA.y);
+	//colPlayer1->SetPos(PROTA.x, PROTA.y);
 
-		// Draw everything --------------------------------------
+		/// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	App->render->Blit(graphics, PROTA.x, PROTA.y - r.h, &r);

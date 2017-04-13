@@ -33,6 +33,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	void loadParticlesTextures();
 	void AddParticle(const Particle& particle, int x, int y, Uint32 delay = 0);
 
 private:

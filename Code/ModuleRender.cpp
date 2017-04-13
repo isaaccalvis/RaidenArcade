@@ -7,6 +7,7 @@
 #include "ModulePlayer.h"
 #include "ModuleBackground.h"
 #include "ModuleBackGround2.h"
+#include "ModuleMenuScreen.h"
 #include <stdio.h>
 
 ModuleRender::ModuleRender() : Module(){
@@ -38,20 +39,22 @@ update_status ModuleRender::PreUpdate(){
 }
 
 update_status ModuleRender::Update() {
-	int speed = 3;
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
-		if (camera.x < 0)
-			camera.x += speed;
+	if (App->menuScreen->IsEnabled() == false) {
+		int speed = 3;
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+			if (camera.x < 0)
+				camera.x += speed;
 
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
-		if ((camera.x - camera.w) > -SCREEN_WIDTH * 3)
-			camera.x -= speed;
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+			if ((camera.x - camera.w) > -SCREEN_WIDTH * 3)
+				camera.x -= speed;
 
-	if (camera.x > 0)
-		camera.x = 0;
-	if ((camera.x - camera.w) > SCREEN_WIDTH)
-		camera.x = SCREEN_WIDTH - ORIGINAL_CAMERA_WEIGHT;
-	printf("%i  %i  %i\n", camera.x,camera.x - camera.w, -SCREEN_WIDTH * 3);
+		if (camera.x > 0)
+			camera.x = 0;
+		if ((camera.x - camera.w) > SCREEN_WIDTH)
+			camera.x = SCREEN_WIDTH - ORIGINAL_CAMERA_WEIGHT;
+		printf("%i  %i  %i\n", camera.x, camera.x - camera.w, -SCREEN_WIDTH * 3);
+	}
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -115,4 +118,11 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 		ret = false;
 	}
 	return ret;
+}
+
+void ModuleRender::MoveCameraToCenter() {
+	camera.x = -(SCREEN_WIDTH / 2);
+	camera.y = 0;
+	camera.w = ORIGINAL_CAMERA_WEIGHT;
+	camera.h = ORIGINAL_CAMERA_HEIGHT;
 }
