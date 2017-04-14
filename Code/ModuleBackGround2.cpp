@@ -7,6 +7,7 @@
 #include "ModuleBackground2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleMenuScreen.h"
+#include "ModuleMusic.h"
 
 #define MAP_HEIGHT 4998
 
@@ -39,6 +40,8 @@ bool ModuleBackground2::Start() {
 	
 	App->background2->Enable();
 
+	App->music->CargarMusica(MUSICA_NIVEL_2);
+
 	return ret;
 }
 
@@ -67,6 +70,8 @@ update_status ModuleBackground2::Update() {
 
 bool ModuleBackground2::CleanUp() {
 	bool ret = true;
+	App->textures->Unload(graphics2);
 	App->background2->Disable();
+	App->music->DescargarMusica(MUSICA_NIVEL_2);
 	return ret;
 }

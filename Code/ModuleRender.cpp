@@ -5,32 +5,31 @@
 #include "ModuleInput.h"
 #include "SDL/include/SDL.h"
 #include "ModulePlayer.h"
+#include "ModuleBackground.h"
+#include "ModuleBackGround2.h"
+#include "ModuleMenuScreen.h"
+#include <stdio.h>
 
 ModuleRender::ModuleRender() : Module(){
-	camera.x = 0;
+	camera.x = -(SCREEN_WIDTH / 2);
 	camera.y = 0;
-	camera.w = SCREEN_WIDTH;
-	camera.h = SCREEN_HEIGHT;
+	camera.w = ORIGINAL_CAMERA_WEIGHT;
+	camera.h = ORIGINAL_CAMERA_HEIGHT;
 }
 
 ModuleRender::~ModuleRender(){}
 
 bool ModuleRender::Init(){
-	LOG("Creating Renderer context");
 	bool ret = true;
 	Uint32 flags = 0;
-
 	if(REN_VSYNC == true){
 		flags |= SDL_RENDERER_PRESENTVSYNC;
 	}
-
 	renderer = SDL_CreateRenderer(App->window->window, -1, flags);
-	
 	if(renderer == NULL){
 		LOG("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-
 	return ret;
 }
 
@@ -39,10 +38,23 @@ update_status ModuleRender::PreUpdate(){
 	return update_status::UPDATE_CONTINUE;
 }
 
-update_status ModuleRender::Update(){
-	/*int speed = 3;
-		camera.y += speed / 2;*/
+update_status ModuleRender::Update() {
+	if (App->menuScreen->IsEnabled() == false) {
+		int speed = 3;
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+			if (camera.x < 0)
+				camera.x += speed;
 
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+			if ((camera.x - camera.w) > -SCREEN_WIDTH * 3)
+				camera.x -= speed;
+
+		if (camera.x > 0)
+			camera.x = 0;
+		if ((camera.x - camera.w) > SCREEN_WIDTH)
+			camera.x = SCREEN_WIDTH - ORIGINAL_CAMERA_WEIGHT;
+		printf("%i  %i  %i\n", camera.x, camera.x - camera.w, -SCREEN_WIDTH * 3);
+	}
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -51,14 +63,11 @@ update_status ModuleRender::PostUpdate(){
 	return update_status::UPDATE_CONTINUE;
 }
 
-bool ModuleRender::CleanUp()
-{
-	LOG("Destroying renderer");
+bool ModuleRender::CleanUp(){
 	bool ret = true;
 	if(renderer != NULL){
 		SDL_DestroyRenderer(renderer);
 	}
-
 	return ret;
 }
 
@@ -90,4 +99,30 @@ bool ModuleRender::CleanRender() {
 	SDL_RenderClear(App->render->renderer);
 
 	return ret;
+}
+bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, bool use_camera){
+	bool ret = true;
+
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+	SDL_SetRenderDrawColor(renderer, r, g, b, a);
+
+	SDL_Rect rec(rect);
+	if (use_camera){
+		rec.x = (int)(-camera.x + rect.x * SCREEN_SIZE);
+		rec.y = (int)(-camera.y + rect.y * SCREEN_SIZE);
+		rec.w *= SCREEN_SIZE;
+		rec.h *= SCREEN_SIZE;
+	}
+	if (SDL_RenderFillRect(renderer, &rec) != 0){
+		LOG("Cannot draw quad to screen. SDL_RenderFillRect error: %s", SDL_GetError());
+		ret = false;
+	}
+	return ret;
+}
+
+void ModuleRender::MoveCameraToCenter() {
+	camera.x = -(SCREEN_WIDTH / 2);
+	camera.y = 0;
+	camera.w = ORIGINAL_CAMERA_WEIGHT;
+	camera.h = ORIGINAL_CAMERA_HEIGHT;
 }

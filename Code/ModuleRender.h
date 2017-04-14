@@ -20,6 +20,8 @@ public:
 
 	bool Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed = 1.0f);
 	bool CleanRender();
+	bool DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, bool use_camera = true);
+	void MoveCameraToCenter();
 public:
 	SDL_Renderer* renderer = nullptr;
 	SDL_Rect camera;

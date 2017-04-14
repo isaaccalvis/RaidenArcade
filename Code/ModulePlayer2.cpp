@@ -13,24 +13,33 @@ ModulePlayer2::ModulePlayer2() {
 	current_animation = NULL;
 	//position.x = 100;
 	//position.y = 220;
-	PROTA2.x = SCREEN_WIDTH / 2;
-	PROTA2.y = SCREEN_HEIGHT / 2;
+	PROTA2.x = 200;
+	PROTA2.y = 220;
 	PROTA2.w = 26;
 	PROTA2.h = 30;
 
-	idle.PushBack({ 307, 18, 26, 30 });
 
-	//Moviment Dreta
-	rightMov.PushBack({ 340,18,24,30 });
-	rightMov.PushBack({ 374,18,24,30 });
+
+	idle.PushBack({ 308, 19, 24, 34 });
+	idle.PushBack({ 308, 61, 24, 34 });
+	idle.speed = 0.4;
+
+	rightMov.PushBack({ 341,19,21,34 });
+	rightMov.PushBack({ 341,61,21,34 });
+	rightMov.PushBack({ 375,19,16,34 });
+	rightMov.PushBack({ 375,61,16,34 });
+
 	rightMov.loop = false;
-	rightMov.speed = 0.1f;
+	rightMov.speed = 0.4;
 
-	leftMov.PushBack({ 277,18,24,30 });
-	leftMov.PushBack({ 248,18,24,30 });
+	leftMov.PushBack({ 278,19,21,34 });
+	leftMov.PushBack({ 278,61,21,34 });
+	leftMov.PushBack({ 244,19,21,34 });
+	leftMov.PushBack({ 244,61,21,34 });
+
+
 	leftMov.loop = false;
-	leftMov.speed = 0.1f;
-
+	leftMov.speed = 0.4;
 }
 
 ModulePlayer2::~ModulePlayer2() {}
@@ -97,6 +106,7 @@ bool ModulePlayer2::CleanUp()
 	LOG("Unloading player");
 	bool ret = true;
 	App->textures->Unload(graphics);
+	App->player2->Disable();
 
 	return ret;
 }

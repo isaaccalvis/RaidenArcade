@@ -23,5 +23,6 @@ public:
 	Animation rightMov;
 	Animation leftMov;
 	SDL_Rect PROTA2;
+	bool jugador2Activat = false;
 };
 #endif

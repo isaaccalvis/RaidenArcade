@@ -32,7 +32,7 @@ bool ModuleWindow::Init(){
 		if(WIN_FULLSCREEN_DESKTOP == true)
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 
-		window = SDL_CreateWindow("", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
+		window = SDL_CreateWindow("", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, ORIGINAL_CAMERA_WEIGHT, ORIGINAL_CAMERA_HEIGHT, flags);
 
 		if(window == NULL){
 			LOG("Window could not be created! SDL_Error: %s\n", SDL_GetError());

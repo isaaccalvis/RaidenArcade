@@ -21,12 +21,14 @@ typedef unsigned int uint;
 
 // Configuration -----------
 #define SCREEN_SIZE 3
-#define SCREEN_WIDTH 352 // 224
+#define SCREEN_WIDTH 351
 #define SCREEN_HEIGHT 256
 #define WIN_FULLSCREEN 0
 #define WIN_FULLSCREEN_DESKTOP 0
 #define WIN_BORDERLESS 0
 #define WIN_RESIZABLE 0
 #define REN_VSYNC 1
+#define ORIGINAL_CAMERA_WEIGHT (223 * SCREEN_SIZE)
+#define ORIGINAL_CAMERA_HEIGHT (255 * SCREEN_SIZE)
 
 #endif

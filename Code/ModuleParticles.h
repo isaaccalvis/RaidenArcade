@@ -10,8 +10,7 @@
 
 struct SDL_Texture;
 
-struct Particle
-{
+struct Particle{
 	Animation anim;
 	uint fx = 0;
 	iPoint position;
@@ -25,8 +24,7 @@ struct Particle
 	bool Update();
 };
 
-class ModuleParticles : public Module
-{
+class ModuleParticles : public Module{
 public:
 	ModuleParticles();
 	~ModuleParticles();
@@ -35,6 +33,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	void loadParticlesTextures();
 	void AddParticle(const Particle& particle, int x, int y, Uint32 delay = 0);
 
 private:

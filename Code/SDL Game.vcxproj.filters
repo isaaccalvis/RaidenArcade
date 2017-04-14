@@ -15,6 +15,9 @@
     <Filter Include="Modules\BackGrounds">
       <UniqueIdentifier>{9a0c0913-8d52-495c-a578-822f8758eac1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Enemy">
+      <UniqueIdentifier>{e9d5d4ea-8dfb-4ad2-9e36-c6b8ee80ab51}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -50,9 +53,6 @@
     <ClInclude Include="ModuleMusic.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleCollider.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleBackground.h">
       <Filter>Modules\BackGrounds</Filter>
     </ClInclude>
@@ -76,6 +76,21 @@
     </ClInclude>
     <ClInclude Include="ModulePlayer2.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCollision.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleEnemies.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Modules\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_LightShooter.h">
+      <Filter>Modules\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -106,9 +121,6 @@
     <ClCompile Include="ModuleMusic.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleCollider.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleBackground.cpp">
       <Filter>Modules\BackGrounds</Filter>
     </ClCompile>
@@ -129,6 +141,18 @@
     </ClCompile>
     <ClCompile Include="ModulePlayer2.cpp">
       <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCollision.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleEnemies.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Modules\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_LightShooter.cpp">
+      <Filter>Modules\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
