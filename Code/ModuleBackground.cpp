@@ -155,7 +155,7 @@ update_status ModuleBackground::Update(){
 		App->background->Disable();
 		App->background2->Disable();
 		App->menuScreen->Enable();
-		App->menuScreen->selectorScreen(GameOverScreen);
+		App->menuScreen->selectorScreen(Game_Over_Screen);
 	}
 
 	return UPDATE_CONTINUE;

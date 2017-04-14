@@ -8,8 +8,9 @@
 struct SDL_Texture;
 
 enum MenuScreenNames {
-	StartScreen,
-	GameOverScreen
+	Start_Screen,
+	Players_Screen,
+	Game_Over_Screen
 };
 
 class ModuleMenuScreen : public Module {
@@ -27,8 +28,8 @@ public:
 	SDL_Texture* MenuScreenTexture = nullptr;
 	Animation* 	current_animation;// &pantallaIniciAnim;
 	SDL_Rect MenuScreenRect;
-	Animation pantallaIniciAnimStatic;
-	Animation pantallaIniciAnim;
+	Animation Main_Menu;
+	Animation Transition;
 };
 
 #endif

@@ -19,45 +19,54 @@ ModuleMenuScreen::ModuleMenuScreen() {
 	MenuScreenRect.w = 223;
 	MenuScreenRect.h = 255;
 	
-	pantallaIniciAnimStatic.PushBack({ 0,0,223,255 });
-	pantallaIniciAnimStatic.speed = 0.5f;
-	pantallaIniciAnimStatic.loop = false;
+	Main_Menu.PushBack({ 0,0,223,255 });
+	Main_Menu.speed = 0.5f;
+	Main_Menu.loop = false;
 
-	pantallaIniciAnim.PushBack({0,0,223,255});
-	pantallaIniciAnim.PushBack({ 225,0,223,255 });
-	pantallaIniciAnim.PushBack({ 450,0,223,255 });
-	pantallaIniciAnim.PushBack({ 675,0,223,255 });
-	pantallaIniciAnim.PushBack({ 0,257,223,255 });
-	pantallaIniciAnim.PushBack({ 225,257,223,255 });
-	pantallaIniciAnim.PushBack({ 450,257,223,255 });
-	pantallaIniciAnim.PushBack({ 675,257,223,255 });
-	pantallaIniciAnim.speed = 0.5f;
-	pantallaIniciAnim.loop = false;
+	Transition.PushBack({ 675,257,223,255 });
+	Transition.PushBack({ 450,257,223,255 });
+	Transition.PushBack({ 450,257,223,255 });
+	Transition.PushBack({ 225,257,223,255 });
+	Transition.PushBack({ 675,0,223,255 });
+	Transition.PushBack({ 450,0,223,255 });
+	Transition.PushBack({ 225,0,223,255 });
+	Transition.PushBack({ 0,0,223,255 });
+	Transition.PushBack({0,0,223,255});
+	Transition.PushBack({ 225,0,223,255 });
+	Transition.PushBack({ 450,0,223,255 });
+	Transition.PushBack({ 675,0,223,255 });
+	Transition.PushBack({ 0,257,223,255 });
+	Transition.PushBack({ 225,257,223,255 });
+	Transition.PushBack({ 450,257,223,255 });
+	Transition.PushBack({ 675,257,223,255 });
+	Transition.speed = 0.5f;
+	Transition.loop = false;
 
 }
 ModuleMenuScreen::~ModuleMenuScreen() {}
 
 bool ModuleMenuScreen::Start() {
-	MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Loading_Screen.png");
-	App->menuScreen->Enable();
-	current_animation = &pantallaIniciAnimStatic;
+	MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Start_Screen.png");
+	current_animation = &Main_Menu;
 	return true;
 }
 
 bool ModuleMenuScreen::selectorScreen(MenuScreenNames name) {
 	bool ret = true;
 	switch (name) {
-	case StartScreen:
+	case Players_Screen:
 		App->player->Disable();
 		App->bullet->Disable();
-		MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Loading_Screen.png");
+		MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Players_Screen.png");
+		current_animation = &Main_Menu;
+
 	break;
-	case GameOverScreen:
+	case Game_Over_Screen:
 		App->player->Disable();
 		App->bullet->Disable();
 		App->render->MoveCameraToCenter();
 		MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Continue_Screen.png");
-		current_animation = &pantallaIniciAnimStatic;
+		current_animation = &Main_Menu;
 		App->music->CargarMusica(MUSICA_GAME_CONTINUE);
 	break;
 	}
@@ -68,16 +77,25 @@ update_status ModuleMenuScreen::Update() {
 	App->render->CleanRender();
 	App->render->Blit(MenuScreenTexture,59/*Aquest 59 s'ha de canviar per una funcio*/, 0, &MenuScreenRect);
 	MenuScreenRect = current_animation->GetCurrentFrame();
+	
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
+		MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Loading_Screen.png");
+		current_animation = &Transition;
+		App->menuScreen->Enable();
+		App->menuScreen->selectorScreen(Players_Screen);
+	}
 
 	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN) {
-		current_animation = &pantallaIniciAnim;
-		App->fade->FadeToBlack(this, App->background, 0.5f);
+		MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Loading_Screen.png");
+		current_animation = &Transition;
+		App->fade->FadeToBlack(this, App->background, 2.5f);
 		App->player2->Disable();
 		App->player2->jugador2Activat = false;
 	}
 	else if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN) {
-		current_animation = &pantallaIniciAnim;
-		App->fade->FadeToBlack(this, App->background, 0.5f);
+		MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Loading_Screen.png");
+		current_animation = &Transition;
+		App->fade->FadeToBlack(this, App->background, 2.5f);
 		App->player2->Enable();
 		App->player2->jugador2Activat = true;
 	}

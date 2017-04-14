@@ -59,7 +59,7 @@ update_status ModuleBackground2::Update() {
 		App->background->Disable();
 		App->background2->Disable();
 		App->menuScreen->Enable();
-		App->menuScreen->selectorScreen(GameOverScreen);
+		App->menuScreen->selectorScreen(Game_Over_Screen);
 		//App->menuScreen->current_animation = App->menuScreen->;
 		//&pantallaIniciAnimStatic
 	}
