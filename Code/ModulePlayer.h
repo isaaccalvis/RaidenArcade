@@ -21,8 +21,8 @@ public:
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
 	Animation idle;	
-	Animation rightMov;
-	Animation leftMov;
+	Animation rightMov, rightMov2;
+	Animation leftMov, leftMov2;
 	//iPoint position;
 	SDL_Rect PROTA;
 	Collider* colPlayer1;
