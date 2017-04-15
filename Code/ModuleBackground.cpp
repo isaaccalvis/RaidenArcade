@@ -139,8 +139,6 @@ update_status ModuleBackground::Update(){
 	// Cowboys
 	Animation* current_animation7 = &cowboys;
 	SDL_Rect r7 = current_animation7->GetCurrentFrame();
-	
-	//PosCowboys.x -= 0.00000000000001;
 	App->render->Blit(cows, PosCowboys.x, posBackGround + PosCowboys.y, &r7);
 	
 

@@ -9,6 +9,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleCollision.h"
 #include "ModuleBullets.h"
+#include <iostream>
 
 ModulePlayer::ModulePlayer(){
 	current_animation = NULL;
@@ -26,16 +27,28 @@ ModulePlayer::ModulePlayer(){
 	rightMov.PushBack({ 151,19,16,34 });
 	rightMov.PushBack({ 151,61,16,34 });
 
+	rightMov2.PushBack({ 151,19,16,34 });
+	rightMov2.PushBack({ 151,61,16,34 });
+
 	rightMov.loop = false;
 	rightMov.speed = 0.4;
+
+	rightMov2.loop = false;
+	rightMov2.speed = 0.4;
 
 	leftMov.PushBack({ 52,19,24,34 });
 	leftMov.PushBack({ 52,61,24,34 });
 	leftMov.PushBack({ 18,19,24,34 });
 	leftMov.PushBack({ 18,61,24,34 });
 
+	leftMov2.PushBack({ 18,19,24,34 });
+	leftMov2.PushBack({ 18,61,24,34 });
+
 	leftMov.loop = false;
 	leftMov.speed = 0.4;
+
+	leftMov2.loop = false;
+	leftMov2.speed = 0.4;
 
 }
 
@@ -74,13 +87,31 @@ update_status ModulePlayer::Update(){
 
 	if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && PROTA.x < (SCREEN_WIDTH - PROTA.w)){
 		PROTA.x += speed;
-		if (current_animation != &rightMov){
-			rightMov.Reset();
-			current_animation = &rightMov;
+
+	
+		if (current_animation != &rightMov ) {
+			if (current_animation->IntCurrentFrame() < 4) {
+				rightMov.Reset();
+				current_animation = &rightMov;
+				rightMov.finishedAnimation();
+			}
+			else {
+				rightMov2.Reset();
+				current_animation = &rightMov2;
+				rightMov2.finishedAnimation();
+			}
+			
+
+			
 		}
 
+		else {
+			rightMov2.Reset();
+			current_animation = &rightMov2;
+			rightMov2.finishedAnimation();
+		}
 		/// COMENTADO EN MAYUSCULAS PARA QUE LA SONIA LO LEA // GRACIAS ISAAC ERES UN AMOR
-	///	std::cout << "Current Frame: " << current_animation->IntCurrentFrame() << std::endl;
+		std::cout << "Current Frame: " << current_animation->IntCurrentFrame() << std::endl;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && PROTA.x > 0) {
 		PROTA.x -= speed;
