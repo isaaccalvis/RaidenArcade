@@ -8,7 +8,6 @@
 #include "ModuleBackground.h"
 #include "ModuleBackGround2.h"
 #include "ModuleMenuScreen.h"
-#include <stdio.h>
 
 ModuleRender::ModuleRender() : Module(){
 	camera.x = -(SCREEN_WIDTH / 2);
@@ -53,7 +52,7 @@ update_status ModuleRender::Update() {
 			camera.x = 0;
 		if ((camera.x - camera.w) > SCREEN_WIDTH)
 			camera.x = SCREEN_WIDTH - ORIGINAL_CAMERA_WEIGHT;
-		printf("%i  %i  %i\n", camera.x, camera.x - camera.w, -SCREEN_WIDTH * 3);
+		//printf("%i  %i  %i\n", camera.x, camera.x - camera.w, -SCREEN_WIDTH * 3);
 	}
 	return update_status::UPDATE_CONTINUE;
 }

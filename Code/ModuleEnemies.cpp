@@ -5,7 +5,7 @@
 #include "ModuleParticles.h"
 #include "ModuleTextures.h"
 #include "Enemy.h"
-//#include "Enemy_RedBird.h"
+#include "Enemy_LightShooter.h"
 
 #define SPAWN_MARGIN 50
 
@@ -14,13 +14,10 @@ ModuleEnemies::ModuleEnemies(){
 		enemies[i] = nullptr;
 }
 
-// Destructor
 ModuleEnemies::~ModuleEnemies(){}
 
 bool ModuleEnemies::Start(){
-	// Create a prototype for each enemy available so we can copy them around
-	sprites = App->textures->Load("rtype/enemies.png");
-
+	sprites = App->textures->Load("Sprites/Enemies/Stage_1/Light_Shooter.png");
 	return true;
 }
 
@@ -38,7 +35,6 @@ update_status ModuleEnemies::PreUpdate(){
 	return UPDATE_CONTINUE;
 }
 
-// Called before render is available
 update_status ModuleEnemies::Update(){
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 		if (enemies[i] != nullptr) enemies[i]->Move();
@@ -60,14 +56,10 @@ update_status ModuleEnemies::PostUpdate(){
 			}
 		}
 	}
-
 	return UPDATE_CONTINUE;
 }
 
-// Called before quitting
 bool ModuleEnemies::CleanUp(){
-	LOG("Freeing all enemies");
-
 	App->textures->Unload(sprites);
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i){
@@ -76,7 +68,6 @@ bool ModuleEnemies::CleanUp(){
 			enemies[i] = nullptr;
 		}
 	}
-
 	return true;
 }
 
@@ -92,19 +83,17 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y){
 			break;
 		}
 	}
-
 	return ret;
 }
 
 void ModuleEnemies::SpawnEnemy(const EnemyInfo& info){
 	uint i = 0;
 	for (; enemies[i] != nullptr && i < MAX_ENEMIES; ++i);
-
 	if (i != MAX_ENEMIES){
-		switch (info.type)
-		{
-		case ENEMY_TYPES::REDBIRD:
-			//enemies[i] = new Enemy_RedBird(info.x, info.y);
+		switch (info.type){
+		case ENEMY_TYPES::LIGHT_SHOOTER:
+			enemies[i] = new Enemy_LightShooter(info.x, info.y);
+			//queue[i].type = ENEMY_TYPES::LIGHT_SHOOTER;
 			break;
 		}
 	}

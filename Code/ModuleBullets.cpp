@@ -7,7 +7,6 @@
 #include "ModuleParticles.h"
 #include "ModuleRender.h"
 #include "ModuleMusic.h"
-#include <iostream>
 
 ModuleBullets::ModuleBullets() {}
 ModuleBullets::~ModuleBullets(){}
@@ -26,12 +25,11 @@ update_status ModuleBullets::Update() {
 	// BULLETS DEL JUGADOR 1
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 		App->music->CargarFX(FX_DISPARAR);
-		//App->music->DescargarFX(FX_DISPARAR);
 		if (powerUpLevelPlayer1 == 0) {
 			App->particles->bullet.life = 1000;
 			iPoint vel(0, -4);
 			App->particles->bullet.speed = vel;
-			App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y - App->player->PROTA.h);
+			App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
 		}
 		else if (powerUpLevelPlayer1 == 1) {
 			App->particles->bullet.life = 1000;
@@ -61,6 +59,7 @@ update_status ModuleBullets::Update() {
 		App->particles->bullet.speed = vel;
 		App->particles->AddParticle(App->particles->bullet, App->player2->PROTA2.x + (App->player2->PROTA2.w / 2.38), App->player2->PROTA2.y - App->player2->PROTA2.h);
 	}
+	App->music->DescargarFX(FX_DISPARAR);
 
 	return UPDATE_CONTINUE;
 }

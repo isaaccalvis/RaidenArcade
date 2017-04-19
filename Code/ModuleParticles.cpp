@@ -49,18 +49,16 @@ update_status ModuleParticles::Update(){
 			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
 			if (p->fx_played == false){
 				p->fx_played = true;
-				// Play particle fx here
 			}
 		}
 	}
+
 	return UPDATE_CONTINUE;
 }
 
 void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay){
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
-	{
-		if (active[i] == nullptr)
-		{
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i){
+		if (active[i] == nullptr){
 			Particle* p = new Particle(particle);
 			p->born = SDL_GetTicks() + delay;
 			p->position.x = x;
@@ -81,6 +79,16 @@ void ModuleParticles::loadParticlesTextures() {
 	bullet.life = 3000;
 }
 
+void ModuleParticles::OnCollision(Collider* c1, Collider* c2) {
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
+		if (active[i] != nullptr && active[i]->collider == c1) {
+			//AddParticle(explosion, active[i]->position.x, active[i]->position.y);
+			delete active[i];
+			active[i] = nullptr;
+			break;
+		}
+	}
+}
 Particle::Particle(){
 	position.SetToZero();
 	speed.SetToZero();

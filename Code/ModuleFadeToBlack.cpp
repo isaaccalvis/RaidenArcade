@@ -13,14 +13,12 @@ Module* module_offBo;
 Module* module_onBo;
 
 
-ModuleFadeToBlack::ModuleFadeToBlack()
-{
+ModuleFadeToBlack::ModuleFadeToBlack(){
 	screen = { 0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE };
 }
 
 ModuleFadeToBlack::~ModuleFadeToBlack(){}
 
-// Load assets
 bool ModuleFadeToBlack::Start(){
 	bool ret = true;
 	LOG("Preparing Fade Screen");
@@ -28,7 +26,6 @@ bool ModuleFadeToBlack::Start(){
 	return ret;
 }
 
-// Update: draw background
 update_status ModuleFadeToBlack::Update(){
 	if (current_step == fade_step::none)
 		return UPDATE_CONTINUE;
@@ -58,7 +55,6 @@ update_status ModuleFadeToBlack::Update(){
 	} break;
 	}
 
-	// Finally render the black square with alpha on the screen
 	SDL_SetRenderDrawColor(App->render->renderer, 0, 0, 0, (Uint8)(normalized * 255.0f));
 	SDL_RenderFillRect(App->render->renderer, &screen);
 
@@ -74,7 +70,6 @@ bool ModuleFadeToBlack::FadeToBlack(Module* module_off, Module* module_on, float
 		start_time = SDL_GetTicks();
 		total_time = (Uint32)(time * 0.5f * 1000.0f);
 		ret = true;
-
 	}
 	return ret;
 }

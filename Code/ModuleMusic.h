@@ -34,6 +34,7 @@ public:
 	bool DescargarMusica(nombreMusica nombreMusica);
 	bool CargarFX(nombreFX nombreFX);
 	bool DescargarFX(nombreFX nombreFX);
+
 public:
 	Mix_Music* MUSIC_IN_EXECUTION[MAX_MUSIC];
 	Mix_Chunk* FX_IN_EXECUTION[MAX_FX];

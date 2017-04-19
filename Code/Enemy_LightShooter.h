@@ -5,7 +5,6 @@
 
 class Enemy_LightShooter : public Enemy{
 private:
-	float wave = -1.0f;
 	bool going_down = true;
 	bool going_up = false;
 	int original_y = 0;
