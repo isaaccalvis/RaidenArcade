@@ -90,7 +90,7 @@ update_status ModulePlayer2::Update() {
 	return UPDATE_CONTINUE;
 }
 
-bool ModulePlayer2::CleanUp() {
+bool ModulePlayer2::CleanUp(){
 	LOG("Unloading player 2");
 	App->textures->Unload(graphics);
 	App->player2->Disable();

@@ -14,7 +14,7 @@ Module* module_onBo;
 
 
 ModuleFadeToBlack::ModuleFadeToBlack(){
-	screen = { 0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE };
+	//screen = { 0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE };
 }
 
 ModuleFadeToBlack::~ModuleFadeToBlack(){}
@@ -22,20 +22,20 @@ ModuleFadeToBlack::~ModuleFadeToBlack(){}
 bool ModuleFadeToBlack::Start(){
 	bool ret = true;
 	LOG("Preparing Fade Screen");
-	SDL_SetRenderDrawBlendMode(App->render->renderer, SDL_BLENDMODE_BLEND);
+	//SDL_SetRenderDrawBlendMode(App->render->renderer, SDL_BLENDMODE_BLEND);
 	return ret;
 }
 
-update_status ModuleFadeToBlack::Update(){
+update_status ModuleFadeToBlack::Update() {
 	if (current_step == fade_step::none)
 		return UPDATE_CONTINUE;
 
 	Uint32 now = SDL_GetTicks() - start_time;
 	float normalized = MIN(1.0f, (float)now / (float)total_time);
 
-	switch (current_step){
-	case fade_step::fade_to_black:{
-		if (now >= total_time){
+	switch (current_step) {
+	case fade_step::fade_to_black: {
+		if (now >= total_time) {
 			App->player->Disable();
 			module_offBo->Disable();
 			module_onBo->Enable();
@@ -47,7 +47,7 @@ update_status ModuleFadeToBlack::Update(){
 		}
 	} break;
 
-	case fade_step::fade_from_black:{
+	case fade_step::fade_from_black: {
 		normalized = 1.0f - normalized;
 
 		if (now >= total_time)
@@ -55,8 +55,8 @@ update_status ModuleFadeToBlack::Update(){
 	} break;
 	}
 
-	SDL_SetRenderDrawColor(App->render->renderer, 0, 0, 0, (Uint8)(normalized * 255.0f));
-	SDL_RenderFillRect(App->render->renderer, &screen);
+	//SDL_SetRenderDrawColor(App->render->renderer, 0, 0, 0, (Uint8)(normalized * 255.0f));
+	//SDL_RenderFillRect(App->render->renderer, &screen);
 
 	return UPDATE_CONTINUE;
 }

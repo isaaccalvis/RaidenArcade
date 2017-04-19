@@ -47,9 +47,7 @@ update_status ModuleInput::PreUpdate(){
 	return update_status::UPDATE_CONTINUE;
 }
 
-// Called before quitting
-bool ModuleInput::CleanUp()
-{
+bool ModuleInput::CleanUp(){
 	LOG("Quitting SDL input event subsystem");
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
 	return true;

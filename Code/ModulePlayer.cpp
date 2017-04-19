@@ -12,7 +12,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleMenuScreen.h"
 
-ModulePlayer::ModulePlayer() {
+ModulePlayer::ModulePlayer(){
 	current_animation = NULL;
 	PROTA.w = 24;
 	PROTA.h = 29;
@@ -36,10 +36,10 @@ ModulePlayer::ModulePlayer() {
 	leftMov.speed = 0.4;
 }
 
-ModulePlayer::~ModulePlayer() {}
+ModulePlayer::~ModulePlayer(){}
 
 
-bool ModulePlayer::Start() {
+bool ModulePlayer::Start(){
 	bool ret = true;
 	App->player->Enable();
 	App->bullet->Enable();
@@ -48,29 +48,28 @@ bool ModulePlayer::Start() {
 	if (App->player2->jugador2Activat == false) {
 		PROTA.x = SCREEN_WIDTH / 2 - PROTA.w / 2;
 		PROTA.y = SCREEN_HEIGHT / 2;
-	}
-	else {
-		PROTA.x = 120;
-		PROTA.y = 189;
+	} else {
+		PROTA.x = 50;
+		PROTA.y = SCREEN_HEIGHT / 2;
 	}
 	graphics = App->textures->Load("Sprites/Player/Players.png");
 	colPlayer1 = App->collision->AddCollider(PROTA, COLLIDER_PLAYER, this);
 	return ret;
 }
 
-update_status ModulePlayer::Update() {
+update_status ModulePlayer::Update(){
 
 	int speed = 2;
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && PROTA.x < (SCREEN_WIDTH - PROTA.w)) {
+	if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && PROTA.x < (SCREEN_WIDTH - PROTA.w)){
 		PROTA.x += speed;
-		if (current_animation != &rightMov) {
+		if (current_animation != &rightMov){
 			rightMov.Reset();
 			current_animation = &rightMov;
 		}
 	}
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && PROTA.x > 0) {
 		PROTA.x -= speed;
-		if (current_animation != &leftMov) {
+		if (current_animation != &leftMov){
 			leftMov.Reset();
 			current_animation = &leftMov;
 		}
@@ -87,7 +86,7 @@ update_status ModulePlayer::Update() {
 	/// CORRECTOR DE LIMITS
 	if (PROTA.x < 0)
 		PROTA.x = 0;
-	if (PROTA.x >(SCREEN_WIDTH - PROTA.w))
+	if (PROTA.x > (SCREEN_WIDTH - PROTA.w))
 		PROTA.x = SCREEN_WIDTH - PROTA.w;
 	if (PROTA.y < 0)
 		PROTA.y = 0;
@@ -103,16 +102,17 @@ update_status ModulePlayer::Update() {
 
 	colPlayer1->SetPos(PROTA.x, PROTA.y);
 
-	/// Draw everything --------------------------------------
+	// POSIBLE CULPABLE DE TOT EM CAGON LA PUTA
+		/// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	App->render->Blit(graphics, PROTA.x, PROTA.y, &r);
-
+	
 	return UPDATE_CONTINUE;
 }
 
-bool ModulePlayer::CleanUp() {
+bool ModulePlayer::CleanUp(){
 	bool ret = true;
-
+	
 	App->textures->Unload(graphics);
 	App->player->Disable();
 

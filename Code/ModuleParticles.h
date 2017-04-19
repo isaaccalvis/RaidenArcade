@@ -7,11 +7,11 @@
 #include "p2Point.h"
 #include "ModuleCollision.h"
 
-#define MAX_ACTIVE_PARTICLES 200
+#define MAX_ACTIVE_PARTICLES 100
 
 struct SDL_Texture;
 struct Collider;
-enum COLLYDER_TYPE;
+enum COLLIDER_TYPE;
 
 struct Particle{
 	Collider* collider = nullptr;
@@ -55,4 +55,4 @@ public:
 	Particle HeavyExplosionLitle;
 };
 
-#endif // __MODULEPARTICLES_H__
+#endif

@@ -15,7 +15,6 @@ ModuleTextures::ModuleTextures() : Module(){
 ModuleTextures::~ModuleTextures(){}
 
 bool ModuleTextures::Init(){
-	LOG("Init Image library");
 	bool ret = true;
 
 	int flags = IMG_INIT_PNG;
@@ -30,7 +29,6 @@ bool ModuleTextures::Init(){
 }
 
 bool ModuleTextures::CleanUp(){
-	LOG("Freeing textures and Image library");
 	bool ret = true;
 	for(uint i = 0; i < MAX_TEXTURES; ++i)
 		if(textures[i] != nullptr)

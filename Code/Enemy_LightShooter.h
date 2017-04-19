@@ -1,7 +1,8 @@
-#ifndef __ENEMY_REDBIRD_H__
-#define __ENEMY_REDBIRD_H__
+#ifndef __ENEMY_LightShooter_H__
+#define __ENEMY_LightShooter_H__
 
 #include "Enemy.h"
+#include "ModuleEnemies.h"
 
 class Enemy_LightShooter : public Enemy{
 private:
@@ -13,6 +14,8 @@ private:
 public:
 	Enemy_LightShooter(int x, int y);
 	void Move();
+	void OnCollision(Collider* collider);
 	SDL_Texture* sprite;
+	void Draw(/*SDL_Texture* sprites*/);
 };
 #endif

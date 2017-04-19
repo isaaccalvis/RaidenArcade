@@ -8,7 +8,7 @@
 
 struct SDL_Texture;
 
-class ModulePlayer : public Module {
+class ModulePlayer : public Module{
 public:
 	ModulePlayer();
 	~ModulePlayer();
@@ -25,7 +25,7 @@ public:
 	bool destroyed = false;
 
 	Animation* current_animation = nullptr;
-	Animation idle;
+	Animation idle;	
 	Animation rightMov;
 	Animation leftMov;
 };

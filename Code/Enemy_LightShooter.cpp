@@ -2,6 +2,8 @@
 #include "Enemy_LightShooter.h"
 #include "ModuleCollision.h"
 #include "ModuleTextures.h"
+#include "ModuleRender.h"
+#include "ModuleCollision.h"
 
 Enemy_LightShooter::Enemy_LightShooter(int x, int y) : Enemy(x, y){
 
@@ -11,23 +13,24 @@ Enemy_LightShooter::Enemy_LightShooter(int x, int y) : Enemy(x, y){
 	animation = &lightShooterAnim;
 	collider = App->collision->AddCollider({ 0, 0, 24, 24 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	original_y = y;
+	vida = 1;
 }
 
+void Enemy_LightShooter::Draw(/*SDL_Texture* sprites*/) {
+	if (collider != nullptr)
+		collider->SetPos(position.x, position.y);
+	if (animation != nullptr)
+		App->render->Blit(App->enemies->sprite_LightShooter, position.x, position.y, &(animation->GetCurrentFrame()));
+}
 void Enemy_LightShooter::Move(){
-	/*
-	if (going_up){
-		if (wave > 1.0f)
-			going_up = false;
-		else
-			wave += 0.05f;
-	}
-	else{
-		if (wave < -1.0f)
-			going_up = true;
-		else
-			wave -= 0.05f;
-	}*/
+	position.y += 1;
+}
 
-//	position.y = original_y + (25.0f * sinf(wave));
-	position.x -= 1;
+void Enemy_LightShooter::OnCollision(Collider* collider) {
+	if (collider->type == COLLIDER_PLAYER_SHOT) {
+		print("LightShooter receiv damage\n");
+		vida--;
+	}
+
+	//vida -= dany;
 }

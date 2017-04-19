@@ -17,7 +17,9 @@ ModuleEnemies::ModuleEnemies(){
 ModuleEnemies::~ModuleEnemies(){}
 
 bool ModuleEnemies::Start(){
-	sprites = App->textures->Load("Sprites/Enemies/Stage_1/Light_Shooter.png");
+	sprite_LightShooter = App->textures->Load("Sprites/Enemies/Stage_1/Light_Shooter.png");
+	sprites2 = App->textures->Load("Sprites/Enemies/Stage_1/Tank.png");
+
 	return true;
 }
 
@@ -25,23 +27,23 @@ update_status ModuleEnemies::PreUpdate(){
 	// check camera position to decide what to spawn
 	for (uint i = 0; i < MAX_ENEMIES; ++i){
 		if (queue[i].type != ENEMY_TYPES::NO_TYPE){
-			if (queue[i].x * SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN){
+			if (queue[i].y * SCREEN_SIZE < App->render->camera.y + (App->render->camera.h * SCREEN_SIZE) + SPAWN_MARGIN){
 				SpawnEnemy(queue[i]);
 				queue[i].type = ENEMY_TYPES::NO_TYPE;
-				LOG("Spawning enemy at %d", queue[i].x * SCREEN_SIZE);
+				LOG("Spawning enemy at %d", queue[i].y * SCREEN_SIZE);
 			}
 		}
 	}
 	return UPDATE_CONTINUE;
 }
 
-update_status ModuleEnemies::Update(){
+update_status ModuleEnemies::Update() {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 		if (enemies[i] != nullptr) enemies[i]->Move();
 
-	for (uint i = 0; i < MAX_ENEMIES; ++i)
-		if (enemies[i] != nullptr) enemies[i]->Draw(sprites);
-
+	for (uint i = 0; i < MAX_ENEMIES; ++i) {
+		if (enemies[i] != nullptr)	enemies[i]->Draw(/*sprites*/);
+	}
 	return UPDATE_CONTINUE;
 }
 
@@ -49,8 +51,8 @@ update_status ModuleEnemies::PostUpdate(){
 	// check camera position to decide what to spawn
 	for (uint i = 0; i < MAX_ENEMIES; ++i){
 		if (enemies[i] != nullptr){
-			if (enemies[i]->position.x * SCREEN_SIZE < (App->render->camera.x) - SPAWN_MARGIN){
-				LOG("DeSpawning enemy at %d", enemies[i]->position.x * SCREEN_SIZE);
+			if (enemies[i]->position.y * SCREEN_SIZE > (App->render->camera.y + App->render->camera.h)){
+				LOG("DeSpawning enemy at %d", enemies[i]->position.y * SCREEN_SIZE);
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}
@@ -60,7 +62,8 @@ update_status ModuleEnemies::PostUpdate(){
 }
 
 bool ModuleEnemies::CleanUp(){
-	App->textures->Unload(sprites);
+	App->textures->Unload(sprite_LightShooter);
+	//App->textures->Unload(sprite_LightShooter); S'HAN DE DESTRUIR LES NOVES TEXTURES !!!!!!
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i){
 		if (enemies[i] != nullptr){
@@ -103,8 +106,10 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2){
 	for (uint i = 0; i < MAX_ENEMIES; ++i){
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1){
 			enemies[i]->OnCollision(c2);
-			delete enemies[i];
-			enemies[i] = nullptr;
+			if (enemies[i]->vida <= 0) {
+				delete enemies[i];
+				enemies[i] = nullptr;
+			}
 			break;
 		}
 	}
