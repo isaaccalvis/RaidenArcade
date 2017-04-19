@@ -50,8 +50,8 @@ bool ModulePlayer::Start() {
 		PROTA.y = SCREEN_HEIGHT / 2;
 	}
 	else {
-		PROTA.x = 50;
-		PROTA.y = SCREEN_HEIGHT / 2;
+		PROTA.x = 120;
+		PROTA.y = 189;
 	}
 	graphics = App->textures->Load("Sprites/Player/Players.png");
 	colPlayer1 = App->collision->AddCollider(PROTA, COLLIDER_PLAYER, this);
