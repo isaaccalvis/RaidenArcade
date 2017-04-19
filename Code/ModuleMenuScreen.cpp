@@ -24,6 +24,14 @@ ModuleMenuScreen::ModuleMenuScreen() {
 	Main_Menu.speed = 0.5f;
 	Main_Menu.loop = false;
 
+	Transition.PushBack({ 0,0,223,255 });
+	Transition.PushBack({ 225,0,223,255 });
+	Transition.PushBack({ 450,0,223,255 });
+	Transition.PushBack({ 675,0,223,255 });
+	Transition.PushBack({ 0,257,223,255 });
+	Transition.PushBack({ 225,257,223,255 });
+	Transition.PushBack({ 450,257,223,255 });
+	Transition.PushBack({ 675,257,223,255 });
 	Transition.PushBack({ 675,257,223,255 });
 	Transition.PushBack({ 450,257,223,255 });
 	Transition.PushBack({ 450,257,223,255 });
@@ -32,14 +40,6 @@ ModuleMenuScreen::ModuleMenuScreen() {
 	Transition.PushBack({ 450,0,223,255 });
 	Transition.PushBack({ 225,0,223,255 });
 	Transition.PushBack({ 0,0,223,255 });
-	Transition.PushBack({0,0,223,255});
-	Transition.PushBack({ 225,0,223,255 });
-	Transition.PushBack({ 450,0,223,255 });
-	Transition.PushBack({ 675,0,223,255 });
-	Transition.PushBack({ 0,257,223,255 });
-	Transition.PushBack({ 225,257,223,255 });
-	Transition.PushBack({ 450,257,223,255 });
-	Transition.PushBack({ 675,257,223,255 });
 	Transition.speed = 0.5f;
 	Transition.loop = false;
 

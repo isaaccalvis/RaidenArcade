@@ -35,8 +35,8 @@ update_status ModuleBullets::Update() {
 			App->particles->bullet.life = 1000;
 			iPoint vel(0, -4);
 			App->particles->bullet.speed = vel;
-			App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2.38) + 2, App->player->PROTA.y - App->player->PROTA.h);
-			App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2.38) - 2, App->player->PROTA.y - App->player->PROTA.h);
+			App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2.38) + 2, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+			App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2.38) - 2, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
 		}
 		else if (powerUpLevelPlayer1 == 2) {
 			App->particles->bullet.life = 1000;
@@ -44,11 +44,11 @@ update_status ModuleBullets::Update() {
 			iPoint velR(2, -4);
 			iPoint velL(-2, -4);
 			App->particles->bullet.speed = velL;
-			App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2.38) - 2, App->player->PROTA.y - App->player->PROTA.h);
+			App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2.38) - 2, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
 			App->particles->bullet.speed = vel;
-			App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2.38) + 2, App->player->PROTA.y - App->player->PROTA.h);
+			App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2.38) + 2, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
 			App->particles->bullet.speed = velR;
-			App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2.38) - 2, App->player->PROTA.y - App->player->PROTA.h);
+			App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2.38) - 2, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
 		}
 	}
 
@@ -57,7 +57,7 @@ update_status ModuleBullets::Update() {
 		App->particles->bullet.life = 2000;
 		iPoint vel(0, -4);
 		App->particles->bullet.speed = vel;
-		App->particles->AddParticle(App->particles->bullet, App->player2->PROTA2.x + (App->player2->PROTA2.w / 2.38), App->player2->PROTA2.y - App->player2->PROTA2.h);
+		App->particles->AddParticle(App->particles->bullet, App->player2->PROTA2.x + (App->player2->PROTA2.w / 2.38), App->player2->PROTA2.y, COLLIDER_PLAYER_SHOT);
 	}
 	App->music->DescargarFX(FX_DISPARAR);
 
