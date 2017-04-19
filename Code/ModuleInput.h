@@ -7,7 +7,8 @@
 
 #define MAX_KEYS 300
 
-enum KEY_STATE{
+enum KEY_STATE
+{
 	KEY_IDLE = 0,
 	KEY_DOWN,
 	KEY_REPEAT,
@@ -29,6 +30,7 @@ public:
 
 public:
 	KEY_STATE keyboard[MAX_KEYS];
+	//const Uint8 *keyboard = nullptr;
 };
 
 #endif

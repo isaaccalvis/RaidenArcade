@@ -3,11 +3,12 @@
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
+#include "SDL/include/SDL.h"
 #include "ModulePlayer.h"
 #include "ModuleBackground.h"
 #include "ModuleBackGround2.h"
 #include "ModuleMenuScreen.h"
-#include "SDL/include/SDL.h"
+#include <stdio.h>
 
 ModuleRender::ModuleRender() : Module(){
 	camera.x = -(SCREEN_WIDTH / 2);
@@ -38,24 +39,24 @@ update_status ModuleRender::PreUpdate(){
 }
 
 update_status ModuleRender::Update() {
-	//if (App->menuScreen->IsEnabled() == false) {
-	//	int speed = 3;
-	//	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
-	//		if (camera.x < 0)
-	//			camera.x += speed;
+	if (App->menuScreen->IsEnabled() == false) {
+		int speed = 3;
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+			if (camera.x < 0)
+				camera.x += speed;
 
-	//	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
-	//		if ((camera.x - camera.w) > -SCREEN_WIDTH * 3)
-	//			camera.x -= speed;
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+			if ((camera.x - camera.w) > -SCREEN_WIDTH * 3)
+				camera.x -= speed;
 
-	//	if (camera.x > 0)
-	//		camera.x = 0;
-	//	if ((camera.x - camera.w) > SCREEN_WIDTH)
-	//		camera.x = SCREEN_WIDTH - ORIGINAL_CAMERA_WEIGHT;
-	//	printf("%i  %i  %i\n", camera.x, camera.x - camera.w, -SCREEN_WIDTH * 3);
-		return update_status::UPDATE_CONTINUE;
+		if (camera.x > 0)
+			camera.x = 0;
+		if ((camera.x - camera.w) > SCREEN_WIDTH)
+			camera.x = SCREEN_WIDTH - ORIGINAL_CAMERA_WEIGHT;
+		printf("%i  %i  %i\n", camera.x, camera.x - camera.w, -SCREEN_WIDTH * 3);
 	}
-
+	return update_status::UPDATE_CONTINUE;
+}
 
 update_status ModuleRender::PostUpdate(){
 	SDL_RenderPresent(renderer);
@@ -63,17 +64,18 @@ update_status ModuleRender::PostUpdate(){
 }
 
 bool ModuleRender::CleanUp(){
+	bool ret = true;
 	if(renderer != NULL){
 		SDL_DestroyRenderer(renderer);
 	}
-	return true;
+	return ret;
 }
 
 bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed){
 	bool ret = true;
 	SDL_Rect rect;
-	rect.x = /*(int)(camera.x * speed) + */x * SCREEN_SIZE;
-	rect.y = /*(int)(camera.y * speed) +*/ y * SCREEN_SIZE;
+	rect.x = (int)(camera.x * speed) + x * SCREEN_SIZE;
+	rect.y = (int)(camera.y * speed) + y * SCREEN_SIZE;
 
 	if(section != NULL){
 		rect.w = section->w;
@@ -106,8 +108,8 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 
 	SDL_Rect rec(rect);
 	if (use_camera){
-		rec.x =/* (int)(-camera.x + */rect.x * SCREEN_SIZE;
-		rec.y =/* (int)(-camera.y + -*/rect.y * SCREEN_SIZE;
+		rec.x = (int)(-camera.x + rect.x * SCREEN_SIZE);
+		rec.y = (int)(-camera.y + rect.y * SCREEN_SIZE);
 		rec.w *= SCREEN_SIZE;
 		rec.h *= SCREEN_SIZE;
 	}

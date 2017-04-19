@@ -12,9 +12,11 @@ ModuleTextures::ModuleTextures() : Module(){
 		textures[i] = nullptr;
 }
 
-ModuleTextures::~ModuleTextures(){}
+ModuleTextures::~ModuleTextures()
+{}
 
 bool ModuleTextures::Init(){
+	LOG("Init Image library");
 	bool ret = true;
 
 	int flags = IMG_INIT_PNG;
@@ -29,6 +31,7 @@ bool ModuleTextures::Init(){
 }
 
 bool ModuleTextures::CleanUp(){
+	LOG("Freeing textures and Image library");
 	bool ret = true;
 	for(uint i = 0; i < MAX_TEXTURES; ++i)
 		if(textures[i] != nullptr)
@@ -59,7 +62,8 @@ SDL_Texture* const ModuleTextures::Load(const char* path){
 }
 
 
-bool ModuleTextures::Unload(SDL_Texture* texture){
+bool ModuleTextures::Unload(SDL_Texture* texture)
+{
 	bool ret = false;
 
 	for (uint i = 0; i < MAX_TEXTURES; ++i)
@@ -72,5 +76,6 @@ bool ModuleTextures::Unload(SDL_Texture* texture){
 			break;
 		}
 	}
+
 	return ret;
 }

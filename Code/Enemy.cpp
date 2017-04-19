@@ -24,5 +24,5 @@ void Enemy::Draw(SDL_Texture* sprites){
 }
 
 void Enemy::OnCollision(Collider* collider){
-	print("coMal\n");
+	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
 }

@@ -20,4 +20,4 @@ public:
 	int powerUpLevelPlayer1;
 	int powerUpLevelPlayer2;
 };
-#endif
+#endif // !1

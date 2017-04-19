@@ -9,26 +9,24 @@
 #include "ModuleMenuScreen.h"
 #include "ModuleMusic.h"
 #include "p2Point.h"
-#include "ModuleEnemies.h"
 
 #define MAP_HEIGHT 3265
 
 int posBackGround = -MAP_HEIGHT;
 int speedBackGround = 2;
 
-ModuleBackground::ModuleBackground() {
+ModuleBackground::ModuleBackground(){
 	ground.x = 352;
 	ground.y = 5;
 	ground.w = 353;
-	ground.h = MAP_HEIGHT;
+	ground.h = 3265;
 
 	background.x = 0;
 	background.y = -1;
 	background.w = 352;
 	background.h = MAP_HEIGHT;
 
-	//vacas
-	{
+
 	PosCow1.x = 100;
 	PosCow1.y = 2210;
 
@@ -85,31 +83,33 @@ ModuleBackground::ModuleBackground() {
 	cowboys.PushBack({ 37, 422, 14, 16 });
 	cowboys.PushBack({ 72, 422, 14, 16 });
 	cowboys.speed = 0.15;
-}
+	
 
 }
 
 ModuleBackground::~ModuleBackground(){}
 
 bool ModuleBackground::Start(){
-	bool ret = true;
-	posBackGround = -MAP_HEIGHT;
 
+	LOG("Loading background assets");
+	bool ret = true;
 	graphics = App->textures->Load("Sprites/TileMaps/Nivel_1_Tilemap.png");
+	
 	cows = App->textures->Load("Sprites/Extras/Cows.png");
+
 	App->music->CargarMusica(MUSICA_NIVEL_1);
+
 	App->background->Enable();
 	return ret;
 }
 
-update_status ModuleBackground::Update() {
+update_status ModuleBackground::Update(){
 	App->render->CleanRender();
 	App->render->Blit(graphics, 0, posBackGround + SCREEN_HEIGHT, &background);
 	App->render->Blit(graphics, 0, posBackGround + SCREEN_HEIGHT, &ground);
 	posBackGround += speedBackGround;
 
-	// vacas
-	{
+
 	// Vacas
 	Animation* current_animation = &cow1;
 	SDL_Rect r = current_animation->GetCurrentFrame();
@@ -139,16 +139,19 @@ update_status ModuleBackground::Update() {
 	// Cowboys
 	Animation* current_animation7 = &cowboys;
 	SDL_Rect r7 = current_animation7->GetCurrentFrame();
-
-	//PosCowboys.x -= 0.00000000000001;
 	App->render->Blit(cows, PosCowboys.x, posBackGround + PosCowboys.y, &r7);
-}
+	
+
+
+
 
 	if (App->input->keyboard[SDL_SCANCODE_9] == KEY_STATE::KEY_DOWN) {
 		App->fade->FadeToBlack(this, App->background2, 1);
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_0] == KEY_STATE::KEY_DOWN) {
+		App->background->Disable();
+		App->background2->Disable();
 		App->menuScreen->Enable();
 		App->menuScreen->selectorScreen(Game_Over_Screen);
 	}

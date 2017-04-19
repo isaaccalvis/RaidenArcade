@@ -2,24 +2,28 @@
 #define __ModuleEnemies_H__
 
 #include "Module.h"
-#include "Enemy_LightShooter.h"
+//#include "Enemy_RedBird.h"
 
-#define MAX_ENEMIES 20
+#define MAX_ENEMIES 100
 
-enum ENEMY_TYPES{
+enum ENEMY_TYPES
+{
 	NO_TYPE,
-	LIGHT_SHOOTER
+	REDBIRD,
 };
 
 class Enemy;
 
-struct EnemyInfo{
+struct EnemyInfo
+{
 	ENEMY_TYPES type = ENEMY_TYPES::NO_TYPE;
 	int x, y;
 };
 
-class ModuleEnemies : public Module{
+class ModuleEnemies : public Module
+{
 public:
+
 	ModuleEnemies();
 	~ModuleEnemies();
 
@@ -29,15 +33,18 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
+
 	bool AddEnemy(ENEMY_TYPES type, int x, int y);
 
 private:
+
 	void SpawnEnemy(const EnemyInfo& info);
 
 private:
+
 	EnemyInfo queue[MAX_ENEMIES];
 	Enemy* enemies[MAX_ENEMIES];
 	SDL_Texture* sprites;
 };
 
-#endif
+#endif // __ModuleEnemies_H__

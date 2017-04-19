@@ -14,7 +14,8 @@
 int posBackGround2 = -MAP_HEIGHT;
 int speedBackGround2 = 2;
 
-ModuleBackground2::ModuleBackground2(){
+ModuleBackground2::ModuleBackground2()
+{
 	ground.x = 352;
 	ground.y = 0;
 	ground.w = 352;
@@ -32,10 +33,13 @@ ModuleBackground2::ModuleBackground2(){
 ModuleBackground2::~ModuleBackground2() {}
 
 bool ModuleBackground2::Start() {
+	
+	LOG("Loading background assets");
 	bool ret = true;
-	posBackGround2 = -MAP_HEIGHT;
 	graphics2 = App->textures->Load("Sprites/TileMaps/Nivel_2_Tilemap.png");
+	
 	App->background2->Enable();
+
 	App->music->CargarMusica(MUSICA_NIVEL_2);
 
 	return ret;
