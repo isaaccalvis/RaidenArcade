@@ -150,7 +150,7 @@ update_status ModuleBackground::Update() {
 
 	if (App->input->keyboard[SDL_SCANCODE_0] == KEY_STATE::KEY_DOWN) {
 		App->menuScreen->Enable();
-		App->menuScreen->selectorScreen(GameOverScreen);
+		App->menuScreen->selectorScreen(Game_Over_Screen);
 	}
 
 	return UPDATE_CONTINUE;
