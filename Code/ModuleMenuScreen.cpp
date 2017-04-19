@@ -19,9 +19,15 @@ ModuleMenuScreen::ModuleMenuScreen() {
 	MenuScreenRect.w = 223;
 	MenuScreenRect.h = 255;
 	
-	Main_Menu.PushBack({ 0,0,223,255 });
-	Main_Menu.speed = 0.5f;
-	Main_Menu.loop = false;
+	MainMenu.PushBack({ 0,0,223,255 });
+	MainMenu.speed = 0.5f;
+	MainMenu.loop = false;
+
+	GameOver.PushBack({ 0,0,223,255 });
+
+
+	MainMenu.speed = 0.1f;
+	MainMenu.loop = false;
 
 	Transition.PushBack({ 675,257,223,255 });
 	Transition.PushBack({ 450,257,223,255 });
@@ -47,7 +53,8 @@ ModuleMenuScreen::~ModuleMenuScreen() {}
 
 bool ModuleMenuScreen::Start() {
 	MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Start_Screen.png");
-	current_animation = &Main_Menu;
+
+	current_animation = &MainMenu;
 	return true;
 }
 
@@ -58,18 +65,35 @@ bool ModuleMenuScreen::selectorScreen(MenuScreenNames name) {
 		App->player->Disable();
 		App->bullet->Disable();
 		MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Players_Screen.png");
-		current_animation = &Main_Menu;
+		current_animation = &MainMenu;
 
 	break;
 	case Game_Over_Screen:
+
 		App->player->Disable();
 		App->bullet->Disable();
 		App->render->MoveCameraToCenter();
-		MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Continue_Screen.png");
-		current_animation = &Main_Menu;
+		
+		MenuScreenGameOver = App->textures->Load("Sprites/MenuImages/Texture_Game_Over.png");
+		current_animation = &GameOver;
 		App->music->CargarMusica(MUSICA_GAME_CONTINUE);
-	break;
+
+			if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN) {
+
+				//que heliga yes
+
+			}
+
+			if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN) {
+
+				//que elija no
+			}
+
+		
+
+		break;
 	}
+
 	return ret;
 }
 

@@ -9,7 +9,8 @@ private:
 	bool going_down = true;
 	bool going_up = false;
 	int original_y = 0;
-	Animation lightShooterAnim;
+	Animation LightShooterAnim;
+	Animation LightShooterHelix;
 
 public:
 	Enemy_LightShooter(int x, int y);

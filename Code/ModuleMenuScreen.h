@@ -26,10 +26,12 @@ public:
 public:
 
 	SDL_Texture* MenuScreenTexture = nullptr;
+	SDL_Texture* MenuScreenGameOver= nullptr;
 	Animation* 	current_animation;// &pantallaIniciAnim;
 	SDL_Rect MenuScreenRect;
-	Animation Main_Menu;
+	Animation MainMenu;
 	Animation Transition;
+	Animation GameOver;
 };
 
 #endif
