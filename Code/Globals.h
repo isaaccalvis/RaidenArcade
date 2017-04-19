@@ -1,5 +1,6 @@
 #ifndef __GLOBALS_H__
 #define __GLOBALS_H__
+#include "stdio.h"
 
 #define LOG(format, ...) log(__FILE__, __LINE__, format, __VA_ARGS__);
 void log(const char file[], int line, const char* format, ...);
@@ -28,7 +29,11 @@ typedef unsigned int uint;
 #define WIN_BORDERLESS 0
 #define WIN_RESIZABLE 0
 #define REN_VSYNC 1
-#define ORIGINAL_CAMERA_WEIGHT (223 * SCREEN_SIZE)
-#define ORIGINAL_CAMERA_HEIGHT (255 * SCREEN_SIZE)
+//#define ORIGINAL_CAMERA_WEIGHT (223 * SCREEN_SIZE)
+//#define ORIGINAL_CAMERA_HEIGHT (255 * SCREEN_SIZE)
+#define ORIGINAL_CAMERA_WEIGHT 351 * 3
+#define ORIGINAL_CAMERA_HEIGHT 256 * 3
+
+#define print printf
 
 #endif
