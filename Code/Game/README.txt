@@ -1,7 +1,5 @@
 **Raiden 0.4**
-
-- Start Players Screen : SPACE
-- Start 1 Player Raiden: 1
+- Star 1 Player Raiden: 1
 - Start 2 Players Raiden: 2
 - Change map: 9
 - Finish screen: 0
@@ -11,6 +9,8 @@
  * Movement: WASD
  * Shoot: SPACE
  * Power UP/DOWN: E/Q
+
+
 
 - Player Two:
 

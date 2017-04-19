@@ -12,6 +12,7 @@ class ModulePlayer : public Module{
 public:
 	ModulePlayer();
 	~ModulePlayer();
+
 	bool Start();
 	update_status Update();
 	bool CleanUp();
@@ -19,14 +20,14 @@ public:
 
 public:
 	SDL_Texture* graphics = nullptr;
-	Animation* current_animation = nullptr;
-	Animation idle;	
-	Animation rightMov, rightMov2;
-	Animation leftMov, leftMov2;
-	//iPoint position;
 	SDL_Rect PROTA;
 	Collider* colPlayer1;
 	bool destroyed = false;
+
+	Animation* current_animation = nullptr;
+	Animation idle;	
+	Animation rightMov;
+	Animation leftMov;
 };
 
 #endif

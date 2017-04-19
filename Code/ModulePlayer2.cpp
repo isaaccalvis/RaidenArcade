@@ -6,19 +6,14 @@
 #include "ModuleRender.h"
 #include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
-#include <iostream>
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModulePlayer2::ModulePlayer2() {
 	current_animation = NULL;
-	//position.x = 100;
-	//position.y = 220;
+
 	PROTA2.x = 200;
 	PROTA2.y = 220;
 	PROTA2.w = 26;
 	PROTA2.h = 30;
-
-
 
 	idle.PushBack({ 308, 19, 24, 34 });
 	idle.PushBack({ 308, 61, 24, 34 });
@@ -28,7 +23,6 @@ ModulePlayer2::ModulePlayer2() {
 	rightMov.PushBack({ 341,61,21,34 });
 	rightMov.PushBack({ 375,19,16,34 });
 	rightMov.PushBack({ 375,61,16,34 });
-
 	rightMov.loop = false;
 	rightMov.speed = 0.4;
 
@@ -36,8 +30,6 @@ ModulePlayer2::ModulePlayer2() {
 	leftMov.PushBack({ 278,61,21,34 });
 	leftMov.PushBack({ 244,19,21,34 });
 	leftMov.PushBack({ 244,61,21,34 });
-
-
 	leftMov.loop = false;
 	leftMov.speed = 0.4;
 }
@@ -86,9 +78,6 @@ update_status ModulePlayer2::Update() {
 	if (PROTA2.y > SCREEN_HEIGHT)
 		PROTA2.y = SCREEN_HEIGHT;
 
-	std::cout << App->render->camera.y << " :: " << PROTA2.y << std::endl;
-	std::cout << App->render->camera.x << " :: " << PROTA2.x << std::endl;
-
 	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE
 		&& App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_IDLE)
 		current_animation = &idle;
@@ -101,12 +90,9 @@ update_status ModulePlayer2::Update() {
 	return UPDATE_CONTINUE;
 }
 
-bool ModulePlayer2::CleanUp()
-{
-	LOG("Unloading player");
-	bool ret = true;
+bool ModulePlayer2::CleanUp(){
+	LOG("Unloading player 2");
 	App->textures->Unload(graphics);
 	App->player2->Disable();
-
-	return ret;
+	return true;
 }
