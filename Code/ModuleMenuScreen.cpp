@@ -12,7 +12,6 @@
 #include "ModulePlayer.h"
 #include "ModuleMusic.h"
 #include "Animation.h"
-int i = 0;
 
 ModuleMenuScreen::ModuleMenuScreen() {
 	MenuScreenRect.x = 0;
@@ -45,7 +44,7 @@ ModuleMenuScreen::ModuleMenuScreen() {
 
 }
 ModuleMenuScreen::~ModuleMenuScreen() {}
-
+int Player_Menus = 0;
 bool ModuleMenuScreen::Start() {
 	MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Start_Screen.png");
 	App->menuScreen->Enable();
@@ -81,25 +80,28 @@ bool ModuleMenuScreen::selectorScreen(MenuScreenNames name) {
 	}
 	return ret;
 }
+
+
 update_status ModuleMenuScreen::Update() {
 	App->render->CleanRender();
 	App->render->Blit(MenuScreenTexture,59/*Aquest 59 s'ha de canviar per una funcio*/, 0, &MenuScreenRect);
 	MenuScreenRect = current_animation->GetCurrentFrame();
+
 	
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 		App->menuScreen->Enable();
 		App->menuScreen->selectorScreen(Players_Screen);
-		i = 1;
+		Player_Menus = 1;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN && i == 1) {
+	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN && Player_Menus == 1) {
 		MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Loading_Screen.png");
 		current_animation = &Transition;
 		App->fade->FadeToBlack(this, App->background, 2.5f);
 		App->player2->Disable();
 		App->player2->jugador2Activat = false;
 	}
-	else if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN && i == 1) {
+	else if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN && Player_Menus == 1) {
 		MenuScreenTexture = App->textures->Load("Sprites/MenuImages/Loading_Screen.png");
 		current_animation = &Transition;
 		App->fade->FadeToBlack(this, App->background, 2.5f);
