@@ -15,12 +15,12 @@
 
 ModuleBackground::ModuleBackground(){
 	ground.x = 352;
-	ground.y = 5;
+	ground.y = 0;
 	ground.w = 353;
 	ground.h = MAP_HEIGHT;
 
 	background.x = 0;
-	background.y = -1;
+	background.y = 0;
 	background.w = 352;
 	background.h = MAP_HEIGHT;
 	//vacas
