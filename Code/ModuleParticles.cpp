@@ -22,7 +22,7 @@ bool ModuleParticles::Start(){
 
 bool ModuleParticles::CleanUp(){
 	LOG("Unloading particles");
-	App->textures->Unload(graphics);
+	App->textures->Unload(bullets_sprite);
 
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i){
 		if (active[i] != nullptr){
@@ -46,7 +46,7 @@ update_status ModuleParticles::Update(){
 			active[i] = nullptr;
 		}
 		else if (SDL_GetTicks() >= p->born){
-			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+			App->render->Blit(bullets_sprite, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
 			if (p->fx_played == false){
 				p->fx_played = true;
 			}
@@ -73,10 +73,14 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 
 
 void ModuleParticles::loadParticlesTextures() {
-	graphics = App->textures->Load("Sprites/Player/Player_Bullets.png");
+	bullets_sprite = App->textures->Load("Sprites/Player/Player_Bullets.png");
 	bullet.anim.PushBack({ 138,288, 6,7 });
 	bullet.anim.loop = true;
 	bullet.anim.speed = 1;
+	explosions_Sprite = App->textures->Load("Sprites/Player/Player_Bullets.png");
+	bullet.anim.PushBack({ 138,288, 6,7 });
+	bullet.anim.loop = true;
+	bullet.anim.speed = 0;
 
 }
 

@@ -19,5 +19,8 @@ public:
 public:
 	int powerUpLevelPlayer1;
 	int powerUpLevelPlayer2;
+	bool bombOn = false;
+	int current_time;
+
 };
 #endif

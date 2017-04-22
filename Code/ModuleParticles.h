@@ -43,11 +43,13 @@ public:
 
 private:
 
-	SDL_Texture* graphics = nullptr;
+	SDL_Texture* bullets_sprite = nullptr;
+	SDL_Texture* explosions_Sprite = nullptr;
 	Particle* active[MAX_ACTIVE_PARTICLES];
 
 public:
 	Particle bullet;
+	Particle bomb;
 	Particle enemyBulletBasic;
 	Particle enemyBulletDisk;
 	Particle LightExplosion;

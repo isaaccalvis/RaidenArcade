@@ -13,5 +13,7 @@ public:
 	void Move();
 	void OnCollision(Collider* collider);
 	void Draw(/*SDL_Texture* sprites*/);
+	float deltaY;
+	float deltaX;
 };
 #endif

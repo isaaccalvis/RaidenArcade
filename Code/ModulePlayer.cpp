@@ -12,6 +12,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleMenuScreen.h"
 
+#include "SDL\include\SDL_timer.h"
 ModulePlayer::ModulePlayer(){
 	current_animation = NULL;
 	PROTA.w = 24;
@@ -62,14 +63,16 @@ bool ModulePlayer::Start(){
 update_status ModulePlayer::Update(){
 
 	int speed = 2;
-	if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT && PROTA.x < (SCREEN_WIDTH - PROTA.w)){
+	if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT ){
+		if (PROTA.x < (SCREEN_WIDTH - PROTA.w))
 		PROTA.x += speed;
 		if (current_animation != &rightMov){
 			rightMov.Reset();
 			current_animation = &rightMov;
 		}
 	}
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT && PROTA.x > 0) {
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT ) {
+		if (PROTA.x >(0))
 		PROTA.x -= speed;
 		if (current_animation != &leftMov){
 			leftMov.Reset();
@@ -98,7 +101,7 @@ update_status ModulePlayer::Update(){
 		App->enemies->AddEnemy(POWER_UP, PROTA.x, 0);
 		
 	/// CORRECTOR DE LIMITS
-	if (PROTA.x < 0)
+	if (PROTA.x < (0))
 		PROTA.x = 0;
 	if (PROTA.x > (SCREEN_WIDTH - PROTA.w))
 		PROTA.x = SCREEN_WIDTH - PROTA.w;
@@ -116,11 +119,16 @@ update_status ModulePlayer::Update(){
 
 	colPlayer1->SetPos(PROTA.x, PROTA.y);
 
-	// POSIBLE CULPABLE DE TOT EM CAGON LA PUTA
 		/// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	App->render->Blit(graphics, PROTA.x, PROTA.y, &r);
 	
+	// Restaurado de quan et fots una hostia
+	if (destroyed == true) {
+		if (SDL_TICKS_PASSED(SDL_GetTicks(), current_time)) {
+			destroyed = false;
+		}
+	}
 	return UPDATE_CONTINUE;
 }
 
@@ -134,6 +142,13 @@ bool ModulePlayer::CleanUp(){
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
-	if (c2->type == COLLIDER_TYPE::COLLIDER_ENEMY)
-		App->menuScreen->Enable();
+	if (c2->type == COLLIDER_TYPE::COLLIDER_ENEMY && destroyed == false) {
+		videsP1--;
+		if (videsP1 < 0)
+			App->menuScreen->Enable();
+		else {
+			current_time = SDL_GetTicks() + 1200;
+			destroyed = true;
+		}
+	}
 }

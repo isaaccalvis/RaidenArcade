@@ -7,6 +7,7 @@
 #include "ModuleParticles.h"
 #include "ModuleRender.h"
 #include "ModuleMusic.h"
+#include "SDL\include\SDL_timer.h"
 
 #define MAX_POWERUP 3
 ModuleBullets::ModuleBullets() {}
@@ -14,6 +15,7 @@ ModuleBullets::~ModuleBullets(){}
 iPoint vel(0, -4);
 iPoint velR(1, -4);
 iPoint velL(-1, -4);
+iPoint velNull(0, 0);
 bool ModuleBullets::Init() {
 	powerUpLevelPlayer1 = 0;
 	powerUpLevelPlayer2 = 0;
@@ -64,7 +66,19 @@ update_status ModuleBullets::Update() {
 		App->music->DescargarFX(FX_DISPARAR);
 	}
 
-	// BULLETS DEL JUGADOR 2
+	//if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN) {
+	//	bombOn = true;
+	//	current_time = SDL_GetTicks() + 400;
+	//}
+	//if (bombOn == true) {
+	//	if (SDL_TICKS_PASSED(SDL_GetTicks(), current_time)) {
+	//		App->particles->bomb.life = 500;
+	//		App->particles->bomb.speed = velNull;
+	//		App->particles->AddParticle(App->particles->bomb, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 2, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+	//		bombOn = false;
+	//	}
+	//}
+		// BULLETS DEL JUGADOR 2
 	if (App->input->keyboard[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN) {
 		App->music->CargarFX(FX_DISPARAR);
 

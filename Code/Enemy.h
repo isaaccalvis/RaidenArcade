@@ -7,7 +7,7 @@
 struct SDL_Texture;
 struct Collider;
 
-class Enemy{
+class Enemy {
 protected:
 	Animation* animation = nullptr;
 	Collider* collider = nullptr;
@@ -25,6 +25,8 @@ public:
 	virtual void Draw();
 	virtual void OnCollision(Collider* collider);
 	int fase = 0;
+
+		// SOME iPoints
 };
 
 #endif // __ENEMY_H__

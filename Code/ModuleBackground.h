@@ -32,7 +32,8 @@ public:
 	float speedBackGround;
 	int controlador_spawn_LightShooter;
 	int controlador_spawn_BonusPlane;
-	int controlador_spawn_box = 0;
+	int controlador_spawn_box;
+	int controlador_spawn_Turret;
 
 };
 

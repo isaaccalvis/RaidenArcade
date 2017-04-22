@@ -93,6 +93,7 @@ bool ModuleBackground::Start(){
 	controlador_spawn_LightShooter = 0;
 	controlador_spawn_BonusPlane = 0;
 	controlador_spawn_box = 0;
+	controlador_spawn_Turret = 0;
 	graphics = App->textures->Load("Sprites/TileMaps/Nivel_1_Tilemap.png");
 	cows = App->textures->Load("Sprites/Extras/Cows.png");
 	App->music->CargarMusica(MUSICA_NIVEL_1);
@@ -101,6 +102,27 @@ bool ModuleBackground::Start(){
 }
 
 update_status ModuleBackground::Update() {
+
+	{
+		if ((int)posBackGround == -1610 && controlador_spawn_Turret < 4) {
+			App->enemies->AddEnemy(TURRET, 320, 10);
+			controlador_spawn_Turret++;
+		}
+
+		else if ((int)posBackGround == -1690 && controlador_spawn_Turret < 3) {
+			App->enemies->AddEnemy(TURRET, 120, 10);
+			controlador_spawn_Turret++;
+		}
+		else if ((int)posBackGround == -1740 && controlador_spawn_Turret < 2) {
+			App->enemies->AddEnemy(TURRET, 50, 0);
+			controlador_spawn_Turret++;
+		}
+
+		else if ((int)posBackGround == -1763 && controlador_spawn_Turret < 1) {
+			App->enemies->AddEnemy(TURRET, 10, 0);
+			controlador_spawn_Turret++;
+		}
+	}
 	// LightShooter Spawns
 	{
 		if ((int)posBackGround == -835 && controlador_spawn_LightShooter < 45) {

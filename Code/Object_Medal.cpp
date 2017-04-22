@@ -4,6 +4,8 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleBackground.h"
+
+#include "ModuleInput.h"
 Object_Medal::Object_Medal(int x, int y) : Enemy(x, y) {
 	Object_Medal_Animation.PushBack({ 119, 1, 8, 16 });
 	Object_Medal_Animation.speed = 0.2f;
