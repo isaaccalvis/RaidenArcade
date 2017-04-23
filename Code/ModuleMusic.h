@@ -3,22 +3,17 @@
 #include "Module.h"
 #include "Application.h"
 #include "SDL_mixer\include\SDL_mixer.h"
-#pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
 
-#define MAX_MUSIC 8
-#define MAX_FX 10
+#define MAX_MUSIC 10
+#define MAX_FX 500
 
-enum nombreMusica {
-	MUSICA_NIVEL_1,
+enum MusicName {
+	MUSIC_LEVEL_1,
 	MUSICA_NIVEL_2,
 	MUSICA_NIVEL_3,
 	MUSICA_GAME_OVER,
 	MUSICA_GAME_CONTINUE,
 	MUSICA_STAGE_CLEAR
-};
-enum nombreFX {
-	FX_DISPARAR,
-	FX_INTRODUCIR_MONEDA
 };
 
 class ModuleMusic : public Module {
@@ -27,17 +22,21 @@ public:
 	~ModuleMusic();
 
 	bool Init();
-	update_status Update();
 	bool CleanUp();
-	
-	bool CargarMusica(nombreMusica nombreMusica);
-	bool DescargarMusica(nombreMusica nombreMusica);
-	bool CargarFX(nombreFX nombreFX);
-	bool DescargarFX(nombreFX nombreFX);
 
-public:
+	bool LoadMusic(MusicName musicName);
+	bool UnloadMusic(MusicName musicName);
+
+	uint LoadFX(const char* path);
+	bool PlayFX(uint FXname);
+	bool UnloadFX(uint FXname);
+
+private:
+
 	Mix_Music* MUSIC_IN_EXECUTION[MAX_MUSIC];
-	Mix_Chunk* FX_IN_EXECUTION[MAX_FX];
+	Mix_Chunk* fx[500];
+	uint ret = 0;
+	uint last_fx = 1;
 };
 
 #endif

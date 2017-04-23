@@ -39,11 +39,7 @@ public:
 	}
 
 	int IntCurrentFrame() {
-		return (int)current_frame;
-	}
-
-	void modifyCurrentFrame(float newFrame) {
-		current_frame = newFrame;
+		return last_frame;
 	}
 };
 

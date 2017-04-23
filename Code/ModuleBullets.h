@@ -12,6 +12,7 @@ public:
 	ModuleBullets();
 	~ModuleBullets();
 
+	bool Start();
 	bool Init();
 	update_status Update();
 	bool CleanUp();

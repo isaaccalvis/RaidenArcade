@@ -1,4 +1,3 @@
-
 #ifndef Enemy_BonusPlane_H
 #define Enemy_BonusPlane_H
 
@@ -11,7 +10,7 @@ private:
 	Animation Enemy_BonusPlane_Animation;
 
 	Path path;
-	fPoint original_pos;
+	iPoint original_pos;
 
 public:
 	Enemy_BonusPlane(int x, int y);

@@ -3,11 +3,14 @@
 
 #include "Enemy.h"
 #include "ModuleEnemies.h"
+#include "Path.h"
 
 class Object_PowerUp : public Enemy {
 private:
-	//int original_y = 0;
 	Animation Object_PowerUp_Animation;
+
+	Path path;
+	iPoint original_pos;
 
 public:
 	Object_PowerUp(int x, int y);

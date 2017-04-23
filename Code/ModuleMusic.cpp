@@ -2,77 +2,56 @@
 #include "Application.h"
 #include "Module.h"
 #include "ModuleMusic.h"
+#include "SDL\include\SDL.h"
+#include "SDL_mixer\include\SDL_mixer.h"
+
+#pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
 
 ModuleMusic::ModuleMusic() {}
 ModuleMusic::~ModuleMusic() {}
 
 bool ModuleMusic::Init() {
 	bool ret = true;
-	Mix_Init(MIX_INIT_OGG);
 
-	for (int i = 0; i < MAX_MUSIC; i++)
-		MUSIC_IN_EXECUTION[i] = nullptr;
-	for (int i = 0; i < MAX_FX; i++)
-		FX_IN_EXECUTION[i] = nullptr;
+	SDL_Init(0);
+	SDL_InitSubSystem(SDL_INIT_AUDIO);
+	Mix_Init(MIX_INIT_OGG);	
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
-	if (Mix_Init(MIX_INIT_OGG) < 0) {
-		LOG("Music Module can't Load");
-		ret = false;
-	}
-
-	MUSIC_IN_EXECUTION[MUSICA_NIVEL_1] = Mix_LoadMUS("Audio/Music/Stage_1-4.ogg");
-	MUSIC_IN_EXECUTION[MUSICA_NIVEL_2] = Mix_LoadMUS("Audio/Music/Stage_2-7.ogg");
-	MUSIC_IN_EXECUTION[MUSICA_GAME_OVER] = Mix_LoadMUS("Audio/Music/Continue.ogg");
-
 	return ret;
-}
-
-update_status ModuleMusic::Update() {
-	return UPDATE_CONTINUE;
 }
 
 bool ModuleMusic::CleanUp() {
 	bool ret = true;
-	for (int i = 0; i < MAX_MUSIC; i++)
-		Mix_FreeMusic(MUSIC_IN_EXECUTION[i]);
-	for (int i = 0; i < MAX_FX; i++)
-		Mix_FreeChunk(FX_IN_EXECUTION[i]);
-
+	Mix_CloseAudio();
+	Mix_Quit();
+	SDL_QuitSubSystem(SDL_INIT_AUDIO);
+	
 	return ret;
 }
 
-bool ModuleMusic::CargarMusica(nombreMusica nombreMusica) {
+bool ModuleMusic::LoadMusic(MusicName nombreMusica) {
 	bool ret = true;
 	switch (nombreMusica) {
-	case MUSICA_NIVEL_1:
-		//Mix_PlayMusic(MUSIC_IN_EXECUTION[nombreMusica], -1);
+	case MUSIC_LEVEL_1:
+		MUSIC_IN_EXECUTION[nombreMusica] = Mix_LoadMUS("Audio/Music/Stage_1-4.ogg");
+		Mix_PlayMusic(MUSIC_IN_EXECUTION[nombreMusica], -1);
 		break;
 	case MUSICA_NIVEL_2:
+		MUSIC_IN_EXECUTION[nombreMusica] = Mix_LoadMUS("Audio/Music/Stage_2-7.ogg");
 		Mix_PlayMusic(MUSIC_IN_EXECUTION[nombreMusica], -1);
 		break;
 	case MUSICA_GAME_CONTINUE:
+		MUSIC_IN_EXECUTION[nombreMusica] = Mix_LoadMUS("Audio/Music/Continue.ogg");
 		Mix_PlayMusic(MUSIC_IN_EXECUTION[nombreMusica], -1);
 		break;
 	}
 	return ret;
 }
-bool ModuleMusic::CargarFX(nombreFX nombreFX) {
-	switch (nombreFX) {
-	case FX_DISPARAR:
-		FX_IN_EXECUTION[nombreFX] = Mix_LoadWAV("Audio/Fx/Shot_1(bullet).wav");
-		Mix_PlayChannel(0, FX_IN_EXECUTION[FX_DISPARAR], 0);
 
-		break;
-	case FX_INTRODUCIR_MONEDA:
-
-		break;
-	}
-	return true;
-}
-bool ModuleMusic::DescargarMusica(nombreMusica nombreMusica) {
+bool ModuleMusic::UnloadMusic(MusicName nombreMusica) {
 	switch (nombreMusica) {
-	case MUSICA_NIVEL_1:
+	case MUSIC_LEVEL_1:
 		MUSIC_IN_EXECUTION[nombreMusica] = Mix_LoadMUS("Audio/Music/Stage_1-4.ogg");
 		Mix_FreeMusic(MUSIC_IN_EXECUTION[nombreMusica]);
 		MUSIC_IN_EXECUTION[nombreMusica] = NULL;
@@ -85,16 +64,40 @@ bool ModuleMusic::DescargarMusica(nombreMusica nombreMusica) {
 	}
 	return true;
 }
-bool ModuleMusic::DescargarFX(nombreFX nombreFX) {
-	switch (nombreFX) {
-	case FX_DISPARAR:
-		FX_IN_EXECUTION[nombreFX] = Mix_LoadWAV("Audio/Fx/Shot_1(bullet).wav");
-		Mix_FreeChunk(FX_IN_EXECUTION[nombreFX]);
-		FX_IN_EXECUTION[nombreFX] = NULL;
-		break;
-	case FX_INTRODUCIR_MONEDA:
 
-		break;
-	}
+uint ModuleMusic::LoadFX(const char* path) {
+
+	uint ret = 0;
+	Mix_Chunk* audio = Mix_LoadWAV(path);
+
+		if (audio == nullptr) {
+			LOG("Cannot load WAV.")
+		}
+		else {
+			fx[last_fx] = audio;
+			ret = last_fx;
+		}
+		last_fx++;
+	
+	return ret;
+}
+
+bool ModuleMusic::PlayFX(uint FXname) {
+	
+		Mix_PlayChannel(0, fx[FXname], 0);
+	
 	return true;
 }
+
+//bool ModuleMusic::UnloadFX(uint nombreFX) {
+//	bool ret = false;
+//
+//			if (fx[nombreFX] != nullptr) {
+//
+//				Mix_FreeChunk(fx[nombreFX]);
+//				fx[nombreFX] = nullptr;
+//				ret = true;
+//				last_fx--;
+//			}
+//	return true;
+//}

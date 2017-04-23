@@ -96,7 +96,7 @@ bool ModuleBackground::Start(){
 	controlador_spawn_Turret = 0;
 	graphics = App->textures->Load("Sprites/TileMaps/Nivel_1_Tilemap.png");
 	cows = App->textures->Load("Sprites/Extras/Cows.png");
-	App->music->CargarMusica(MUSICA_NIVEL_1);
+	App->music->LoadMusic(MUSIC_LEVEL_1);
 	App->background->Enable();
 	return ret;
 }
@@ -311,19 +311,19 @@ update_status ModuleBackground::Update() {
 	// BonusPlanes Spawns
 	{
 		if ((int)posBackGround == -690 && controlador_spawn_BonusPlane < 5) {
-			App->enemies->AddEnemy(BONUS_PLANE, 149, -10);
+			App->enemies->AddEnemy(BONUS_PLANE, 149, -30);
 			controlador_spawn_BonusPlane++;
 		}
 		else if ((int)posBackGround == -1050 && controlador_spawn_BonusPlane < 4) {
-			App->enemies->AddEnemy(BONUS_PLANE, 149, -10);
+			App->enemies->AddEnemy(BONUS_PLANE, 149, -30);
 			controlador_spawn_BonusPlane++;
 		}
 		else if ((int)posBackGround == -1689 && controlador_spawn_BonusPlane < 3) {
-			App->enemies->AddEnemy(BONUS_PLANE, 149, -10);
+			App->enemies->AddEnemy(BONUS_PLANE, 149, -30);
 			controlador_spawn_BonusPlane++;
 		}
 		else if ((int)posBackGround == -2210 && controlador_spawn_BonusPlane < 2) {
-			App->enemies->AddEnemy(BONUS_PLANE, 149, -10);
+			App->enemies->AddEnemy(BONUS_PLANE, 149, -30);
 			controlador_spawn_BonusPlane++;
 		}
 		else if ((int)posBackGround == -2932 && controlador_spawn_BonusPlane < 1) {
@@ -445,7 +445,7 @@ bool ModuleBackground::CleanUp() {
 	App->textures->Unload(graphics);
 	App->textures->Unload(cows);
 	App->background->Disable();
-	App->music->DescargarMusica(MUSICA_NIVEL_1);
+	App->music->UnloadMusic(MUSIC_LEVEL_1);
 	
 	return ret;
 }

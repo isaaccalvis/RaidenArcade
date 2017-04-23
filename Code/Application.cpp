@@ -47,6 +47,7 @@ bool Application::Init(){
 	background2->Disable();
 	player->Disable();
 	bullet->Disable();
+	music->Disable();
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
 

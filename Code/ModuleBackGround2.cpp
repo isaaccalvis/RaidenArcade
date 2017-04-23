@@ -37,7 +37,7 @@ bool ModuleBackground2::Start() {
 	posBackGround2 = -MAP_HEIGHT;
 	graphics2 = App->textures->Load("Sprites/TileMaps/Nivel_2_Tilemap.png");	
 	App->background2->Enable();
-	App->music->CargarMusica(MUSICA_NIVEL_2);
+	App->music->LoadMusic(MUSICA_NIVEL_2);
 
 	return ret;
 }
@@ -69,6 +69,6 @@ bool ModuleBackground2::CleanUp() {
 	bool ret = true;
 	App->textures->Unload(graphics2);
 	App->background2->Disable();
-	App->music->DescargarMusica(MUSICA_NIVEL_2);
+	App->music->UnloadMusic(MUSICA_NIVEL_2);
 	return ret;
 }

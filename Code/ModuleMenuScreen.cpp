@@ -67,6 +67,7 @@ bool ModuleMenuScreen::selectorScreen(MenuScreenNames name) {
 		App->player->Disable();
 		App->bullet->Disable();
 		App->collision->Disable();
+		App->music->Disable();
 		MenuScreenTexture = loading_sprite;
 		current_animation = &Transition;
 
@@ -76,6 +77,7 @@ bool ModuleMenuScreen::selectorScreen(MenuScreenNames name) {
 		App->player->Disable();
 		App->bullet->Disable();
 		App->collision->Disable();
+		App->music->Disable();
 		MenuScreenTexture = player_sprite;
 		current_animation = &MainMenu;
 		break;
@@ -87,7 +89,7 @@ bool ModuleMenuScreen::selectorScreen(MenuScreenNames name) {
 		App->render->MoveCameraToCenter();
 		MenuScreenTexture = gameOver_sprite;
 		current_animation = &GameOver;
-		App->music->CargarMusica(MUSICA_GAME_CONTINUE);
+		App->music->LoadMusic(MUSICA_GAME_CONTINUE);
 		Menu_Actual_Fase = 10;
 		break;
 	}
@@ -106,7 +108,7 @@ update_status ModuleMenuScreen::Update() {
 		print("%i %i %i \n", SDL_GetTicks(), current_time, current_animation->IntCurrentFrame());
 
 		if (SDL_TICKS_PASSED(SDL_GetTicks(), current_time)) {
-			App->background->Enable();
+			App->background->Disable();
 			MenuScreenTexture = raiden_sprite;
 			current_animation = &MainMenu;
 			Menu_Actual_Fase = 1;
