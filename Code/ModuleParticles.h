@@ -44,6 +44,7 @@ public:
 private:
 
 	SDL_Texture* bullets_sprite = nullptr;
+	SDL_Texture* enemy_Bullets_sprite = nullptr;
 	SDL_Texture* explosions_Sprite = nullptr;
 	Particle* active[MAX_ACTIVE_PARTICLES];
 
@@ -55,6 +56,7 @@ public:
 	Particle LightExplosion;
 	Particle HeavyExplosionBig;
 	Particle HeavyExplosionLitle;
+	Particle restOfBulletCollision;
 };
 
 #endif

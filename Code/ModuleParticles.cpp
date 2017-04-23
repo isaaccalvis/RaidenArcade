@@ -23,6 +23,8 @@ bool ModuleParticles::Start(){
 bool ModuleParticles::CleanUp(){
 	LOG("Unloading particles");
 	App->textures->Unload(bullets_sprite);
+	App->textures->Unload(enemy_Bullets_sprite);
+	App->textures->Unload(explosions_Sprite);
 
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i){
 		if (active[i] != nullptr){
@@ -77,11 +79,16 @@ void ModuleParticles::loadParticlesTextures() {
 	bullet.anim.PushBack({ 138,288, 6,7 });
 	bullet.anim.loop = true;
 	bullet.anim.speed = 1;
-	explosions_Sprite = App->textures->Load("Sprites/Player/Player_Bullets.png");
-	bullet.anim.PushBack({ 138,288, 6,7 });
-	bullet.anim.loop = true;
-	bullet.anim.speed = 0;
-
+	enemy_Bullets_sprite = App->textures->Load("Sprites/Enemies/Bullets.png");
+	enemyBulletBasic.anim.PushBack({ 0,0, 5,4 });
+	enemyBulletBasic.anim.PushBack({ 7,0, 5,4 });
+	enemyBulletBasic.anim.PushBack({ 14,0, 5,4 });
+	enemyBulletBasic.anim.loop = true;
+	enemyBulletBasic.anim.speed = 0;
+	explosions_Sprite = App->textures->Load("Sprites/Player/Player_Bomb.png");
+	restOfBulletCollision.anim.PushBack({ 34,250,60,60 });
+	restOfBulletCollision.anim.loop = true;
+	restOfBulletCollision.anim.speed = 0;
 }
 
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2){
