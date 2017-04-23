@@ -27,7 +27,7 @@ bool ModuleEnemies::Start(){
 	sprite_BasicTank = App->textures->Load("Sprites/Enemies/Stage_1/Tank.png");
 	sprite_Turret = App->textures->Load("Sprites/Enemies/Stage_1/Turret.png");
 	sprite_BonusPlane = App->textures->Load("Sprites/Enemies/Stage_1/Bonus_Airship.png");
-	//sprite_Box = App->textures->Load("");
+	sprite_Box = App->textures->Load("Sprites/Extras/Box.png");
 	sprite_Medal_PowerUp_Bonus = App->textures->Load("Sprites/Extras/Powerups_and_bonusues.png");
 	return true;
 }

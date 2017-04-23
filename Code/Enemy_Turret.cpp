@@ -36,9 +36,9 @@ Enemy_Turret::Enemy_Turret(int x, int y) : Enemy(x, y) {
 }
 
 void Enemy_Turret::Move() {
-	deltaY = (position.y + 15) - (App->player->PROTA.y  + App->player->PROTA.h);
-	deltaX = (position.x + 15) - (App->player->PROTA.x + App->player->PROTA.w);
-	float angle = atan2(deltaX, deltaY);
+	rectaY = (position.y + 15) - (App->player->PROTA.y  + App->player->PROTA.h);
+	rectaX = (position.x + 15) - (App->player->PROTA.x + App->player->PROTA.w);
+	float angle = atan2(rectaX, rectaY);
 	//if (angle > 0) {
 	//	if (angle < 0.375f)
 

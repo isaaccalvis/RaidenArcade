@@ -12,6 +12,7 @@
 #include "ModulePlayer.h"
 #include "ModuleMusic.h"
 #include "Animation.h"
+#include "ModuleEnemies.h"
 
 #include "SDL\include\SDL_timer.h"
 
@@ -105,10 +106,14 @@ update_status ModuleMenuScreen::Update() {
 
 	switch (Menu_Actual_Fase) {
 	case 0:
-		print("%i %i %i \n", SDL_GetTicks(), current_time, current_animation->IntCurrentFrame());
-
+		App->background->Disable();
+		App->player->Disable();
+		App->player2->Disable();
+		App->enemies->Disable();
 		if (SDL_TICKS_PASSED(SDL_GetTicks(), current_time)) {
+
 			App->background->Disable();
+
 			MenuScreenTexture = raiden_sprite;
 			current_animation = &MainMenu;
 			Menu_Actual_Fase = 1;
@@ -122,29 +127,39 @@ update_status ModuleMenuScreen::Update() {
 		break;
 	case 2:
 		if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN) {
-
 			current_time = SDL_GetTicks() + 1000;
 			MenuScreenTexture = loading_sprite;
 			current_animation = &Transition;
+			current_animation->Reset();
 			Menu_Actual_Fase = 3;
 		}
 		else if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN) {
+			current_time = SDL_GetTicks() + 1000;
 			MenuScreenTexture = loading_sprite;
 			current_animation = &Transition;
-			App->fade->FadeToBlack(this, App->background);
-			App->player2->Enable();
-			App->player2->Start();
-			App->player2->jugador2Activat = true;
+			current_animation->Reset();
+			Menu_Actual_Fase = 4;
 		}
 		break;
 	case 3:
-		print("%i %i %i \n", SDL_GetTicks(), current_time, current_animation->IntCurrentFrame());
-
 		if (SDL_TICKS_PASSED(SDL_GetTicks(), current_time)) {
 			App->fade->FadeToBlack(this, App->background); // Li treiem el temps al fade to black
 			App->player2->Disable();
 			App->player2->jugador2Activat = false;
+			Menu_Actual_Fase = 5;
 		}
+		break;
+	case 4:
+		if (SDL_TICKS_PASSED(SDL_GetTicks(), current_time)) {
+			App->fade->FadeToBlack(this, App->background); // Li treiem el temps al fade to black
+			App->player2->Enable();
+			//App->player2->Start();
+			App->player2->jugador2Activat = true;
+			Menu_Actual_Fase = 5;
+		}
+		break;
+	case 5:
+
 		break;
 	case 10:// game over
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
@@ -153,6 +168,12 @@ update_status ModuleMenuScreen::Update() {
 		}
 	}
 	return UPDATE_CONTINUE;
+}
+
+bool ModuleMenuScreen::CridaMenu() {
+	selectorScreen(Game_Over_Screen);
+	Menu_Actual_Fase = 10;
+	return true;
 }
 
 bool ModuleMenuScreen::CleanUp() {

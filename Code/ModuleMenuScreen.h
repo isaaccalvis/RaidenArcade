@@ -22,6 +22,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 	bool selectorScreen(MenuScreenNames name);
+	bool CridaMenu();
 
 public:
 	SDL_Texture* MenuScreenTexture = nullptr;

@@ -44,11 +44,9 @@ ModulePlayer2::~ModulePlayer2() {}
 bool ModulePlayer2::Start() {
 	puntuacioP2 = 0;
 	videsP2 = 3;
-	LOG("Loading player textures");
 	bool ret = true;
+	LOG("Loading player textures");
 	graphics = App->textures->Load("Sprites/Player/Players.png");
-	App->player2->Enable();
-	print("ca");
 	colPlayer2 = App->collision->AddCollider(PROTA2, COLLIDER_PLAYER2, this);
 	return ret;
 }

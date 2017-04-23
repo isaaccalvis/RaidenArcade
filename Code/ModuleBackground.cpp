@@ -434,7 +434,7 @@ update_status ModuleBackground::Update() {
 
 	if (App->input->keyboard[SDL_SCANCODE_0] == KEY_STATE::KEY_DOWN) {
 		App->menuScreen->Enable();
-		App->menuScreen->selectorScreen(Game_Over_Screen);
+		App->menuScreen->CridaMenu();
 	}
 
 	return UPDATE_CONTINUE;
