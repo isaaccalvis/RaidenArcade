@@ -12,6 +12,7 @@
 #include "Object_Box.h"
 #include "Object_Medal.h"
 #include "Object_PowerUp.h"
+#include "ModuleMusic.h"
 
 #define SPAWN_MARGIN 100
 
@@ -29,6 +30,8 @@ bool ModuleEnemies::Start(){
 	sprite_BonusPlane = App->textures->Load("Sprites/Enemies/Stage_1/Bonus_Airship.png");
 	sprite_Box = App->textures->Load("Sprites/Extras/Box.png");
 	sprite_Medal_PowerUp_Bonus = App->textures->Load("Sprites/Extras/Powerups_and_bonusues.png");
+
+
 	return true;
 }
 
@@ -50,7 +53,9 @@ update_status ModuleEnemies::Update() {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 		if (enemies[i] != nullptr) enemies[i]->Move();
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
-		if (enemies[i] != nullptr) enemies[i]->Draw();
+		if (enemies[i] != nullptr) enemies[i]->DrawDown();
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+		if (enemies[i] != nullptr) enemies[i]->DrawUp();
 	return UPDATE_CONTINUE;
 }
 
@@ -75,7 +80,11 @@ update_status ModuleEnemies::PostUpdate(){
 
 bool ModuleEnemies::CleanUp(){
 	App->textures->Unload(sprite_LightShooter);
-	//App->textures->Unload(sprite_LightShooter); S'HAN DE DESTRUIR LES NOVES TEXTURES !!!!!!
+	App->textures->Unload(sprite_BonusPlane);
+	App->textures->Unload(sprite_Turret);
+	App->textures->Unload(sprite_BasicTank);
+	App->textures->Unload(sprite_Box);
+	App->textures->Unload(sprite_Medal_PowerUp_Bonus);
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i){
 		if (enemies[i] != nullptr){

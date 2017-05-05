@@ -75,6 +75,9 @@ public:
 	void Reset(){
 		current_frame = 0;
 	}
+	int IntCurrentFrame() {
+		return current_frame;
+	}
 };
 
 #endif // __PATH_H__

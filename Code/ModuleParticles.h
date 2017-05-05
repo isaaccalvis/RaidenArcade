@@ -42,20 +42,16 @@ public:
 	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
 
 private:
-
-	SDL_Texture* bullets_sprite = nullptr;
-	SDL_Texture* enemy_Bullets_sprite = nullptr;
-	SDL_Texture* explosions_Sprite = nullptr;
+	SDL_Texture* particles_sprites = nullptr;
 	Particle* active[MAX_ACTIVE_PARTICLES];
 
 public:
 	Particle bullet;
 	Particle bomb;
 	Particle enemyBulletBasic;
-	Particle enemyBulletDisk;
 	Particle LightExplosion;
-	Particle HeavyExplosionBig;
-	Particle HeavyExplosionLitle;
+	Particle HeavyExplosion;
+	Particle LargeExplosion;
 	Particle restOfBulletCollision;
 };
 

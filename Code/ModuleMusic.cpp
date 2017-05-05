@@ -30,38 +30,19 @@ bool ModuleMusic::CleanUp() {
 	return ret;
 }
 
-bool ModuleMusic::LoadMusic(MusicName nombreMusica) {
+bool ModuleMusic::LoadMusic(const char* path) {
 	bool ret = true;
-	switch (nombreMusica) {
-	case MUSIC_LEVEL_1:
-		MUSIC_IN_EXECUTION[nombreMusica] = Mix_LoadMUS("Audio/Music/Stage_1-4.ogg");
-		Mix_PlayMusic(MUSIC_IN_EXECUTION[nombreMusica], -1);
-		break;
-	case MUSICA_NIVEL_2:
-		MUSIC_IN_EXECUTION[nombreMusica] = Mix_LoadMUS("Audio/Music/Stage_2-7.ogg");
-		Mix_PlayMusic(MUSIC_IN_EXECUTION[nombreMusica], -1);
-		break;
-	case MUSICA_GAME_CONTINUE:
-		MUSIC_IN_EXECUTION[nombreMusica] = Mix_LoadMUS("Audio/Music/Continue.ogg");
-		Mix_PlayMusic(MUSIC_IN_EXECUTION[nombreMusica], -1);
-		break;
-	}
+	
+	music = Mix_LoadMUS(path);
+	Mix_PlayMusic(music, -1);
+
 	return ret;
 }
 
-bool ModuleMusic::UnloadMusic(MusicName nombreMusica) {
-	switch (nombreMusica) {
-	case MUSIC_LEVEL_1:
-		MUSIC_IN_EXECUTION[nombreMusica] = Mix_LoadMUS("Audio/Music/Stage_1-4.ogg");
-		Mix_FreeMusic(MUSIC_IN_EXECUTION[nombreMusica]);
-		MUSIC_IN_EXECUTION[nombreMusica] = NULL;
-		break;
-	case MUSICA_NIVEL_2:
-		MUSIC_IN_EXECUTION[nombreMusica] = Mix_LoadMUS("Audio/Music/Stage_2-7.ogg");
-		Mix_FreeMusic(MUSIC_IN_EXECUTION[nombreMusica]);
-		MUSIC_IN_EXECUTION[nombreMusica] = NULL;
-		break;
-	}
+bool ModuleMusic::UnloadMusic() {
+	Mix_FreeMusic(music);
+	music = nullptr;
+	Mix_HaltMusic();
 	return true;
 }
 
@@ -75,29 +56,34 @@ uint ModuleMusic::LoadFX(const char* path) {
 		}
 		else {
 			fx[last_fx] = audio;
-			ret = last_fx;
+			ret = last_fx++;
+			if (last_fx == 500) {
+				last_fx = 0;
+				ret = last_fx;
+			}
 		}
-		last_fx++;
 	
 	return ret;
 }
 
 bool ModuleMusic::PlayFX(uint FXname) {
 	
+	if (fx[FXname] != nullptr) {
 		Mix_PlayChannel(0, fx[FXname], 0);
-	
+		ret = true;
+	}
 	return true;
 }
 
-//bool ModuleMusic::UnloadFX(uint nombreFX) {
-//	bool ret = false;
-//
-//			if (fx[nombreFX] != nullptr) {
-//
-//				Mix_FreeChunk(fx[nombreFX]);
-//				fx[nombreFX] = nullptr;
-//				ret = true;
-//				last_fx--;
-//			}
-//	return true;
-//}
+bool ModuleMusic::UnloadFX(uint nombreFX) {
+	bool ret = false;
+
+			if (fx[nombreFX] != nullptr) {
+
+				Mix_FreeChunk(fx[nombreFX]);
+				fx[nombreFX] = nullptr;
+				ret = true;
+				last_fx--;
+			}
+	return true;
+}

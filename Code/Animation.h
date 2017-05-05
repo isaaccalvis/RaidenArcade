@@ -39,7 +39,7 @@ public:
 	}
 
 	int IntCurrentFrame() {
-		return last_frame;
+		return current_frame;
 	}
 };
 

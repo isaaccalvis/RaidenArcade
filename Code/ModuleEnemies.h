@@ -2,9 +2,8 @@
 #define __ModuleEnemies_H__
 
 #include "Module.h"
-#include "Enemy_LightShooter.h"
 
-#define MAX_ENEMIES 20
+#define MAX_ENEMIES 500
 
 enum ENEMY_TYPES{
 	NO_TYPE,
@@ -43,6 +42,8 @@ public:
 	SDL_Texture* sprite_BonusPlane;
 	SDL_Texture* sprite_Box;
 	SDL_Texture* sprite_Medal_PowerUp_Bonus;
+
+
 
 private:
 	void SpawnEnemy(const EnemyInfo& info);

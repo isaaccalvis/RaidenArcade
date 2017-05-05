@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleInput.h"
+#include "ModuleBackground.h"
 #include "SDL/include/SDL.h"
 
 ModuleInput::ModuleInput() : Module(){
@@ -42,8 +43,10 @@ update_status ModuleInput::PreUpdate(){
 		}
 	}
 
-	if (keyboard[SDL_SCANCODE_ESCAPE])
+	if (keyboard[SDL_SCANCODE_ESCAPE]) {
+		App->background->CleanUp();
 		return update_status::UPDATE_STOP;
+	}
 	return update_status::UPDATE_CONTINUE;
 }
 

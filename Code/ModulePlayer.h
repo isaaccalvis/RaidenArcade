@@ -25,12 +25,22 @@ public:
 	SDL_Rect PROTA;
 	Collider* colPlayer1;
 	bool destroyed = false;
-	int videsP1;
-	int puntuacioP1;
+	bool potMoure;
+	bool GodMode = false;
+	uint videsP1;
+	uint puntuacioP1;
 	Animation* current_animation = nullptr;
 	Animation idle;	
 	Animation rightMov;
 	Animation leftMov;
+	Animation pDamaged;
+	Animation pDead;
+	Animation Despegar1;
+	Animation Despegar2;
+	Animation Despegar3;
+
+	int font_score = -1;
+	char score_text[10];
 };
 
 #endif

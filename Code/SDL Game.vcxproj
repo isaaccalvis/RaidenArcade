@@ -52,7 +52,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -74,6 +74,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="Object_Box.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy_BasicTank.h" />
@@ -105,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="ModuleFonts.cpp" />
     <ClCompile Include="Object_Box.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy_BasicTank.cpp" />

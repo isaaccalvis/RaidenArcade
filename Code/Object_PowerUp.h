@@ -10,12 +10,12 @@ private:
 	Animation Object_PowerUp_Animation;
 
 	Path path;
-	iPoint original_pos;
+	fPoint original_pos;
 
 public:
 	Object_PowerUp(int x, int y);
 	void Move();
 	void OnCollision(Collider* collider);
-	void Draw(/*SDL_Texture* sprites*/);
+	void DrawDown(/*SDL_Texture* sprites*/);
 };
 #endif

@@ -4,38 +4,41 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleBullets.h"
+#include "ModuleMusic.h"
+
 
 Object_PowerUp::Object_PowerUp(int x, int y) : Enemy(x, y) {
 	
-	
-	Object_PowerUp_Animation.PushBack({ 2, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 22, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 41, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 22, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 2, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 22, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 41, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 22, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 2, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 22, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 41, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 22, 2, 15, 13 });
-
 
 	
-			//158
-	Object_PowerUp_Animation.PushBack({ 59, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 78, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 96, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 78, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 59, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 78, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 96, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 78, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 59, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 78, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 96, 2, 15, 13 });
-	Object_PowerUp_Animation.PushBack({ 78, 2, 15, 13 });
+	Object_PowerUp_Animation.PushBack({ 2, 2, 15, 13 });
+	Object_PowerUp_Animation.PushBack({ 22, 2, 15, 13 });
+	Object_PowerUp_Animation.PushBack({ 41, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 22, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 2, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 22, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 41, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 22, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 2, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 22, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 41, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 22, 2, 15, 13 });
+
+
+	// blau
+	//		//158
+	//Object_PowerUp_Animation.PushBack({ 59, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 78, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 96, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 78, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 59, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 78, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 96, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 78, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 59, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 78, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 96, 2, 15, 13 });
+	//Object_PowerUp_Animation.PushBack({ 78, 2, 15, 13 });
 	
 
 		Object_PowerUp_Animation.speed = 0.2f;
@@ -108,16 +111,22 @@ Object_PowerUp::Object_PowerUp(int x, int y) : Enemy(x, y) {
 }
 
 void Object_PowerUp::Move() {
-	position = original_pos + path.GetCurrentPosition();
+	position = original_pos + path.fGetCurrentPosition();
 }
 
 void Object_PowerUp::OnCollision(Collider* collider) {
 	if (collider->type == COLLIDER_PLAYER) {
 		App->bullet->powerUpLevelPlayer1++;
 		vida--;
+		//App->music->PlayFX(power);
+	}
+	else if (collider->type == COLLIDER_PLAYER2) {
+		App->bullet->powerUpLevelPlayer2++;
+		vida--;
+		//App->music->PlayFX(power);
 	}
 }
-void Object_PowerUp::Draw() {
+void Object_PowerUp::DrawDown() {
 	if (collider != nullptr)
 		collider->SetPos(position.x, position.y);
 	if (animation != nullptr)

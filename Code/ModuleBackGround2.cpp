@@ -37,7 +37,7 @@ bool ModuleBackground2::Start() {
 	posBackGround2 = -MAP_HEIGHT;
 	graphics2 = App->textures->Load("Sprites/TileMaps/Nivel_2_Tilemap.png");	
 	App->background2->Enable();
-	App->music->LoadMusic(MUSICA_NIVEL_2);
+	App->music->LoadMusic("Audio/Music/Stage_2-7.ogg");
 
 	return ret;
 }
@@ -50,11 +50,12 @@ update_status ModuleBackground2::Update() {
 
 	if (App->input->keyboard[SDL_SCANCODE_9] == 1) {
 		App->fade->FadeToBlack(this, App->background, 1);
+		App->background2->CleanUp();
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_0] == KEY_STATE::KEY_DOWN) {
-		App->background->Disable();
-		App->background2->Disable();
+		App->background->CleanUp();
+		App->background2->CleanUp();
 		App->menuScreen->Enable();
 		App->menuScreen->selectorScreen(Game_Over_Screen);
 		//App->menuScreen->current_animation = App->menuScreen->;
@@ -69,6 +70,6 @@ bool ModuleBackground2::CleanUp() {
 	bool ret = true;
 	App->textures->Unload(graphics2);
 	App->background2->Disable();
-	App->music->UnloadMusic(MUSICA_NIVEL_2);
+	App->music->UnloadMusic();
 	return ret;
 }

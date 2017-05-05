@@ -14,6 +14,7 @@
 #include "ModuleParticles.h"
 #include "ModuleBullets.h"
 #include "ModuleEnemies.h"
+#include "ModuleFonts.h"
 
 Application::Application(){
 	int i = 0;
@@ -32,6 +33,7 @@ Application::Application(){
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = fade = new ModuleFadeToBlack();
 	modules[i++] = bullet = new ModuleBullets();
+	modules[i++] = fonts = new ModuleFonts();
 }
 
 Application::~Application(){
@@ -46,6 +48,7 @@ bool Application::Init(){
 	background->Disable();
 	background2->Disable();
 	player->Disable();
+	player2->Disable();
 	bullet->Disable();
 	music->Disable();
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)

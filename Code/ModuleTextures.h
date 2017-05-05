@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "Globals.h"
 
-#define MAX_TEXTURES 50
+#define MAX_TEXTURES 500
 
 struct SDL_Texture;
 
@@ -22,6 +22,7 @@ public:
 public:
 	SDL_Texture* textures[MAX_TEXTURES];
 	uint last_texture = 0;
+	void GetSize(const SDL_Texture* texture, uint& width, uint& height) const;
 };
 
 #endif

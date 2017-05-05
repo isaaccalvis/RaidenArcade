@@ -10,32 +10,39 @@
 #include "ModuleMusic.h"
 #include "p2Point.h"
 #include "ModuleEnemies.h"
+#include "ModulePlayer.h"
+#include "ModulePlayer2.h"
+#include "ModuleBullets.h"
+#include "ModuleFonts.h"
 
+#include "SDL\include\SDL_timer.h"
 #define MAP_HEIGHT 3265
 
 ModuleBackground::ModuleBackground(){
 	ground.x = 352;
 	ground.y = 0;
 	ground.w = 353;
-	ground.h = MAP_HEIGHT;
+	ground.h = 2837;// MAP_HEIGHT;
 
 	background.x = 0;
 	background.y = 0;
 	background.w = 352;
 	background.h = MAP_HEIGHT;
+
+	ship.x = 352;
+	ship.y = 2837;
+	ship.w = 352;
+	ship.h = 419;
 	//vacas
 	{
 	PosCow1.x = 100;
 	PosCow1.y = 2210;
-
 	cow1.PushBack({ 24,26,48,25 });			// Bien puestas
 	cow1.PushBack({ 77,26,48,25 });
 	cow1.speed = 0.02;
 
-
 	PosCow2.x = 250;
 	PosCow2.y = 2223;
-
 	cow2.PushBack({ 24, 68, 25, 35 });		// Bien puestas
 	cow2.PushBack({ 56, 68, 25, 35 });
 	cow2.PushBack({ 89, 68, 25, 35 });
@@ -44,39 +51,30 @@ ModuleBackground::ModuleBackground(){
 
 	PosCow3.x = 40;
 	PosCow3.y = 2185;
-
 	cow3.PushBack({ 24, 114, 36, 32 });		// Bien Puestas
 	cow3.PushBack({ 69, 114, 36, 32 });
 	cow3.speed = 0.04;
 
-
 	PosCow4.x = 85;
-	PosCow4.y = 2139;
-
+	PosCow4.y = 2141.5;
 	cow4.PushBack({ 24, 274, 102, 59 });	// Bien Puestas
 	cow4.speed = 0.02;
 
-
 	PosCow5.x = 160;
 	PosCow5.y = 2200;
-
 	cow5.PushBack({ 25, 235, 57, 27 });		// Bien puestas
 	cow5.PushBack({ 87, 235, 57, 27 });
 	cow5.speed = 0.02;
 
-
 	PosCow6.x = 215;
 	PosCow6.y = 2137;
-
 	cow6.PushBack({ 24, 342, 55, 47 });		// Bien puestas
 	cow6.PushBack({ 87, 342, 55, 57 });
 	cow6.speed = 0.01;
 
-
 	PosCowboys.x = 210;
 	PosCowboys.y = 2240;
-
-	cowboys.PushBack({ 37, 422, 14, 16 });		// Bien puestos, falta que se muevan a la izquierda
+	cowboys.PushBack({ 37, 400, 14, 16 });		// Bien puestos, falta que se muevan a la izquierda
 	cowboys.PushBack({ 54, 422, 14, 16 });
 	cowboys.PushBack({ 37, 422, 14, 16 });
 	cowboys.PushBack({ 72, 422, 14, 16 });
@@ -88,38 +86,42 @@ ModuleBackground::~ModuleBackground(){}
 
 bool ModuleBackground::Start(){
 	bool ret = true;
+	current_time = SDL_GetTicks() + 5000;
 	posBackGround = -MAP_HEIGHT /*- ORIGINAL_CAMERA_HEIGHT*/;
-	speedBackGround = 0.3;
+	posShipIncial = 0;
+	speedBackGround = 0.3f;
+	controlador_Auxiliar_Background_1 = true;
 	controlador_spawn_LightShooter = 0;
 	controlador_spawn_BonusPlane = 0;
 	controlador_spawn_box = 0;
 	controlador_spawn_Turret = 0;
+
 	graphics = App->textures->Load("Sprites/TileMaps/Nivel_1_Tilemap.png");
 	cows = App->textures->Load("Sprites/Extras/Cows.png");
-	App->music->LoadMusic(MUSIC_LEVEL_1);
-	App->background->Enable();
+	App->music->LoadMusic("Audio/Music/Stage_1-4.ogg");
 	return ret;
 }
 
 update_status ModuleBackground::Update() {
+	// Turret
 
 	{
-		if ((int)posBackGround == -1610 && controlador_spawn_Turret < 4) {
-			App->enemies->AddEnemy(TURRET, 320, 10);
+		if ((int)posBackGround == -1640 && controlador_spawn_Turret < 4) {
+			App->enemies->AddEnemy(TURRET, 320, -30);
 			controlador_spawn_Turret++;
 		}
 
-		else if ((int)posBackGround == -1690 && controlador_spawn_Turret < 3) {
-			App->enemies->AddEnemy(TURRET, 120, 10);
+		else if ((int)posBackGround == -1720 && controlador_spawn_Turret < 3) {
+			App->enemies->AddEnemy(TURRET, 120, -30);
 			controlador_spawn_Turret++;
 		}
-		else if ((int)posBackGround == -1740 && controlador_spawn_Turret < 2) {
-			App->enemies->AddEnemy(TURRET, 50, 0);
+		else if ((int)posBackGround == -1760 && controlador_spawn_Turret < 2) {
+			App->enemies->AddEnemy(TURRET, 50, -30);
 			controlador_spawn_Turret++;
 		}
 
-		else if ((int)posBackGround == -1763 && controlador_spawn_Turret < 1) {
-			App->enemies->AddEnemy(TURRET, 10, 0);
+		else if ((int)posBackGround == -1783 && controlador_spawn_Turret < 1) {
+			App->enemies->AddEnemy(TURRET, 10, -30);
 			controlador_spawn_Turret++;
 		}
 	}
@@ -307,7 +309,6 @@ update_status ModuleBackground::Update() {
 		}
 
 	}
-
 	// BonusPlanes Spawns
 	{
 		if ((int)posBackGround == -690 && controlador_spawn_BonusPlane < 5) {
@@ -333,65 +334,122 @@ update_status ModuleBackground::Update() {
 	}
 	// Box
 	{
-		if ((int)posBackGround == -490 && controlador_spawn_box < 11) {
-			App->enemies->AddEnemy(BOX, 50, 0);
+		if ((int)posBackGround == -510 && controlador_spawn_box < 11) {
+			App->enemies->AddEnemy(BOX, 50, -30);
 			controlador_spawn_box++;
 		}
 
-		else if ((int)posBackGround == -520 && controlador_spawn_box < 10) {
-			App->enemies->AddEnemy(BOX, 260, 0);
+		else if ((int)posBackGround == -540 && controlador_spawn_box < 10) {
+			App->enemies->AddEnemy(BOX, 260, -30);
 			controlador_spawn_box++;
 		}
 
 
-		else if ((int)posBackGround == -1590 && controlador_spawn_box < 9) {
-			App->enemies->AddEnemy(BOX, 310, 0);
+		else if ((int)posBackGround == -1610 && controlador_spawn_box < 9) {
+			App->enemies->AddEnemy(BOX, 310, -30);
 			controlador_spawn_box++;
 		}
 
-		else if ((int)posBackGround == -1603 && controlador_spawn_box < 8) {
-			App->enemies->AddEnemy(BOX, 80, 0);
+		else if ((int)posBackGround == -1623 && controlador_spawn_box < 8) {
+			App->enemies->AddEnemy(BOX, 80, -30);
 			controlador_spawn_box++;
 		}
 
-		else if ((int)posBackGround == -2275 && controlador_spawn_box < 7) {
-			App->enemies->AddEnemy(BOX, 70, 0);
+		else if ((int)posBackGround == -2295 && controlador_spawn_box < 7) {
+			App->enemies->AddEnemy(BOX, 70, -30);
 			controlador_spawn_box++;
 		}
 
-		else if ((int)posBackGround == -2542 && controlador_spawn_box < 6) {
-			App->enemies->AddEnemy(BOX, 180, 0);
+		else if ((int)posBackGround == -2562 && controlador_spawn_box < 6) {
+			App->enemies->AddEnemy(BOX, 180, -30);
 			controlador_spawn_box++;
 		}
 
-		else if ((int)posBackGround == -2543 && controlador_spawn_box < 5) {
-			App->enemies->AddEnemy(BOX, 210, 0);
+		else if ((int)posBackGround == -2563 && controlador_spawn_box < 5) {
+			App->enemies->AddEnemy(BOX, 210, -30);
 			controlador_spawn_box++;
 		}
 
-		else if ((int)posBackGround == -2578 && controlador_spawn_box < 4) {
-			App->enemies->AddEnemy(BOX, 180, 0);
+		else if ((int)posBackGround == -2598 && controlador_spawn_box < 4) {
+			App->enemies->AddEnemy(BOX, 180, -30);
 			controlador_spawn_box++;
 		}
 
-		else if ((int)posBackGround == -2579 && controlador_spawn_box < 3) {
-			App->enemies->AddEnemy(BOX, 210, 0);
+		else if ((int)posBackGround == -2599 && controlador_spawn_box < 3) {
+			App->enemies->AddEnemy(BOX, 210, -30);
 			controlador_spawn_box++;
 		}
 
-		else if ((int)posBackGround == -2720 && controlador_spawn_box < 2) { //CAIXA AMB BONUS//
-			App->enemies->AddEnemy(BOX, 100, 0);
+		else if ((int)posBackGround == -2740 && controlador_spawn_box < 2) { //CAIXA AMB BONUS//
+			App->enemies->AddEnemy(BOX, 100, -30);
 			controlador_spawn_box++;
 		}
-		else if ((int)posBackGround == -2830 && controlador_spawn_box < 1) {
-			App->enemies->AddEnemy(BOX, 90, 0);
+		else if ((int)posBackGround == -2850 && controlador_spawn_box < 1) {
+			App->enemies->AddEnemy(BOX, 90, -30);
 			controlador_spawn_box++;
 		}
 	}
-	App->render->CleanRender();
-	App->render->fBlit(graphics, 0, posBackGround + SCREEN_HEIGHT, &background);
-	App->render->fBlit(graphics, 0, posBackGround + SCREEN_HEIGHT, &ground);
-	posBackGround += speedBackGround;
+
+
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), current_time)) {
+		if (controlador_Auxiliar_Background_1 == true) {
+			if (App->player->potMoure == false) {
+				App->player->potMoure = true;
+				App->bullet->Enable();
+			}
+			if (App->player2->potMoure2 == false) {
+				App->player2->potMoure2 = true;
+			}
+			controlador_Auxiliar_Background_1 = false;
+		}
+		App->render->CleanRender();
+		App->render->fBlit(graphics, 0, posBackGround + SCREEN_HEIGHT, &background);
+		App->render->fBlit(graphics, 0, posBackGround + SCREEN_HEIGHT, &ground);
+		if (posBackGround < -265)
+			posBackGround += speedBackGround;
+		else { // Animacio del prota pirant del mapa
+			posBackGround = -265;
+			App->player->GodMode = true;
+			if (App->player->IsEnabled() == true) {
+				App->player->potMoure = false;
+				App->player->PROTA.y--;
+			}
+			if (App->player2->IsEnabled() == true) {
+				App->player2->potMoure2 = false;
+				App->player2->PROTA2.y--;
+			}
+			if (App->player->PROTA.y <= 0) {
+				App->menuScreen->Enable();
+				App->menuScreen->CridaMenu();
+			}
+		}
+	}
+	else {
+		App->bullet->Disable();
+		App->render->CleanRender();
+		App->player->potMoure = false;
+		App->player2->potMoure2 = false;
+		App->render->fBlit(graphics, 0, SCREEN_HEIGHT - MAP_HEIGHT, &background);
+		App->render->fBlit(graphics, 0, SCREEN_HEIGHT - MAP_HEIGHT, &ground);
+		App->render->fBlit(graphics, 0, posShipIncial, &ship);
+		if (SDL_TICKS_PASSED(SDL_GetTicks(), current_time - 350)) {
+			posShipIncial += 2;
+			App->player->current_animation = &(App->player->Despegar3);
+			App->player2->current_animation = &(App->player2->Despegar3);
+		}
+		else if (SDL_TICKS_PASSED(SDL_GetTicks(), current_time - 4000)) {
+			App->player->current_animation = &(App->player->Despegar2);
+			App->player2->current_animation = &(App->player2->Despegar2);
+			posShipIncial += 1;
+		}
+		else {
+			posShipIncial += 0;
+			App->player->current_animation = &(App->player->Despegar1);
+			App->player2->current_animation = &(App->player2->Despegar1);
+		}
+	}
+
+
 	// vacas
 	{
 		// Vacas
@@ -428,16 +486,33 @@ update_status ModuleBackground::Update() {
 		App->render->Blit(cows, PosCowboys.x, posBackGround + PosCowboys.y, &r7);
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_9] == KEY_STATE::KEY_DOWN) {
+	if (App->input->keyboard[SDL_SCANCODE_9] == KEY_STATE::KEY_DOWN && App->player->GodMode == true) {		
 		App->fade->FadeToBlack(this, App->background2, 1);
+		App->background->CleanUp();
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_0] == KEY_STATE::KEY_DOWN) {
+	if (App->input->keyboard[SDL_SCANCODE_0] == KEY_STATE::KEY_DOWN && App->player->GodMode == true) {
+		App->background->CleanUp();
+		App->background2->CleanUp();
+		App->player->CleanUp();
+		App->player2->CleanUp();
+		App->enemies->CleanUp();
 		App->menuScreen->Enable();
 		App->menuScreen->CridaMenu();
+	
 	}
-
 	return UPDATE_CONTINUE;
+}
+
+void ModuleBackground::CridaScoreGeneral() {
+	App->fonts->BlitText(180, 10, App->player->font_score, "hi-score");
+	char str[10];
+	if (App->player->puntuacioP1 > App->player2->puntuacioP2)
+		sprintf_s(str, "%i", App->player->puntuacioP1);
+	else
+		sprintf_s(str, "%i", App->player2->puntuacioP2);
+	App->fonts->BlitText(200, 25, App->player->font_score, str);
+	sprintf_s(App->player->score_text, 10, "%7d", App->player->puntuacioP1);
 }
 
 bool ModuleBackground::CleanUp() {
@@ -445,7 +520,8 @@ bool ModuleBackground::CleanUp() {
 	App->textures->Unload(graphics);
 	App->textures->Unload(cows);
 	App->background->Disable();
-	App->music->UnloadMusic(MUSIC_LEVEL_1);
-	
+	App->music->UnloadMusic();
+	App->fonts->UnLoad(App->player->font_score);
+
 	return ret;
 }

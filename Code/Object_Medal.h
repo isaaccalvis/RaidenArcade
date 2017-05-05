@@ -13,6 +13,6 @@ public:
 	Object_Medal(int x, int y);
 	void Move();
 	void OnCollision(Collider* collider);
-	void Draw(/*SDL_Texture* sprites*/);
+	void DrawDown(/*SDL_Texture* sprites*/);
 };
 #endif

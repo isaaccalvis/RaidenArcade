@@ -10,12 +10,15 @@ private:
 	Animation Enemy_BonusPlane_Animation;
 
 	Path path;
-	iPoint original_pos;
+	fPoint original_pos;
+
+	int current_time;
+	bool dispara;
 
 public:
 	Enemy_BonusPlane(int x, int y);
 	void Move();
 	void OnCollision(Collider* collider);
-	void Draw();
+	void DrawUp();
 };
 #endif

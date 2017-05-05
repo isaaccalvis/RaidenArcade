@@ -17,11 +17,17 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	void CridaScoreGeneral();
+
+private:
+	int current_time;
+	float posShipIncial;
 public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect ground;
 	SDL_Rect background;
-	iPoint PosCow1, PosCow2, PosCow3, PosCow4, PosCow5, PosCow6;
+	SDL_Rect ship;
+	fPoint PosCow1, PosCow2, PosCow3, PosCow4, PosCow5, PosCow6;
 	iPoint PosCowboys;
 
 	SDL_Texture* cows = nullptr;
@@ -34,6 +40,8 @@ public:
 	int controlador_spawn_BonusPlane;
 	int controlador_spawn_box;
 	int controlador_spawn_Turret;
+
+	bool controlador_Auxiliar_Background_1 = true; // aixo serveix perk els players no es posin en potMoure = true sempre;
 
 };
 

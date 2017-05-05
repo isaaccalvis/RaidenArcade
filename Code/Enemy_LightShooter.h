@@ -4,16 +4,34 @@
 #include "Enemy.h"
 #include "ModuleEnemies.h"
 
-class Enemy_LightShooter : public Enemy{
+class Enemy_LightShooter : public Enemy {
 private:
 	//int original_y = 0;
-	Animation LightShooterAnim;
+	Animation LightShooterAnim1;
+	Animation LightShooterAnim2;
+	Animation LightShooterAnim3;
+	Animation LightShooterAnim4;
+	Animation LightShooterAnim5;
+	Animation LightShooterAnim6;
+	Animation LightShooterAnim7;
+	Animation LightShooterAnim8;
+	Animation LightShooterAnim9;
+	Animation LightShooterAnim10;
+	Animation LightShooterAnim11;
+	Animation LightShooterAnim12;
+	Animation LightShooterAnim13;
+	Animation LightShooterAnim14;
+	Animation LightShooterAnim15;
+	Animation LightShooterAnim16;
+
 	Animation LightShooterHelix;
 
 public:
 	Enemy_LightShooter(int x, int y);
 	void Move();
 	void OnCollision(Collider* collider);
-	void Draw();
+	void DrawUp();
+	float rectaY;
+	float rectaX;
 };
 #endif

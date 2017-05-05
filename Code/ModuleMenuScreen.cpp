@@ -13,7 +13,7 @@
 #include "ModuleMusic.h"
 #include "Animation.h"
 #include "ModuleEnemies.h"
-
+#include "ModuleFonts.h"
 #include "SDL\include\SDL_timer.h"
 
 ModuleMenuScreen::ModuleMenuScreen() {
@@ -55,6 +55,7 @@ bool ModuleMenuScreen::Start() {
 	loading_sprite = App->textures->Load("Sprites/MenuImages/Loading_Screen.png");
 	player_sprite = App->textures->Load("Sprites/MenuImages/Players_Screen.png");
 	gameOver_sprite = App->textures->Load("Sprites/MenuImages/Texture_Game_Over.png");
+	font_score = App->fonts->Load("fonts/raiden_font.png", "! @,-./0123456789$;>&?abcdefghijklmnopqrstuvwxyz", 1);
 	Menu_Actual_Fase = 0;
 	selectorScreen(Start_Screen);
 	return true;
@@ -66,16 +67,17 @@ bool ModuleMenuScreen::selectorScreen(MenuScreenNames name) {
 	case Start_Screen:
 		current_time = SDL_GetTicks() + 1000;
 		App->player->Disable();
+		App->player2->Disable();
 		App->bullet->Disable();
 		App->collision->Disable();
 		App->music->Disable();
 		MenuScreenTexture = loading_sprite;
 		current_animation = &Transition;
-
 		break;
 
 	case Players_Screen:
 		App->player->Disable();
+		App->player2->Disable();
 		App->bullet->Disable();
 		App->collision->Disable();
 		App->music->Disable();
@@ -84,13 +86,16 @@ bool ModuleMenuScreen::selectorScreen(MenuScreenNames name) {
 		break;
 
 	case Game_Over_Screen:
+		App->background->Disable();
+		App->background2->Disable();
 		App->player->Disable();
+		App->player2->Disable();
 		App->bullet->Disable();
 		App->collision->Disable();
 		App->render->MoveCameraToCenter();
 		MenuScreenTexture = gameOver_sprite;
 		current_animation = &GameOver;
-		App->music->LoadMusic(MUSICA_GAME_CONTINUE);
+		highscore = 1;
 		Menu_Actual_Fase = 10;
 		break;
 	}
@@ -111,9 +116,9 @@ update_status ModuleMenuScreen::Update() {
 		App->player2->Disable();
 		App->enemies->Disable();
 		if (SDL_TICKS_PASSED(SDL_GetTicks(), current_time)) {
-
-			App->background->Disable();
-
+			//App->player->Enable();
+			//App->background->Enable();
+			App->enemies->Enable();
 			MenuScreenTexture = raiden_sprite;
 			current_animation = &MainMenu;
 			Menu_Actual_Fase = 1;
@@ -128,6 +133,7 @@ update_status ModuleMenuScreen::Update() {
 	case 2:
 		if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN) {
 			current_time = SDL_GetTicks() + 1000;
+			App->player2->Disable();
 			MenuScreenTexture = loading_sprite;
 			current_animation = &Transition;
 			current_animation->Reset();
@@ -163,8 +169,31 @@ update_status ModuleMenuScreen::Update() {
 		break;
 	case 10:// game over
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
+			App->fonts->UnLoad(font_score);
+			App->textures->Unload(gameOver_sprite);
 			Menu_Actual_Fase = 0;
 			break;
+		}
+		if (highscore == 1) {
+			App->fonts->BlitText(150, 10, font_score, "player 1 score");
+			App->fonts->BlitText(150, 35, font_score, "player 2 score");
+			char str[10];
+			sprintf_s(str, "%i", App->player->puntuacioP1);
+			App->fonts->BlitText(150, 25, font_score, str);
+			sprintf_s(score_text, 10, "%7d", App->player->puntuacioP1);
+			sprintf_s(str, "%i", App->player2->puntuacioP2);
+			App->fonts->BlitText(150, 45, font_score, str);
+			sprintf_s(score_text, 10, "%7d", App->player2->puntuacioP2);
+			if (App->player->puntuacioP1 > App->player2->puntuacioP2)
+			{
+				App->fonts->BlitText(58, 10, font_score, "high score!");
+
+			}
+			if (App->player->puntuacioP1 < App->player2->puntuacioP2)
+			{
+				App->fonts->BlitText(58, 35, font_score, "high score!");
+
+			}
 		}
 	}
 	return UPDATE_CONTINUE;
@@ -179,6 +208,12 @@ bool ModuleMenuScreen::CridaMenu() {
 bool ModuleMenuScreen::CleanUp() {
 	bool ret = true;
 	App->textures->Unload(MenuScreenTexture);
+	App->textures->Unload(raiden_sprite);
+	App->textures->Unload(loading_sprite);
+	App->textures->Unload(player_sprite);
+	App->textures->Unload(gameOver_sprite);
+	App->music->UnloadMusic();
+	App->fonts->UnLoad(font_score);
 	App->menuScreen->Disable();
 	return ret;
 }

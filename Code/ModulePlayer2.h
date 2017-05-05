@@ -18,18 +18,30 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
+private:
+	int current_time;
 public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect PROTA2;
 	Collider* colPlayer2;
 	bool destroyed = false;
+	bool potMoure2;
 	bool jugador2Activat;
-	int puntuacioP2;
-	int videsP2;
+	uint puntuacioP2;
+	uint videsP2;
 	Animation* current_animation = nullptr;
 	Animation idle;
 	Animation rightMov;
 	Animation leftMov;
+	Animation pDamaged;
+	Animation pDead;
+	Animation Despegar1;
+	Animation Despegar2;
+	Animation Despegar3;
+
+	int font_score = -1;
+	int font_score2 = -1;
+	char score_text[10];
 };
 
 #endif

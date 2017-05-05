@@ -26,7 +26,7 @@ public:
 
 public:
 	SDL_Texture* MenuScreenTexture = nullptr;
-	SDL_Texture* MenuScreenGameOver= nullptr;
+	SDL_Texture* MenuScreenGameOver = nullptr;
 	Animation* 	current_animation;// &pantallaIniciAnim;
 	SDL_Rect MenuScreenRect;
 	Animation MainMenu;
@@ -39,6 +39,9 @@ public:
 	SDL_Texture* loading_sprite;
 	SDL_Texture* player_sprite;
 	SDL_Texture* gameOver_sprite;
+	int font_score = -1;
+	char score_text[10];
+	int highscore = 0;
 };
 
 #endif
