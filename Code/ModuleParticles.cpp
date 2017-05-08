@@ -73,10 +73,31 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 
 void ModuleParticles::loadParticlesTextures() {
 	particles_sprites = App->textures->Load("Sprites/Extras/Particles_Sprite.png");
+
 	bullet.anim.PushBack({ 138,327, 6,7 });
-	bullet.anim.loop = true;
+	bullet.anim.loop = false;
 	bullet.anim.speed = 1;
 	bullet.life = 1000;
+
+	bullet3.anim.PushBack({ 136,141, 10,6 });
+	bullet3.anim.loop = false;
+	bullet3.anim.speed = 1;
+	bullet3.life = 1000;
+
+	laserLight.anim.PushBack({45, 321, 2, 15});
+	laserLight.anim.loop = false;
+	laserLight.anim.speed = 1;
+	laserLight.life = 1000;
+
+	laserMid.anim.PushBack({ 35, 175, 3, 15 });
+	laserMid.anim.loop = false;
+	laserMid.anim.speed = 1;
+	laserMid.life = 1000;
+
+	laserHeavy.anim.PushBack({ 38, 260, 4, 15 });
+	laserHeavy.anim.loop = false;
+	laserHeavy.anim.speed = 1;
+	laserHeavy.life = 1000;
 
 	enemyBulletBasic.anim.PushBack({18,360, 6,5 });
 	enemyBulletBasic.anim.PushBack({ 25,360, 6,5 });
@@ -171,20 +192,20 @@ Particle::~Particle(){
 
 bool Particle::Update(){
 	bool ret = true;
+	if (SDL_GetTicks() >= born) {
+		if (life > 0) {
+			if ((SDL_GetTicks() - born) > life)
+				ret = false;
+		}
+		else
+			if (anim.finishedAnimation())
+				ret = false;
 
-	if (life > 0){
-		if ((SDL_GetTicks() - born) > life)
-			ret = false;
+		position.x += speed.x;
+		position.y += speed.y;
+
+		if (collider != nullptr)
+			collider->SetPos(position.x, position.y);
 	}
-	else
-		if (anim.finishedAnimation())
-			ret = false;
-
-	position.x += speed.x;
-	position.y += speed.y;
-
-	if (collider != nullptr)
-		collider->SetPos(position.x, position.y);
-
 	return ret;
 }

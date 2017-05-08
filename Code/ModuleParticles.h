@@ -47,6 +47,12 @@ private:
 
 public:
 	Particle bullet;
+	Particle bullet3;
+	Particle laserLight;
+	Particle laserMid;
+	Particle laserHeavy;
+	Particle laserBeamLight;
+	Particle LaserBeamHeavy;
 	Particle bomb;
 	Particle enemyBulletBasic;
 	Particle LightExplosion;

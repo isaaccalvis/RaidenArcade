@@ -6,7 +6,15 @@
 #include "Application.h"
 #include "Animation.h"
 #include "ModuleParticles.h"
-
+enum PowerUpType {
+	Vulkan = 0,
+	Laser
+};
+enum MissileUpType {
+	NONE = 0,
+	Nuclear,
+	Hoaming
+};
 class ModuleBullets : public Module {
 public:
 	ModuleBullets();
@@ -19,8 +27,12 @@ public:
 
 public:
 	int powerUpLevelPlayer1;
+	PowerUpType powerUpTypePlayer1 = Vulkan;
+	MissileUpType missileUpTypePlayer1 = NONE;
+	int bombsPlayer1;
+	bool bombOnPlayer1 = false;
+
 	int powerUpLevelPlayer2;
-	bool bombOn = false;
 	int current_time;
 
 };

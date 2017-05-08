@@ -89,9 +89,7 @@ bool ModuleBackground::Start(){
 	current_time = SDL_GetTicks() + 5000;
 	posBackGround = -MAP_HEIGHT /*- ORIGINAL_CAMERA_HEIGHT*/;
 	posShipIncial = 0;
-
 	speedBackGround = 0.3f;
-
 	controlador_Auxiliar_Background_1 = true;
 	controlador_spawn_LightShooter = 0;
 	controlador_spawn_BonusPlane = 0;
