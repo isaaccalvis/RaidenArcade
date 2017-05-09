@@ -4,6 +4,9 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
+#include "ModulePlayer.h"
+#include "ModulePlayer2.h"
+#include "ModuleBullets.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -55,13 +58,18 @@ update_status ModuleParticles::Update() {
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay){
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay, int desfaceSprite){
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i){
 		if (active[i] == nullptr){
 			Particle* p = new Particle(particle);
 			p->born = SDL_GetTicks() + delay;
 			p->position.x = x;
 			p->position.y = y;
+			if (desfaceSprite == 0)
+				p->desfaseOriginal = App->bullet->desfaseSpriteDispar;
+			else
+				if (p->collider->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT || p->collider->type == COLLIDER_TYPE::COLLIDER_PLAYER2_SHOT)
+					p->desfaseOriginal = desfaceSprite;
 			if (collider_type != COLLIDER_NONE)
 				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
 			active[i] = p;
@@ -84,20 +92,35 @@ void ModuleParticles::loadParticlesTextures() {
 	bullet3.anim.speed = 1;
 	bullet3.life = 1000;
 
+	bulletR.anim.PushBack({ 183,72, 16,10 });
+	bulletR.anim.loop = false;
+	bulletR.anim.speed = 1;
+	bulletR.life = 1000;
+
+	bulletL.anim.PushBack({ 81,72, 16,10 });
+	bulletL.anim.loop = false;
+	bulletL.anim.speed = 1;
+	bulletL.life = 1000;
+
 	laserLight.anim.PushBack({45, 321, 2, 15});
 	laserLight.anim.loop = false;
 	laserLight.anim.speed = 1;
 	laserLight.life = 1000;
 
-	laserMid.anim.PushBack({ 35, 175, 3, 15 });
-	laserMid.anim.loop = false;
-	laserMid.anim.speed = 1;
-	laserMid.life = 1000;
+	laserHeavy2s.anim.PushBack({ 39, 298, 14, 14 });
+	laserHeavy2s.anim.loop = false;
+	laserHeavy2s.anim.speed = 1;
+	laserHeavy2s.life = 1000;
 
-	laserHeavy.anim.PushBack({ 38, 260, 4, 15 });
-	laserHeavy.anim.loop = false;
-	laserHeavy.anim.speed = 1;
-	laserHeavy.life = 1000;
+	laserHeavy3s.anim.PushBack({ 38, 223, 16, 15 });
+	laserHeavy3s.anim.loop = false;
+	laserHeavy3s.anim.speed = 1;
+	laserHeavy3s.life = 1000;
+
+	LaserBeamHeavy.anim.PushBack({37, 55, 17, 16});
+	LaserBeamHeavy.anim.loop = false;
+	LaserBeamHeavy.anim.speed = 1;
+	LaserBeamHeavy.life = 1000;
 
 	enemyBulletBasic.anim.PushBack({18,360, 6,5 });
 	enemyBulletBasic.anim.PushBack({ 25,360, 6,5 });
@@ -206,6 +229,18 @@ bool Particle::Update(){
 
 		if (collider != nullptr)
 			collider->SetPos(position.x, position.y);
+	}
+	else if (SDL_GetTicks() + 1000 >= born){ // he posat 1000 perque no s'executi sempre si el born es molt gran
+		if (collider != nullptr) {
+			if (collider->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT) {
+				position.x = App->player->PROTA.x + App->player->PROTA.w / 2 - desfaseOriginal;
+				position.y = App->player->PROTA.y;
+			}
+			else if (collider->type == COLLIDER_TYPE::COLLIDER_PLAYER2_SHOT) {
+				position.x = App->player2->PROTA2.x + App->player2->PROTA2.w / 2 - desfaseOriginal;
+				position.y = App->player2->PROTA2.y;
+			}
+		}
 	}
 	return ret;
 }

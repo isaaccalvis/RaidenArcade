@@ -31,9 +31,11 @@ public:
 	MissileUpType missileUpTypePlayer1 = NONE;
 	int bombsPlayer1;
 	bool bombOnPlayer1 = false;
+	int esperaShootP1 = 0;
 
 	int powerUpLevelPlayer2;
 	int current_time;
 
+	int desfaseSpriteDispar; // Serveix per restar la mitat de W del sprite de la bala, aixi surt centrat
 };
 #endif

@@ -12,11 +12,13 @@
 #define MAX_POWERUP 8
 ModuleBullets::ModuleBullets() {}
 ModuleBullets::~ModuleBullets(){}
-iPoint vel(0, -6);
-iPoint velR(1, -5);
-iPoint velR2(2, -4);
-iPoint velL(-1, -5);
-iPoint velL2(-2, -4);
+iPoint vel(0, -8);
+iPoint velR(1, -7);
+iPoint velR2(2, -6);
+iPoint velR3(3, -5);
+iPoint velL(-1, -7);
+iPoint velL2(-2, -6);
+iPoint velL3(-3, -5);
 iPoint velNull(0, 0);
 
 uint shoot;
@@ -54,7 +56,6 @@ update_status ModuleBullets::Update() {
 			powerUpTypePlayer1 = Vulkan;
 	// BULLETS DEL JUGADOR 1
 	if ((App->player->destroyed == false && App->player->potMoure == true) && App->player->IsEnabled() == true) {
-		print("%i", powerUpTypePlayer1);
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 			if (powerUpTypePlayer1 == Vulkan) {
 				App->music->PlayFX(shoot);
@@ -125,47 +126,122 @@ update_status ModuleBullets::Update() {
 					App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 - 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
 					App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 + 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
 					break;
+				case 7:
+					App->particles->bulletL.speed = velL;
+					App->particles->AddParticle(App->particles->bulletL, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 - 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->bulletL, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 + 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+					App->particles->bulletL.speed = velL2;
+					App->particles->AddParticle(App->particles->bulletL, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 - 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->bulletL, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 + 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+					App->particles->bulletL.speed = velL3;
+					App->particles->AddParticle(App->particles->bulletL, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 - 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->bulletL, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 + 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+					App->particles->bullet.speed = vel;
+					App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 - 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->bullet, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 + 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+					App->particles->bulletR.speed = velR;
+					App->particles->AddParticle(App->particles->bulletR, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 - 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->bulletR, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 + 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+					App->particles->bulletR.speed = velR2;
+					App->particles->AddParticle(App->particles->bulletR, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 - 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->bulletR, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 + 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+					App->particles->bulletR.speed = velR3;
+					App->particles->AddParticle(App->particles->bulletR, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 - 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->bulletR, App->player->PROTA.x + (App->player->PROTA.w / 2.5) - 4 + 4, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+					break;
 				}
 			}
 			else if (powerUpTypePlayer1 == Laser) {
-				switch (powerUpLevelPlayer1) {
-				case 0:
-					App->particles->laserLight.speed = vel;
-					App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
-					App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 50);
-					break;
-				case 1:
-					App->particles->laserLight.speed = vel;
-					App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
-					App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 50);
-					App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 100);
-					App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 150);
-					App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 200);
-					break;
-				case 2:
-					App->particles->laserLight.speed = vel;
-					App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
-					break;
-				case 3:
-					App->particles->laserLight.speed = vel;
-					App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
-					break;
-				case 4:
-					App->particles->laserLight.speed = vel;
-					App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
-					break;
-				case 5:
-					App->particles->laserLight.speed = vel;
-					App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
-					break;
-				case 6:
-					App->particles->laserLight.speed = vel;
-					App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
-					break;
-				case 7:
-					App->particles->laserLight.speed = vel;
-					App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
-					break;
+				if (SDL_GetTicks() >= esperaShootP1) {
+					switch (powerUpLevelPlayer1) {
+					case 0:
+						desfaseSpriteDispar = 2;
+						App->particles->laserLight.speed = vel;
+						App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 50);
+						break;
+					case 1:
+						desfaseSpriteDispar = 2;
+						App->particles->laserLight.speed = vel;
+						App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 50);
+						App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 100);
+						App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 150);
+						App->particles->AddParticle(App->particles->laserLight, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 200);
+						break;
+					case 2:
+						desfaseSpriteDispar = 7;
+						App->particles->laserHeavy2s.speed = vel;
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 50);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 100);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 150);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 200);
+						break;
+					case 3:
+						App->particles->laserHeavy2s.speed = vel;
+						App->particles->laserHeavy3s.speed = vel;
+						desfaseSpriteDispar = 7;
+						App->particles->AddParticle(App->particles->laserHeavy3s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						App->particles->AddParticle(App->particles->laserHeavy3s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 50);
+						desfaseSpriteDispar = 6;
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 100);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 150);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 200);
+						break;
+					case 4:
+						App->particles->laserHeavy3s.speed = vel;
+						desfaseSpriteDispar = 6;
+						App->particles->AddParticle(App->particles->laserHeavy3s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						App->particles->AddParticle(App->particles->laserHeavy3s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 50);
+						App->particles->AddParticle(App->particles->laserHeavy3s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 100);
+						App->particles->AddParticle(App->particles->laserHeavy3s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 150);
+						App->particles->AddParticle(App->particles->laserHeavy3s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 200);
+						break;
+					case 5:
+						App->particles->laserHeavy3s.speed = vel;
+						App->particles->laserHeavy2s.speed = vel;
+						desfaseSpriteDispar = 15;
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 50);
+						desfaseSpriteDispar = -5;
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 50);
+						desfaseSpriteDispar = 6;
+						App->particles->AddParticle(App->particles->laserHeavy3s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 100);
+						App->particles->AddParticle(App->particles->laserHeavy3s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 150);
+						App->particles->AddParticle(App->particles->laserHeavy3s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 200);
+						break;
+					case 6:
+						App->particles->laserHeavy2s.speed = vel;
+						desfaseSpriteDispar = 15;
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 50);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 100);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 150);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 200);
+						desfaseSpriteDispar = -5;
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 50);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 100);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 150);
+						App->particles->AddParticle(App->particles->laserHeavy2s, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 200);
+						break;
+					case 7:
+						App->particles->LaserBeamHeavy.speed = vel;
+						desfaseSpriteDispar = 7;
+						App->particles->AddParticle(App->particles->LaserBeamHeavy, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						App->particles->AddParticle(App->particles->LaserBeamHeavy, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 30);
+						App->particles->AddParticle(App->particles->LaserBeamHeavy, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 60);
+						App->particles->AddParticle(App->particles->LaserBeamHeavy, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 90);
+						App->particles->AddParticle(App->particles->LaserBeamHeavy, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar/* 3 es l'amplada /2 de la bala */, App->player->PROTA.y, COLLIDER_PLAYER_SHOT, 120);
+						break;
+					}
+					if (powerUpLevelPlayer1 < 7)
+						esperaShootP1 = SDL_GetTicks() + 200;
+					else
+						esperaShootP1 = SDL_GetTicks() + 50;
+
 				}
 			}
 		}

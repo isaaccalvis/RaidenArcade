@@ -32,7 +32,9 @@ public:
 	Animation* current_animation = nullptr;
 	Animation idle;	
 	Animation rightMov;
+	Animation rightMov2;
 	Animation leftMov;
+	Animation leftMov2;
 	Animation pDamaged;
 	Animation pDead;
 	Animation Despegar1;

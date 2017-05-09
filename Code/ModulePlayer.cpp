@@ -30,14 +30,24 @@ ModulePlayer::ModulePlayer(){
 	rightMov.PushBack({ 151,19,16,34 });
 	rightMov.PushBack({ 151,61,16,34 });
 	rightMov.loop = false;
-	rightMov.speed = 0.4;
+	rightMov.speed = 0.3f;
+
+	rightMov2.PushBack({ 151,19,16,34 });
+	rightMov2.PushBack({ 151,61,16,34 });
+	rightMov2.loop = true;
+	rightMov2.speed = 0.4f;
 
 	leftMov.PushBack({ 52,19,24,34 });
 	leftMov.PushBack({ 52,61,24,34 });
 	leftMov.PushBack({ 18,19,24,34 });
 	leftMov.PushBack({ 18,61,24,34 });
 	leftMov.loop = false;
-	leftMov.speed = 0.4;
+	leftMov.speed = 0.3f;
+
+	leftMov2.PushBack({ 18,19,24,34 });
+	leftMov2.PushBack({ 18,61,24,34 });
+	leftMov2.loop = true;
+	leftMov2.speed = 0.4f;
 
 	pDamaged.PushBack({ 84, 19, 24, 34 });
 	pDamaged.PushBack({ 500, 550, 24, 34 });
@@ -46,7 +56,7 @@ ModulePlayer::ModulePlayer(){
 	pDead.PushBack({ 272,667,28,29 });
 	pDead.PushBack({ 305,667,30,31 });
 	pDead.PushBack({ 399,665,32,30 });
-	pDead.speed = 0.1f;
+	pDead.speed = 0.2f;
 	pDead.loop = false;
 
 	Despegar1.PushBack({ 422,89,32,70 });
@@ -103,7 +113,9 @@ update_status ModulePlayer::Update(){
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
 			if (PROTA.x < (SCREEN_WIDTH - PROTA.w))
 				PROTA.x += speed;
-			if (current_animation != &rightMov) {
+			if (current_animation->IntCurrentFrame() == 3 && current_animation == &rightMov)
+				current_animation = &rightMov2;
+			if (current_animation != &rightMov && current_animation != &rightMov2) {
 				rightMov.Reset();
 				current_animation = &rightMov;
 			}
@@ -111,7 +123,9 @@ update_status ModulePlayer::Update(){
 		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT) {
 			if (PROTA.x > (0))
 				PROTA.x -= speed;
-			if (current_animation != &leftMov) {
+			if (current_animation->IntCurrentFrame() == 3 && current_animation == &leftMov)
+				current_animation = &leftMov2;
+			if (current_animation != &leftMov && current_animation != &leftMov2) {
 				leftMov.Reset();
 				current_animation = &leftMov;
 			}
@@ -160,6 +174,7 @@ update_status ModulePlayer::Update(){
 			&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 			current_animation = &idle;
 	}
+	print("%i %i\n", leftMov.IntCurrentFrame(), rightMov.IntCurrentFrame());
 
 	App->fonts->BlitText(60, 10, font_score, "1up");
 	if (videsP1 == 4) {

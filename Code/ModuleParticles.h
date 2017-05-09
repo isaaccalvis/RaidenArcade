@@ -22,6 +22,7 @@ struct Particle{
 	Uint32 born = 0;
 	Uint32 life = 0;
 	bool fx_played = false;
+	int desfaseOriginal;
 
 	Particle();
 	Particle(const Particle& p);
@@ -39,7 +40,7 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 	void loadParticlesTextures();
-	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0, int desfaseSprite = 0);
 
 private:
 	SDL_Texture* particles_sprites = nullptr;
@@ -48,10 +49,12 @@ private:
 public:
 	Particle bullet;
 	Particle bullet3;
+	Particle bulletR;
+	Particle bulletL;
 	Particle laserLight;
-	Particle laserMid;
-	Particle laserHeavy;
-	Particle laserBeamLight;
+	Particle laserHeavy2s;
+	Particle laserHeavy3s;
+	//Particle laserBeamLight;
 	Particle LaserBeamHeavy;
 	Particle bomb;
 	Particle enemyBulletBasic;
