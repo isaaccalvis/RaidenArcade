@@ -137,6 +137,29 @@ void ModuleParticles::loadParticlesTextures() {
 	restOfBulletCollision.anim.speed = 0.9f;
 	restOfBulletCollision.life = 100;
 
+	preBomb.anim.PushBack({ 225, 54, 8, 15});
+	preBomb.anim.PushBack({ 242, 54, 8, 15 });
+	preBomb.anim.PushBack({ 225, 79, 8, 15 });
+	preBomb.anim.PushBack({ 242, 79, 8, 15 });
+	preBomb.anim.PushBack({ 259, 79, 8, 15 });
+	preBomb.anim.PushBack({ 276, 79, 8, 15 });
+	preBomb.anim.PushBack({ 292, 79, 8, 15 });
+	preBomb.anim.PushBack({ 309, 79, 8, 15 });
+	preBomb.anim.loop = false;
+	preBomb.anim.speed = 0.2f;
+	preBomb.life = 1000;
+
+	bomb.anim.PushBack({ 495, 635, 168, 168 });
+	bomb.anim.PushBack({ 667, 635, 168, 168 });
+	bomb.anim.PushBack({ 834, 635, 168, 168 });
+	bomb.anim.loop = true;
+	bomb.anim.speed = 0.3f;
+	bomb.life = 1000;
+
+	bombFantasma.anim.PushBack({ 735, 0, 168, 168 });
+	bombFantasma.anim.loop = true;
+	bombFantasma.anim.speed = 0.9f;
+	bombFantasma.life = 200;
 
 	LightExplosion.anim.PushBack({ 395, 229, 24, 22 });
 	LightExplosion.anim.PushBack({ 425, 227, 28, 26 });

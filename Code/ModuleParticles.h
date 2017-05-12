@@ -54,9 +54,10 @@ public:
 	Particle laserLight;
 	Particle laserHeavy2s;
 	Particle laserHeavy3s;
-	//Particle laserBeamLight;
 	Particle LaserBeamHeavy;
+	Particle preBomb;
 	Particle bomb;
+	Particle bombFantasma;
 	Particle enemyBulletBasic;
 	Particle LightExplosion;
 	Particle HeavyExplosion;

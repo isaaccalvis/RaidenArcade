@@ -32,6 +32,7 @@ public:
 	int bombsPlayer1;
 	bool bombOnPlayer1 = false;
 	int esperaShootP1 = 0;
+	int postXYbomb[4] = { 0,0,0, 0 }; // 0 = x, 1 = y, 3 = tempsEsperaSeguentBomba, 4 = copsQueFaMal
 
 	int powerUpLevelPlayer2;
 	int current_time;

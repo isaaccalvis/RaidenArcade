@@ -9,14 +9,11 @@
 #include "ModuleMusic.h"
 
 
-
 Object_Box::Object_Box(int x, int y) : Enemy(x, y) {
 	Object_Box_Animation.PushBack({ 0, 0, 25, 23 });
 	Object_Box_Animation.speed = 0.2f;
 	Object_Box_Animation.loop = false;
 	animation = &Object_Box_Animation;
-
-
 
 	vida = 1;
 	collider = App->collision->AddCollider({ 0, 0, 25, 23 }, COLLIDER_TYPE::COLLIDER_OBJECT_COLLISION, (Module*)App->enemies);

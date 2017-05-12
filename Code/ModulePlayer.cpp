@@ -174,7 +174,6 @@ update_status ModulePlayer::Update(){
 			&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 			current_animation = &idle;
 	}
-	print("%i %i\n", leftMov.IntCurrentFrame(), rightMov.IntCurrentFrame());
 
 	App->fonts->BlitText(60, 10, font_score, "1up");
 	if (videsP1 == 4) {
@@ -191,14 +190,6 @@ update_status ModulePlayer::Update(){
 
 	colPlayer1->SetPos(PROTA.x, PROTA.y);
 
-	/*App->fonts->BlitText(180, 10, font_score, "hi-score");
-	char str[10];
-	sprintf_s(str, "%i", puntuacioP1);
-	App->fonts->BlitText(200,s 25, font_score, str);
-	sprintf_s(score_text, 10, "%7d", puntuacioP1);*/
-
-		/// Draw everything --------------------------------------
-	// Restaurador de quan et fots una hostia
 	if (destroyed == true) {
 		if (SDL_TICKS_PASSED(SDL_GetTicks(), current_time - 2000)) {
 			if (videsP1 > 0) {
