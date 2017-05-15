@@ -11,6 +11,7 @@
 #include "SDL\include\SDL_timer.h"
 
 #define MAX_POWERUP 8
+#define MAX_MISSILE_UP 3
 ModuleBullets::ModuleBullets() {}
 ModuleBullets::~ModuleBullets(){}
 iPoint vel(0, -8);
@@ -31,6 +32,7 @@ bool ModuleBullets::Start() {
 
 bool ModuleBullets::Init() {
 	powerUpLevelPlayer1 = 0;
+	missileUpLevelPlayer1 = 0;
 	powerUpLevelPlayer2 = 0;
 	App->bullet->Enable();
 	return true;
@@ -41,10 +43,16 @@ update_status ModuleBullets::Update() {
 	else if (powerUpLevelPlayer1 > MAX_POWERUP - 1)
 		powerUpLevelPlayer1 = MAX_POWERUP - 1;
 
+	if (missileUpLevelPlayer1 < 0)
+		missileUpLevelPlayer1 = 0;
+	else if (missileUpLevelPlayer1 > MAX_MISSILE_UP)
+		missileUpLevelPlayer1 = MAX_MISSILE_UP ;
+
 	if (powerUpLevelPlayer2 < 0)
 		powerUpLevelPlayer2 = 0;
 	else if (powerUpLevelPlayer2 > MAX_POWERUP - 1)
 		powerUpLevelPlayer2 = MAX_POWERUP - 1;
+
 	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_DOWN && App->player->GodMode == true)
 		powerUpLevelPlayer1++;
 	else if (App->input->keyboard[SDL_SCANCODE_E] == KEY_DOWN && App->player->GodMode == true)
@@ -54,6 +62,16 @@ update_status ModuleBullets::Update() {
 			powerUpTypePlayer1 = Laser;
 		else if (powerUpTypePlayer1 == Laser)
 			powerUpTypePlayer1 = Vulkan;
+
+	if (App->input->keyboard[SDL_SCANCODE_Y] == KEY_DOWN && App->player->GodMode == true)
+		missileUpLevelPlayer1++;
+	else if (App->input->keyboard[SDL_SCANCODE_U] == KEY_DOWN && App->player->GodMode == true)
+		missileUpLevelPlayer1--;
+	else if (App->input->keyboard[SDL_SCANCODE_T] == KEY_DOWN && App->player->GodMode == true)
+		if (missileUpTypePlayer1 == Nuclear)
+			missileUpTypePlayer1 = Hoaming;
+		else if (missileUpTypePlayer1 == Hoaming)
+			missileUpTypePlayer1 = Nuclear;
 	// BULLETS DEL JUGADOR 1
 	if ((App->player->destroyed == false && App->player->potMoure == true) && App->player->IsEnabled() == true) {
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
@@ -238,6 +256,52 @@ update_status ModuleBullets::Update() {
 
 				}
 			}
+			//if (SDL_GetTicks() >= esperaMissileP1) {
+				if (missileUpTypePlayer1 == Nuclear) {
+					switch (missileUpLevelPlayer1) {
+					case 1:
+						App->particles->NuclearMissile.speed = vel;
+						App->particles->AddParticle(App->particles->NuclearMissile, App->player->PROTA.x + (App->player->PROTA.w / 2) + 6 - 3, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						App->particles->AddParticle(App->particles->NuclearMissile, App->player->PROTA.x + (App->player->PROTA.w / 2) - 6 - 3, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						esperaMissileP1 = SDL_GetTicks() + 500;
+						break;
+					case 2:
+						App->particles->NuclearMissile.speed = velR;
+						App->particles->AddParticle(App->particles->NuclearMissile, App->player->PROTA.x + (App->player->PROTA.w / 2) + 6 - 3, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						App->particles->NuclearMissile.speed = vel;
+						App->particles->AddParticle(App->particles->NuclearMissile, App->player->PROTA.x + (App->player->PROTA.w / 2) - 3, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						App->particles->NuclearMissile.speed = velL;
+						App->particles->AddParticle(App->particles->NuclearMissile, App->player->PROTA.x + (App->player->PROTA.w / 2) - 6 - 3, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						esperaMissileP1 = SDL_GetTicks() + 500;
+						break;
+					case 3:
+						App->particles->NuclearMissile.speed = vel;
+						App->particles->AddParticle(App->particles->NuclearMissile, App->player->PROTA.x + (App->player->PROTA.w / 2) + 6 - 3, App->player->PROTA.y - 5, COLLIDER_PLAYER_SHOT);
+						App->particles->AddParticle(App->particles->NuclearMissile, App->player->PROTA.x + (App->player->PROTA.w / 2) - 6 - 3, App->player->PROTA.y - 5, COLLIDER_PLAYER_SHOT);
+						App->particles->AddParticle(App->particles->NuclearMissile, App->player->PROTA.x + (App->player->PROTA.w / 2) + 10 - 3, App->player->PROTA.y + 5, COLLIDER_PLAYER_SHOT);
+						App->particles->AddParticle(App->particles->NuclearMissile, App->player->PROTA.x + (App->player->PROTA.w / 2) - 10 - 3, App->player->PROTA.y + 5, COLLIDER_PLAYER_SHOT);
+
+						break;
+					}
+				}
+				else if (missileUpTypePlayer1 == Hoaming) {
+					switch (missileUpLevelPlayer1) {
+					case 1:
+						print("hoaming 1\n");
+						App->particles->AddParticle(App->particles->NuclearMissile, App->player->PROTA.x + (App->player->PROTA.w / 2) - desfaseSpriteDispar, App->player->PROTA.y, COLLIDER_PLAYER_SHOT);
+						esperaMissileP1 = SDL_GetTicks() + 500;
+						break;
+					case 2:
+						print("hoaming 2\n");
+
+						break;
+					case 3:
+						print("hoaming 3\n");
+
+						break;
+					}
+				}
+		//	}
 		}
 	}
 

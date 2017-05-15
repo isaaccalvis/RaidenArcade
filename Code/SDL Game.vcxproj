@@ -74,6 +74,11 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Asteroid.h" />
+    <ClInclude Include="DiamondPlane.h" />
+    <ClInclude Include="HeavyOrangeAirship.h" />
+    <ClInclude Include="HeavyTurret.h" />
+    <ClInclude Include="LightShooterLateral.h" />
     <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="Object_Box.h" />
     <ClInclude Include="Enemy.h" />
@@ -103,9 +108,15 @@
     <ClInclude Include="Object_PowerUp.h" />
     <ClInclude Include="p2Point.h" />
     <ClInclude Include="Path.h" />
+    <ClInclude Include="vTank.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Asteroid.cpp" />
+    <ClCompile Include="DiamondPlane.cpp" />
+    <ClCompile Include="HeavyOrangeAirship.cpp" />
+    <ClCompile Include="HeavyTurret.cpp" />
+    <ClCompile Include="LightShooterLateral.cpp" />
     <ClCompile Include="ModuleFonts.cpp" />
     <ClCompile Include="Object_Box.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -132,6 +143,7 @@
     <ClCompile Include="Enemy_BonusPlane.cpp" />
     <ClCompile Include="Object_Medal.cpp" />
     <ClCompile Include="Object_PowerUp.cpp" />
+    <ClCompile Include="vTank.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

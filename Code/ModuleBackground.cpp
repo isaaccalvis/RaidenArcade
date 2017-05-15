@@ -55,7 +55,6 @@ bool ModuleBackground::Start(){
 }
 
 update_status ModuleBackground::Update() {
-	print("posBackground -> %f\n", posBackGround);
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), current_time)) {
 		if (controlador_Auxiliar_Background_1 == true) {
 			if (App->player->potMoure == false) {

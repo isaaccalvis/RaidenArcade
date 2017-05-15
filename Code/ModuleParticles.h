@@ -9,6 +9,11 @@
 
 #define MAX_ACTIVE_PARTICLES 100
 
+enum accioAlColisionar {
+	DESTRUCCIO = 0,
+	SPAWN_LIGHT_EXPLOSION
+};
+
 struct SDL_Texture;
 struct Collider;
 enum COLLIDER_TYPE;
@@ -23,6 +28,7 @@ struct Particle{
 	Uint32 life = 0;
 	bool fx_played = false;
 	int desfaseOriginal;
+	accioAlColisionar reaccioXoc = DESTRUCCIO;
 
 	Particle();
 	Particle(const Particle& p);
@@ -55,6 +61,8 @@ public:
 	Particle laserHeavy2s;
 	Particle laserHeavy3s;
 	Particle LaserBeamHeavy;
+	Particle NuclearMissile;
+	Particle HoamingMissile;
 	Particle preBomb;
 	Particle bomb;
 	Particle bombFantasma;

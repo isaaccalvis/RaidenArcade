@@ -149,6 +149,13 @@ void ModuleParticles::loadParticlesTextures() {
 	preBomb.anim.speed = 0.2f;
 	preBomb.life = 1000;
 
+	NuclearMissile.anim.PushBack({ 226, 127, 6, 16 });
+	NuclearMissile.anim.PushBack({ 243, 127, 6, 16 });
+	NuclearMissile.anim.loop = true;
+	NuclearMissile.anim.speed = 0.3f;
+	NuclearMissile.life = 1000;
+	NuclearMissile.reaccioXoc = SPAWN_LIGHT_EXPLOSION;
+
 	bomb.anim.PushBack({ 495, 635, 168, 168 });
 	bomb.anim.PushBack({ 667, 635, 168, 168 });
 	bomb.anim.PushBack({ 834, 635, 168, 168 });
@@ -213,10 +220,19 @@ void ModuleParticles::loadParticlesTextures() {
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2){
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i){
 		if (active[i] != nullptr && active[i]->collider == c1){
-			if (c2->type == COLLIDER_TYPE::COLLIDER_ENEMY || c2->type == COLLIDER_TYPE::COLLIDER_OBJECT_COLLISION) {
+			switch (active[i]->reaccioXoc) {
+			case DESTRUCCIO:
 				delete active[i];
 				active[i] = nullptr;
+				break;
+			case SPAWN_LIGHT_EXPLOSION:
+				AddParticle(App->particles->LightExplosion, active[i]->position.x, active[i]->position.y, COLLIDER_PLAYER_SHOT);
+				AddParticle(App->particles->LightExplosion, active[i]->position.x, active[i]->position.y, COLLIDER_NONE);
+				delete active[i];
+				active[i] = nullptr;
+				break;
 			}
+
 			break;
 		}
 	}

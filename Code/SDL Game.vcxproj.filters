@@ -21,6 +21,15 @@
     <Filter Include="Modules\Enemy\Objects">
       <UniqueIdentifier>{2f892423-53c6-4f04-b407-4e5b7386397b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Enemy\Background1">
+      <UniqueIdentifier>{11273d35-98d0-4dad-a7ab-22e54d4945f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Enemy\Background6">
+      <UniqueIdentifier>{1d66b7c6-2276-4e53-bf89-3cd5c64a802c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Enemy\Boss">
+      <UniqueIdentifier>{b39b1602-efa9-4751-97d5-57eed72eeaa7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -92,18 +101,6 @@
     <ClInclude Include="Enemy.h">
       <Filter>Modules\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_LightShooter.h">
-      <Filter>Modules\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_BasicTank.h">
-      <Filter>Modules\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_BonusPlane.h">
-      <Filter>Modules\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_Turret.h">
-      <Filter>Modules\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Object_Box.h">
       <Filter>Modules\Enemy\Objects</Filter>
     </ClInclude>
@@ -115,6 +112,36 @@
     </ClInclude>
     <ClInclude Include="ModuleFonts.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_BasicTank.h">
+      <Filter>Modules\Enemy\Background1</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_BonusPlane.h">
+      <Filter>Modules\Enemy\Background1</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_LightShooter.h">
+      <Filter>Modules\Enemy\Background1</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Turret.h">
+      <Filter>Modules\Enemy\Background1</Filter>
+    </ClInclude>
+    <ClInclude Include="HeavyTurret.h">
+      <Filter>Modules\Enemy\Background6</Filter>
+    </ClInclude>
+    <ClInclude Include="vTank.h">
+      <Filter>Modules\Enemy\Background6</Filter>
+    </ClInclude>
+    <ClInclude Include="DiamondPlane.h">
+      <Filter>Modules\Enemy\Background6</Filter>
+    </ClInclude>
+    <ClInclude Include="LightShooterLateral.h">
+      <Filter>Modules\Enemy\Background6</Filter>
+    </ClInclude>
+    <ClInclude Include="HeavyOrangeAirship.h">
+      <Filter>Modules\Enemy\Background6</Filter>
+    </ClInclude>
+    <ClInclude Include="Asteroid.h">
+      <Filter>Modules\Enemy\Background6</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -175,18 +202,6 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Modules\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_LightShooter.cpp">
-      <Filter>Modules\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_BasicTank.cpp">
-      <Filter>Modules\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_BonusPlane.cpp">
-      <Filter>Modules\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_Turret.cpp">
-      <Filter>Modules\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Object_Box.cpp">
       <Filter>Modules\Enemy\Objects</Filter>
     </ClCompile>
@@ -198,6 +213,36 @@
     </ClCompile>
     <ClCompile Include="ModuleFonts.cpp">
       <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_BasicTank.cpp">
+      <Filter>Modules\Enemy\Background1</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_BonusPlane.cpp">
+      <Filter>Modules\Enemy\Background1</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_LightShooter.cpp">
+      <Filter>Modules\Enemy\Background1</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Turret.cpp">
+      <Filter>Modules\Enemy\Background1</Filter>
+    </ClCompile>
+    <ClCompile Include="HeavyTurret.cpp">
+      <Filter>Modules\Enemy\Background6</Filter>
+    </ClCompile>
+    <ClCompile Include="vTank.cpp">
+      <Filter>Modules\Enemy\Background6</Filter>
+    </ClCompile>
+    <ClCompile Include="DiamondPlane.cpp">
+      <Filter>Modules\Enemy\Background6</Filter>
+    </ClCompile>
+    <ClCompile Include="LightShooterLateral.cpp">
+      <Filter>Modules\Enemy\Background6</Filter>
+    </ClCompile>
+    <ClCompile Include="HeavyOrangeAirship.cpp">
+      <Filter>Modules\Enemy\Background6</Filter>
+    </ClCompile>
+    <ClCompile Include="Asteroid.cpp">
+      <Filter>Modules\Enemy\Background6</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

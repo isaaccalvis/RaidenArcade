@@ -44,13 +44,17 @@ Enemy_Turret::Enemy_Turret(int x, int y) : Enemy(x, y) {
 	}
 
 	void Enemy_Turret::Move() {
-		if (SDL_TICKS_PASSED(SDL_GetTicks(), current_time)) {
+		/*if (SDL_TICKS_PASSED(SDL_GetTicks(), current_time)) {
 			if (current_time < SDL_GetTicks())
 				current_time = SDL_GetTicks() + 1000;
 			else {
 				dispara = true;
 				current_time = SDL_GetTicks() + 1000;
 			}
+		}*/
+		if (SDL_TICKS_PASSED(SDL_GetTicks(), current_time)) {
+			dispara = true;
+			current_time = SDL_GetTicks() + 1000;
 		}
 
 		rectaY = (position.y + 15) - (App->player->PROTA.y + App->player->PROTA.h);

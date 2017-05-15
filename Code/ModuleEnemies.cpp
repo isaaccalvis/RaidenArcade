@@ -12,6 +12,12 @@
 #include "Object_Box.h"
 #include "Object_Medal.h"
 #include "Object_PowerUp.h"
+#include "Asteroid.h"
+#include "DiamondPlane.h"
+#include "HeavyOrangeAirship.h"
+#include "HeavyTurret.h"
+#include "LightShooterLateral.h"
+#include "vTank.h"
 #include "ModuleMusic.h"
 
 #define SPAWN_MARGIN 100
@@ -24,6 +30,7 @@ ModuleEnemies::ModuleEnemies(){
 ModuleEnemies::~ModuleEnemies(){}
 
 bool ModuleEnemies::Start(){
+	// Enemies BackGround 1
 	sprite_LightShooter = App->textures->Load("Sprites/Enemies/Stage_1/Light_Shooter.png");
 	sprite_BasicTank = App->textures->Load("Sprites/Enemies/Stage_1/Tank.png");
 	sprite_Turret = App->textures->Load("Sprites/Enemies/Stage_1/Turret.png");
@@ -31,6 +38,10 @@ bool ModuleEnemies::Start(){
 	sprite_Box = App->textures->Load("Sprites/Extras/Box.png");
 	sprite_Medal_PowerUp_Bonus = App->textures->Load("Sprites/Extras/Powerups_and_bonusues.png");
 
+	// Enemies BackGrodun 6
+	sprite_Asteroid = App->textures->Load("Sprites/Enemies/Stage_6/Asteroid.png");
+
+	sprite_Light_Shooter_Lateral = App->textures->Load("Sprites/Enemies/Stage_6/Light_Shooter_Lateral.png");
 
 	return true;
 }
@@ -85,6 +96,12 @@ bool ModuleEnemies::CleanUp(){
 	App->textures->Unload(sprite_BasicTank);
 	App->textures->Unload(sprite_Box);
 	App->textures->Unload(sprite_Medal_PowerUp_Bonus);
+	App->textures->Unload(sprite_Asteroid);
+	App->textures->Unload(sprite_Diamond_Plane);
+	App->textures->Unload(sprite_Heavy_Orange_Airship);
+	App->textures->Unload(sprite_Heavy_Turret);
+	App->textures->Unload(sprite_Light_Shooter_Lateral);
+	App->textures->Unload(sprite_vTank);
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i){
 		if (enemies[i] != nullptr){
@@ -135,6 +152,24 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info){
 			break;
 		case ENEMY_TYPES::POWER_UP:
 			enemies[i] = new Object_PowerUp(info.x, info.y);
+			break;
+		case ENEMY_TYPES::ASTEROID:
+			enemies[i] = new Asteroid(info.x, info.y);
+			break;
+		case ENEMY_TYPES::DIAMOND_PLANE:
+			enemies[i] = new DiamondPlane(info.x, info.y);
+			break;
+		case ENEMY_TYPES::HEAVY_ORANGE_AIRSHIP:
+			enemies[i] = new HeavyOrangeAirship(info.x, info.y);
+			break;
+		case ENEMY_TYPES::HEAVY_TURRET:
+			enemies[i] = new HeavyTurret(info.x, info.y);
+			break;
+		case ENEMY_TYPES::LIGHT_SHOOTER_LATERAL:
+			enemies[i] = new LightShooterLateral(info.x, info.y);
+			break;
+		case ENEMY_TYPES::VTANK:
+			enemies[i] = new vTank(info.x, info.y);
 			break;
 		}
 	}

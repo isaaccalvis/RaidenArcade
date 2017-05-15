@@ -11,7 +11,6 @@ enum PowerUpType {
 	Laser
 };
 enum MissileUpType {
-	NONE = 0,
 	Nuclear,
 	Hoaming
 };
@@ -27,11 +26,13 @@ public:
 
 public:
 	int powerUpLevelPlayer1;
+	int missileUpLevelPlayer1;
 	PowerUpType powerUpTypePlayer1 = Vulkan;
-	MissileUpType missileUpTypePlayer1 = NONE;
+	MissileUpType missileUpTypePlayer1 = Nuclear; // comença al nivell 0 així que dona igual
 	int bombsPlayer1;
 	bool bombOnPlayer1 = false;
 	int esperaShootP1 = 0;
+	int esperaMissileP1;
 	int postXYbomb[4] = { 0,0,0, 0 }; // 0 = x, 1 = y, 3 = tempsEsperaSeguentBomba, 4 = copsQueFaMal
 
 	int powerUpLevelPlayer2;

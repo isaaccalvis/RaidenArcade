@@ -11,6 +11,12 @@ enum ENEMY_TYPES{
 	BASIC_TANK,
 	BONUS_PLANE,
 	TURRET,
+	ASTEROID,
+	DIAMOND_PLANE,
+	HEAVY_ORANGE_AIRSHIP,
+	HEAVY_TURRET,
+	LIGHT_SHOOTER_LATERAL,
+	VTANK,
 	// --- OBJECTS ---
 	BOX,
 	MEDAL,
@@ -42,7 +48,12 @@ public:
 	SDL_Texture* sprite_BonusPlane;
 	SDL_Texture* sprite_Box;
 	SDL_Texture* sprite_Medal_PowerUp_Bonus;
-
+	SDL_Texture* sprite_Asteroid;
+	SDL_Texture* sprite_Diamond_Plane;
+	SDL_Texture* sprite_Heavy_Orange_Airship;
+	SDL_Texture* sprite_Heavy_Turret;
+	SDL_Texture* sprite_Light_Shooter_Lateral;
+	SDL_Texture* sprite_vTank;
 
 
 private:
