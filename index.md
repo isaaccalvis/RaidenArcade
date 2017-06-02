@@ -1,32 +1,67 @@
-## Welcome to GitHub Pages
+# Raiden, by Vento Áureo
 
-You can use the [editor on GitHub](https://github.com/Soniaremacha/VentoAureo/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+## Hello and welcome to Vento áureo , a team that will replicate Raiden to the fullest!
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Raiden is a scrolling shoot’em up arcade game developed by Seibu Kaihatsu in 1990, being the first game in the Raiden Series and released for Arcade, Atari, PC, PlayStation and even mobile phone.
 
-### Markdown
+Raiden has eight stages where you take control of the Raiden Supersonic Attack Fighter, a new cutting-edge weapon created by the World Alliance Military to stop the alien invasion.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Through bombs and missile powerups, the player must destroy enemy crafts and dodge their bullets to add points to their score.
 
-```markdown
-Syntax highlighted code block
+After defeating the Stage 8 boss, you return to Stage 1 with a harder version of the game where enemies attack faster.
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
+# Gameplay Footage
 
 [Link](url) and ![Image](src)
+
+
+# Game Controls
+
+|Type|Sub-Type|Key info|
+---------------
+|Screen Keys| Welcome Screen   | Press 5 to continue |
+|           | Players Screen   | Press 1 or 2 to enter each mode |
+|           | Game Over Screen | Press X to insert a coin |
+
+
+
+
+Auxiliar Keys
+ESC: Exits Game
+In the Score screen use SPACE to return to the Main menu.
+
+
+In-Game Keys
+
+Player One:
+WASD: Movement
+SPACE: Shoot
+
+
+
+Player Two:
+ARROW KEYS: Movement​
+SPACE: Shoot
+
+
+God Mode Keys (F2)
+
+E/Q: Poer Up/Down
+0: Game Over
+9: Change Stage
+Z: Spawn Power-Up
+C: Spawn Box
+V: Spawn Turret
+B: Spawn Bonus Airship
+N: Spawn Tank
+M: Spawn Light Shooter
+F1: Show Colliders
+
+
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+For more details see our [GitHub Wiki Page](https://github.com/Soniaremacha/VentoAureo/wiki).
 
 ### Jekyll Themes
 
