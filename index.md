@@ -10,13 +10,13 @@ Through bombs and missile powerups, the player must destroy enemy crafts and dod
 
 After defeating the Stage 8 boss, you return to Stage 1 with a harder version of the game where enemies attack faster.
 
-=============================================================================================
+---
 
 # Gameplay Footage
 
 <iframe width="854" height="480" src="https://www.youtube.com/embed/lAIGb1lfpBw" frameborder="0" allowfullscreen></iframe>
 
-=============================================================================================
+---
 
 # Game Controls
 
@@ -26,14 +26,14 @@ After defeating the Stage 8 boss, you return to Stage 1 with a harder version of
 |           | Players Screen   | 1 or 2  | To enter each mode |
 |           | Game Over Screen | X  | To insert a coin |
 
-=============================================================================================
+---
 
 |Type|Sub-Type|Key|Info|
 |----|--------|--------|-----|
 | Auxiliar Keys | | ESC | Exits Game |
 |               | Score Screen | SPACE | Return to the Main Menu |
 
-=============================================================================================
+---
 
 |Type|Sub-Type|Key|Info|
 |----|--------|--------|-----|
@@ -46,7 +46,7 @@ After defeating the Stage 8 boss, you return to Stage 1 with a harder version of
 |               |            | | Bomb |
 |               |            | | Missil |
 
-=============================================================================================
+---
 
 |Type|Sub-Type|Key|Info|
 |----|--------|--------|-----|
@@ -62,7 +62,7 @@ After defeating the Stage 8 boss, you return to Stage 1 with a harder version of
 | ||    M| Spawn Light Shooter|
 | ||   F1| Show Colliders| 
 
-=============================================================================================
+---
 
 ```
 
