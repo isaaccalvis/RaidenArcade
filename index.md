@@ -19,7 +19,7 @@ After defeating the Stage 8 boss, you return to Stage 1 with a harder version of
 # Game Controls
 
 |Type|Sub-Type|Key info|
----------------
+|----|--------|--------|
 |Screen Keys| Welcome Screen   | Press 5 to continue |
 |           | Players Screen   | Press 1 or 2 to enter each mode |
 |           | Game Over Screen | Press X to insert a coin |
