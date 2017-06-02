@@ -23,10 +23,16 @@ After defeating the Stage 8 boss, you return to Stage 1 with a harder version of
 |Screen Keys| Welcome Screen   | 5  | To continue |
 |           | Players Screen   | 1 or 2  | To enter each mode |
 |           | Game Over Screen | X  | To insert a coin |
-|| | | |
+
+
+|Type|Sub-Type|Key|Info|
+|----|--------|--------|-----|
 | Auxiliar Keys | | ESC | Exits Game |
 |               | Score Screen | SPACE | Return to the Main Menu |
-| | |||
+
+
+|Type|Sub-Type|Key|Info|
+|----|--------|--------|-----|
 | In-Game Keys  | Player One | WASD | Movement |
 |               |            | SPACE | Shoot |
 |               |            | | Bomb |
@@ -35,9 +41,12 @@ After defeating the Stage 8 boss, you return to Stage 1 with a harder version of
 |               |            | O | Shoot |
 |               |            | | Bomb |
 |               |            | | Missil |
-| | | | |
+
+
+|Type|Sub-Type|Key|Info|
+|----|--------|--------|-----|
 | God Mode Keys | | F2 | Enters God Mode |
-|| | E/Q | Power-Up/Down |
+| || E/Q | Power-Up/Down |
 | ||  0  | Game Over|
 | ||  9  | Change Stage|
 | ||  Z  | Spawn Power-Up|
