@@ -18,45 +18,35 @@ After defeating the Stage 8 boss, you return to Stage 1 with a harder version of
 
 # Game Controls
 
-|Type|Sub-Type|Key info|
-|----|--------|--------|
-|Screen Keys| Welcome Screen   | Press 5 to continue |
-|           | Players Screen   | Press 1 or 2 to enter each mode |
-|           | Game Over Screen | Press X to insert a coin |
-
-
-
-
-Auxiliar Keys
-ESC: Exits Game
-In the Score screen use SPACE to return to the Main menu.
-
-
-In-Game Keys
-
-Player One:
-WASD: Movement
-SPACE: Shoot
-
-
-
-Player Two:
-ARROW KEYS: Movement​
-SPACE: Shoot
-
-
-God Mode Keys (F2)
-
-E/Q: Poer Up/Down
-0: Game Over
-9: Change Stage
-Z: Spawn Power-Up
-C: Spawn Box
-V: Spawn Turret
-B: Spawn Bonus Airship
-N: Spawn Tank
-M: Spawn Light Shooter
-F1: Show Colliders
+|Type|Sub-Type|Key|Info|
+|----|--------|--------|-----|
+|Screen Keys| Welcome Screen   | 5  | To continue |
+|           | Players Screen   | 1 or 2  | To enter each mode |
+|           | Game Over Screen | X  | To insert a coin |
+| | | | |
+| Auxiliar Keys | | ESC | Exits Game |
+|               | Score Screen | SPACE | Return to the Main Menu |
+| | | | |
+| In-Game Keys  | Player One | WASD | Movement |
+|               |            | SPACE | Shoot |
+|               |            | | Bomb |
+|               |            | | Missil |
+| In-Game Keys  | Player Two | Arrow Keys | Movement |
+|               |            | O | Shoot |
+|               |            | | Bomb |
+|               |            | | Missil |
+| | | | |
+| God Mode Keys | | F2 | Enters God Mode |
+| | E/Q | Power-Up/Down |
+| |  0  | Game Over
+| |  9  | Change Stage
+| |  Z  | Spawn Power-Up
+| |   C | Spawn Box
+| |    V| Spawn Turret
+| |    B| Spawn Bonus Airship
+| |    N| Spawn Tank
+| |    M| Spawn Light Shooter
+| |   F1| Show Colliders
 
 
 ```
