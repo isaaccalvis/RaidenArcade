@@ -21,14 +21,16 @@ After defeating the Stage 8 boss, you return to Stage 1 with a harder version of
 # Game Controls
 
 ## Screen Keys
+
 |Type|Keyboard Key|Gamepad Key|Info|
 |----|------------|-----------|----|
 | Welcome Screen   | 5 | Start Key  | To continue |
 | Players Screen   | 1 | (A) with Gamepad 1   | To enter Singleplayer mode |
-|    | 2 | (A) with Gamepad 2   | To enter Coop mode |
+|                  | 2 | (A) with Gamepad 2   | To enter Coop mode |
 
 
 ## In-Game Keys
+
 |Type|Keyboard Key|Gamepad Key|Info|
 |----|------------|-----------|----|
 | Player One    | WASD | JoyStick or D-Pad | Movement |
