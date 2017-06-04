@@ -1,2 +1,6 @@
 theme: jekyll-theme-cayman
-include: [https://github.com/Soniaremacha/VentoAureo/raw/master/Foto%20Grupo.jpg]
+defaults:
+  - scope:
+      path: "assets/img"
+    values:
+      image: true
