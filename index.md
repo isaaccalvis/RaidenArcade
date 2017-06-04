@@ -21,9 +21,10 @@ After defeating the Stage 8 boss, you return to Stage 1 with a harder version of
 
 ---
 
+
 # Gameplay Footage
 
-<iframe width="854" height="480" src="https://www.youtube.com/embed/Y8dRrsIEIws" frameborder="0" allowfullscreen></iframe>
+<iframe width="854" height="480" src="https://www.youtube.com/embed/7QY-pVGliTE" frameborder="0" allowfullscreen></iframe>
 
 ---
 
