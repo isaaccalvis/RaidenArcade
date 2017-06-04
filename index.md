@@ -3,8 +3,6 @@
 <a href="https://github.com/Soniaremacha/VentoAureo/releases/download/Raiden1.0/Raiden1.0_VentoAureo.zip">Download Raiden.zip</a>
 
 
-<a href="https://github.com/Soniaremacha/VentoAureo/archive/Raiden1.0.tar.gz">Download Raiden.tar.gz</a>
-
 
 ## Hello and welcome to Vento áureo , a team that will replicate Raiden to the fullest!
 
