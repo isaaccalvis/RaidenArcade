@@ -1,9 +1,13 @@
 # Raiden, by Vento Áureo
 
-<a href="file.txt">Download File</a>
-<a href="file.txt">Download File</a>
+<a href="https://github.com/Soniaremacha/VentoAureo/archive/Raiden1.0.zip">Download Raiden.zip</a>
+<a href="https://github.com/Soniaremacha/VentoAureo/archive/Raiden1.0.tar.gz">Download Raiden.tar.gz</a>
+
 
 ## Hello and welcome to Vento áureo , a team that will replicate Raiden to the fullest!
+
+![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Foto%20Grupo.jpg)
+
 
 Raiden is a scrolling shoot’em up arcade game developed by Seibu Kaihatsu in 1990, being the first game in the Raiden Series and released for Arcade, Atari, PC, PlayStation and even mobile phone.
 
@@ -89,9 +93,10 @@ While pressing I:
 |               | U |  | Missile level -1 |
 
 ---
-
-```
+``
 
 For more details see our [GitHub Wiki Page](https://github.com/Soniaremacha/VentoAureo/wiki).
 
 Thanks for playing our Raiden replica!
+
+``
