@@ -8,7 +8,7 @@
 
 ## Hello and welcome to Vento áureo , a team that will replicate Raiden to the fullest!
 
-![](https://github.com/Soniaremacha/VentoAureo/blob/master/Foto%20Grupo.JPG)
+![](https://github.com/Soniaremacha/VentoAureo/blob/master/Foto%20Grupo.jpg)
 
 <a href="https://github.com/Soniaremacha/VentoAureo/blob/master/Foto%20Grupo.jpg">In case the photo doesn't appear, click here to see it</a>
 
@@ -101,31 +101,31 @@ While pressing I:
 
 ## Members
 
-### ![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Design/Team/Sergio.PNG)Sergio Gómez
+### ![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Design/Team/Sergio.png)Sergio Gómez
 
  - Design/QA
  - Github: [Sersius](https://github.com/Sersius)
 
 
-### ![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Design/Team/Eric.PNG)Eric Marco
+### ![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Design/Team/Eric.png)Eric Marco
 
  - Art
  - Github: [IHakurei](https://github.com/IHakurei)
 
 
-### ![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Design/Team/Sonia.PNG)Sonia Remacha
+### ![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Design/Team/Sonia.png)Sonia Remacha
 
  - Management
  - Github: [Soniaremacha](https://github.com/Soniaremacha)
 
 
-### ![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Design/Team/Xavi.PNG)Xavi Fortes
+### ![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Design/Team/Xavi.png)Xavi Fortes
 
  - Code
  - Github: [SrBraska](https://github.com/SrBraska)
 
 
-### ![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Design/Team/Isaac.PNG)Isaac Calvís
+### ![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Design/Team/Isaac.png)Isaac Calvís
 
  - Code
  - Github: [Isaaccalvis](https://github.com/isaaccalvis)
