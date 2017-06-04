@@ -14,53 +14,74 @@ After defeating the Stage 8 boss, you return to Stage 1 with a harder version of
 
 # Gameplay Footage
 
-<iframe width="854" height="480" src="https://www.youtube.com/embed/lAIGb1lfpBw" frameborder="0" allowfullscreen></iframe>
+<iframe width="854" height="480" src="https://www.youtube.com/embed/Y8dRrsIEIws" frameborder="0" allowfullscreen></iframe>
 
 ---
 
 # Game Controls
 
-|Type|Sub-Type|Key|Info|
-|----|--------|--------|-----|
-|Screen Keys| Welcome Screen   | 5  | To continue |
-|           | Players Screen   | 1 or 2  | To enter each mode |
-|           | Game Over Screen | X  | To insert a coin |
+## Screen Keys
+|Type|Keyboard Key|Gamepad Key|Info|
+|----|------------|-----------|----|
+| Welcome Screen   | 5 | Start Key  | To continue |
+| Players Screen   | 1 | (A) with Gamepad 1   | To enter Singleplayer mode |
+|    | 2 | (A) with Gamepad 2   | To enter Coop mode |
 
----
 
-|Type|Sub-Type|Key|Info|
-|----|--------|--------|-----|
-| Auxiliar Keys | | ESC | Exits Game |
-|               | Score Screen | SPACE | Return to the Main Menu |
+## In-Game Keys
+|Type|Keyboard Key|Gamepad Key|Info|
+|----|------------|-----------|----|
+| Player One    | WASD | JoyStick or D-Pad | Movement |
+|               | SPACE | (A) | Shoot |
+|               | B | (B) | Bomb |
+|               |  |  |  |
+| Player Two    | Arrow Keys | JoyStick or D-Pad | Movement |
+|               | O | (A) | Shoot |
+|               | P | (B) | Bomb |
 
----
 
-|Type|Sub-Type|Key|Info|
-|----|--------|--------|-----|
-| In-Game Keys  | Player One | WASD | Movement |
-|               |            | SPACE | Shoot |
-|               |            | | Bomb |
-|               |            | | Missil |
-| In-Game Keys  | Player Two | Arrow Keys | Movement |
-|               |            | O | Shoot |
-|               |            | | Bomb |
-|               |            | | Missil |
+## Auxiliar Keys
 
----
+|Type|Keyboard Key|Gamepad Key|Info|
+|----|------------|-----------|----|
+| Auxiliar Keys | F1 |  | Show Colliders |
+|               | F2 |  | God Mode |
+|               | ESC |  | Exits Game |
 
-|Type|Sub-Type|Key|Info|
-|----|--------|--------|-----|
-| God Mode Keys | | F2 | Enters God Mode |
-| || E/Q | Power-Up/Down |
-| ||  0  | Game Over|
-| ||  9  | Change Stage|
-| ||  Z  | Spawn Power-Up|
-| ||   C | Spawn Box|
-| ||    V| Spawn Turret|
-| ||    B| Spawn Bonus Airship|
-| ||    N| Spawn Tank|
-| ||    M| Spawn Light Shooter|
-| ||   F1| Show Colliders| 
+In the Score Screen, press SPACE to return to the Main Menu.
+
+
+## God Mode Keys
+
+While pressing I:
+
+|Type|Keyboard Key|Gamepad Key|Info|
+|----|------------|-----------|----|
+| Spawn Keys    | C |  | Box |
+|               | V |  | Turret |
+|               | B |  | Bonus Airship |
+|               | N |  | Tank |
+|               | M |  | Light Shooter |
+|               | X |  | Medal |
+|               | Z |  | Power-up |
+|               | L |  | Missile Power-Up |
+|               | K |  | Level 6 Boss Head |
+|               | J |  | Light Shooter Lateral |
+|               | H |  | Heavy Turret |
+|               | G |  | Heavy Orange Airship |
+|               | F |  | Asteroid |
+|               | P |  | Diamond Plane |
+|               | O |  | V-Tank |
+|               | U |  | Boss 6 (Full Enemy) |
+|               | Y |  | Mine |
+|               |   |  |  |
+| Power-Up Keys | Q |  | Power-Up level +1 |
+|               | E |  | Power-Up level -1 |
+|               | R |  | Change Power-Up Type |
+|               |   |  |  |
+| Missile Keys  | T |  | Change Missile Type |
+|               | Y |  | Missile level +1 |
+|               | U |  | Missile level -1 |
 
 ---
 
@@ -68,10 +89,4 @@ After defeating the Stage 8 boss, you return to Stage 1 with a harder version of
 
 For more details see our [GitHub Wiki Page](https://github.com/Soniaremacha/VentoAureo/wiki).
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Soniaremacha/VentoAureo/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Thanks for playing our Raiden replica!
