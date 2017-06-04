@@ -8,7 +8,8 @@
 
 ## Hello and welcome to Vento áureo , a team that will replicate Raiden to the fullest!
 
-<p><img src="https://github.com/Soniaremacha/VentoAureo/blob/master/Foto%20Grupo.jpg"alt=""></p>
+<img src="https://github.com/Soniaremacha/VentoAureo/blob/master/Foto%20Grupo.jpg" alt="">
+![](https://github.com/Soniaremacha/VentoAureo/blob/master/Foto%20Grupo.jpg)
 
 
 Raiden is a scrolling shoot’em up arcade game developed by Seibu Kaihatsu in 1990, being the first game in the Raiden Series and released for Arcade, Atari, PC, PlayStation and even mobile phone.
