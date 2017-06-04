@@ -98,6 +98,38 @@ While pressing I:
 |               | U |  | Missile level -1 |
 
 ---
+
+## Members
+
+### ![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Design/Team/Sergio.png)Sergio Gómez
+
+ - Design/QA
+ - Github: [Sersius](https://github.com/Sersius)
+
+
+### ![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Design/Team/Eric.png)Eric Marco
+
+ - Art
+ - Github: [IHakurei](https://github.com/IHakurei)
+
+
+### ![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Design/Team/Sonia.png)Sonia Remacha
+
+ - Management
+ - Github: [Soniaremacha](https://github.com/Soniaremacha)
+
+
+### ![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Design/Team/Xavi.png)Xavi Fortes
+
+ - Code
+ - Github: [SrBraska](https://github.com/SrBraska)
+
+
+### ![](https://github.com/Soniaremacha/VentoAureo/blob/Raiden/Design/Team/Isaac.png)Isaac Calvís
+
+ - Code
+ - Github: [Isaaccalvis](https://github.com/isaaccalvis)
+ 
 ``
 
 For more details see our [GitHub Wiki Page](https://github.com/Soniaremacha/VentoAureo/wiki).
