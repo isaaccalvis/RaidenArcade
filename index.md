@@ -7,7 +7,7 @@
 ## Hello and welcome to Vento áureo , a team that will replicate Raiden to the fullest!
 
 
-![](https://github.com/Soniaremacha/VentoAureo/blob/master/20170605_112358.jpg)
+![](20170605_112358.jpg)
 
 
 <a href="https://github.com/Soniaremacha/VentoAureo/blob/master/20170605_112358.jpg">In case the photo doesn't appear, click here to see it</a>
