@@ -335,7 +335,7 @@ int ModuleEnemies::hoamingReturnEnem(int enem) {
 			}
 		}
 	} else {
-		if (enemies[enem] != nullptr)
+		if (enemies[enem] != nullptr && enemies[enem]->type != HEAVY_TURRET_DESTROY)
 			return enem;
 		else
 			return -1;
